@@ -15,6 +15,8 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 22px;

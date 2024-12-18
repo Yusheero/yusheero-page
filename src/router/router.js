@@ -6,10 +6,10 @@ import ProjectsView from '../views/ProjectsView.vue';
 import BlogView from '../views/BlogView.vue';
 
 const routes = [
-  { path: '/', component: HomeView },
-  { path: '/contacts', component: ContactsView },
-  { path: '/projects', component: ProjectsView },
-  { path: '/blog', component: BlogView },
+  { path: '/', component: HomeView, name: 'Home' },
+  { path: '/contacts', component: ContactsView, name: 'Contacts' },
+  { path: '/projects', component: ProjectsView, name: 'Projects' },
+  { path: '/blog', component: BlogView, name: 'Blog' },
 ]
 
 export const router = createRouter({

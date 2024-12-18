@@ -53,17 +53,12 @@ table {
 }
 
 :root {
-	--color-primary-dark: #000000;
-	--color-primary: #070707;
-	--color-primary-light: #181818;
-	--color-secondary-dark: #ffe2b6;
-	--color-secondary: #ffebcd;
-	--color-secondary-light: #ffebce;
+	--color-primary: #0F0F0F;
+	--color-primary-light: #363636;
+	--color-secondary: #dfdfdf;
 }
 
 .page-container {
-  height: 100%;
-  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;

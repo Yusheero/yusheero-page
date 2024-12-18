@@ -2,40 +2,39 @@
 
 <template>
   <div class="navigation">
-    <div class="navigation__title">Navigation</div>
-    <div class="navigation__icons">
-      <img class="navigation__icon" src="./images/folder.svg" alt="nav-icon">
-      <img class="navigation__icon" src="./images/folder.svg" alt="nav-icon">
-      <img class="navigation__icon" src="./images/folder.svg" alt="nav-icon">
-      <img class="navigation__icon" src="./images/folder.svg" alt="nav-icon">
-    </div>
+    <router-link class="navigation__button" :to="{name: 'Home'}"></router-link>
+    <router-link class="navigation__button" :to="{name: 'Projects'}"></router-link>
+    <router-link class="navigation__button" :to="{name: 'Contacts'}"></router-link>
+    <router-link class="navigation__button" :to="{name: 'Blog'}"></router-link>
   </div>
 </template>
 
 <style lang="scss">
-  .navigation {
-    height: 230px;
-    width: 230px;
-    border-radius: 10px;
-    border: var(--color-secondary) solid 2px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+.navigation {
+  padding: 16px;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
 
-    &__icons {
-      display: grid;
-      grid-template-columns: repeat(2, 50px);
-      grid-template-rows: repeat(2, 50px);
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
+  &__button {
+    height: 76px;
+    background: var(--color-primary);
+    border-radius: 8px;
+    border: none;
 
-    &__icon {
-      width: 50px;
-      height: 50px;
+    &:hover {
+      background: var(--color-primary-light);
+      cursor: pointer;
+      transition: background .3s;
     }
   }
+}
 </style>

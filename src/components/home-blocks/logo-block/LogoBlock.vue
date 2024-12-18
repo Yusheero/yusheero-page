@@ -8,15 +8,14 @@
 
 <style lang="scss">
   .avatar-block {
-    height: 230px;
-    width: 230px;
-    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
 
     &__image {
       width: 100%;
       height: 100%;
       border-radius: 8px;
-      border: var(--color-secondary) solid 2px
     }
   }
 </style>
