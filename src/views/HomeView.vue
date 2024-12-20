@@ -35,13 +35,13 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 500px;
-  grid-template-rows: 150px 250px 100px 250px;
+  grid-template-rows: 150px 250px 100px 200px;
   gap: 16px;
   grid-template-areas:
     "navigation logo name name experience"
     "languages languages languages pc experience"
     "tech tech tech tech tech"
-    "contacts contacts interests interests interests";
+    "contacts contacts contacts interests interests";
 
     &__navigation {
       grid-area: navigation;
