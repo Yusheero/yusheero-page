@@ -7,6 +7,7 @@ import ExperienceBlock from '../components/home-blocks/experience-block/Experien
 import TechBlock from '../components/home-blocks/tech-block/TechBlock.vue';
 import ContactsBlock from '../components/home-blocks/contacts-block/ContactsBlock.vue';
 import InterestsBlock from '../components/home-blocks/interests-block/InterestsBlock.vue';
+import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import InterestsBlock from '../components/home-blocks/interests-block/InterestsB
       <Navigation class="home-view__navigation" />
       <LogoBlock class="home-view__logo" />
       <NameBlock class="home-view__name" />
+      <PcSpecsBlock class="home-view__pc" />
       <ExperienceBlock class="home-view__experience" />
       <LanguagesBlock class="home-view__languages" />
       <TechBlock class="home-view__tech" />
@@ -32,12 +34,12 @@ import InterestsBlock from '../components/home-blocks/interests-block/InterestsB
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 200px 200px 100px 300px 500px;
-  grid-template-rows: 200px 250px 100px 250px;
+  grid-template-columns: 150px 150px 100px 300px 500px;
+  grid-template-rows: 150px 250px 100px 250px;
   gap: 16px;
   grid-template-areas:
     "navigation logo name name experience"
-    "languages languages languages slot experience"
+    "languages languages languages pc experience"
     "tech tech tech tech tech"
     "contacts contacts interests interests interests";
 
@@ -71,6 +73,10 @@ import InterestsBlock from '../components/home-blocks/interests-block/InterestsB
 
     &__interests {
       grid-area: interests;
+    }
+
+    &__pc {
+      grid-area: pc;
     }
 }
 </style>

@@ -7,6 +7,7 @@ import Navigation from '../components/navigation/Navigation.vue';
     <div class="projects-view">
       <Navigation class="projects-view__navigation" />
       <div class="projects-view__title">Projects Page</div>
+      <div class="projects-view__content">Content</div>
     </div>
   </div>
 </template>
@@ -19,14 +20,14 @@ import Navigation from '../components/navigation/Navigation.vue';
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 200px 200px 100px 300px 500px;
-  grid-template-rows: 200px 250px 100px 250px;
+  grid-template-columns: 150px 150px 100px 300px 500px;
+  grid-template-rows: 150px 250px 100px 250px;
   gap: 16px;
   grid-template-areas:
     "navigation title title title title"
-    "languages languages languages slot experience"
-    "tech tech tech tech tech"
-    "contacts contacts interests interests interests";
+    "content content content content content"
+    "content content content content content"
+    "content content content content content";
 
     &__navigation {
       grid-area: navigation;
@@ -45,6 +46,22 @@ import Navigation from '../components/navigation/Navigation.vue';
       background: var(--color-secondary);
       color: var(--color-primary);
       grid-area: title;
+    }
+
+    &__content {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      border: var(--color-secondary) solid 2px;
+      grid-area: content;
     }
 }
 </style>

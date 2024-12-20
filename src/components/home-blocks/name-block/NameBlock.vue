@@ -1,12 +1,13 @@
-<script setup></script>
-
+<script setup>
+import { LocateFixed } from 'lucide-vue-next';
+</script>
 <template>
   <div class="about-block">
     <div class="about-block__titles">
       <h1 class="about-block__title">Hello, I am Yusheero</h1>
       <h2 class="about-block__subtitle">Frontend Developer</h2>
     </div>
-    <div class="about-block__location"><img src="./images/map-pinned.svg" alt="">Vladivostok, Russia</div>
+    <div class="about-block__location"><LocateFixed color="white" size="24" stroke-width="1.5" />Vladivostok, Russia</div>
   </div>
 </template>
 
@@ -19,17 +20,18 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: 22px;
   padding: 24px;
-  background: var(--color-secondary);
-  color: var(--color-primary);
+  background: transparent;
+  color: var(--color-secondary);
+  border: var(--color-secondary) solid 2px;
 
   &__titles {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 12px;
+    gap: 8px;
   }
 
   &__title {
@@ -45,6 +47,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
     gap: 6px;
   }
 }

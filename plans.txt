@@ -5,6 +5,7 @@
 https://www.svgrepo.com/
 https://lucide.dev/icons/
 https://tabler.io/icons
+https://icones.js.org/
 
 ЗАДАЧИ:
 1. Сверстать компоненты

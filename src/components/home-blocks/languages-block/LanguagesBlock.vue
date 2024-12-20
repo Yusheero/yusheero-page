@@ -2,7 +2,11 @@
 
 <template>
   <div class="languages-block">
-    Language
+    <div class="languages-block__language-main">Russian</div>
+    <div class="languages-block__language-second">
+      <div class="languages-block__language english">English</div>
+      <div class="languages-block__language japanese">Japanese</div>
+    </div>
   </div>
 </template>
 
@@ -12,32 +16,58 @@
   width: 100%;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
+  gap: 8px;
+  padding: 8px;
   background: var(--color-secondary);
   color: var(--color-primary);
 
-  &__base {
+  &__language-main {
+    height: 100%;
     width: 100%;
-    height: 50%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 6px;
+    align-items: center;
+    border: #000000 solid 2px;
+    border-radius: 8px;
+    background: var(--color-primary);
+    color: var(--color-secondary);
   }
 
-  &__code {
+  &__language-second {
+    height: 100%;
     width: 100%;
-    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    gap: 6px;
+    align-items: center;
+    gap: 8px;
+
+    .english {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: #000000 solid 2px;
+      border-radius: 8px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
+
+    .japanese {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: #000000 solid 2px;
+      border-radius: 8px;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+    }
   }
 }
 </style>

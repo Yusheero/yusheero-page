@@ -1,11 +1,11 @@
 <script setup></script>
 
 <template>
-  <div class="contacts-block">Interests</div>
+  <div class="interests-block">Interests</div>
 </template>
 
 <style lang="scss">
-.contacts-block {
+.interests-block {
   height: 100%;
   width: 100%;
   border-radius: 8px;
