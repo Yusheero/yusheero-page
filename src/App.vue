@@ -22,11 +22,7 @@ const options = ref({
 
 <template>
   <main class="main">
-    <TWallpaper
-      ref="twallpaper"
-      v-if="enabled"
-      :options="options"
-    />
+    <TWallpaper ref="twallpaper" v-if="enabled" :options="options" />
     <Router-view />
   </main>
 </template>
