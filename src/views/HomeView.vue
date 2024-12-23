@@ -6,7 +6,6 @@ import Navigation from '../components/navigation/Navigation.vue';
 import ExperienceBlock from '../components/home-blocks/experience-block/ExperienceBlock.vue';
 import TechBlock from '../components/home-blocks/tech-block/TechBlock.vue';
 import ContactsBlock from '../components/home-blocks/contacts-block/ContactsBlock.vue';
-import InterestsBlock from '../components/home-blocks/interests-block/InterestsBlock.vue';
 import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
 </script>
 
@@ -21,7 +20,6 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
       <LanguagesBlock class="home-view__languages" />
       <TechBlock class="home-view__tech" />
       <ContactsBlock class="home-view__contacts" />
-      <InterestsBlock class="home-view__interests" />
     </div>
   </div>
 </template>
@@ -41,7 +39,7 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
     "navigation logo name name experience"
     "languages languages languages pc experience"
     "tech tech tech tech tech"
-    "contacts contacts contacts interests interests";
+    "contacts contacts contacts slot slot";
 
     &__navigation {
       grid-area: navigation;

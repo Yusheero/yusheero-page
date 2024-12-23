@@ -5,12 +5,12 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
 <template>
   <div class="contacts-block">
     <div class="contacts-block__links">
-      <a class="contacts-block__item" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt="">yusheero</a>
-      <a class="contacts-block__item" href=""><img class="contacts-block__image" src="./images/twitch.svg" alt="">yusheero</a>
-      <a class="contacts-block__item" href=""><img class="contacts-block__image" src="./images/github.svg" alt="">yusheero</a>
-      <a class="contacts-block__item" href=""><img class="contacts-block__image" src="./images/inst.svg" alt="">yusheero_dev</a>
+      <a class="contacts-block__item telegram" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt="">yusheero</a>
+      <a class="contacts-block__item twitch" href=""><img class="contacts-block__image" src="./images/twitch.svg" alt="">yusheero</a>
+      <a class="contacts-block__item github" href=""><img class="contacts-block__image" src="./images/github.svg" alt="">yusheero</a>
+      <a class="contacts-block__item inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt="">yusheero_dev</a>
     </div>
-    <a class="contacts-block__item" href=""><img class="contacts-block__image" src="./images/discord.svg" alt="">discord</a>
+    <a class="contacts-block__item discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt="">discord</a>
   </div>
 </template>
 
@@ -23,7 +23,6 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 6px;
   padding: 8px;
   color: var(--color-secondary);
   border: var(--color-secondary) solid 2px;
@@ -36,8 +35,11 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 6px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+      "telegram twitch"
+      "github inst"
+      "discord discord"
   }
 
   &__item {
@@ -64,6 +66,26 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
   &__image {
     width: 42px;
     height: 42px;
+  }
+
+  .telegram {
+    grid-area: telegram;
+  }
+
+  .twitch {
+    grid-area: twitch;
+  }
+
+  .github {
+    grid-area: github;
+  }
+
+  .inst {
+    grid-area: inst;
+  }
+
+  .discord {
+    grid-area: discord;
   }
 }
 </style>

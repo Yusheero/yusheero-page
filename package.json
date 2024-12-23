@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=./",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@twallpaper/vue": "^2.1.2",
     "keen-slider": "^6.8.6",
     "lucide-vue-next": "^0.468.0",
     "pinia": "^2.2.7",
