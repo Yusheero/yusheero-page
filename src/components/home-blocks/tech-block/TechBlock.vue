@@ -6,8 +6,8 @@ const [container, slider] = useKeenSlider({
   loop: true,
   initial: 0,
   slides: {
-    perView: 11,
-    spacing: 10
+    perView: 14,
+    spacing: 12
   },
 },
 [
@@ -18,9 +18,9 @@ const [container, slider] = useKeenSlider({
 <template>
   <div class="tech-block">
     <div ref="container" class="keen-slider">
-      <div class="keen-slider__slide number-slide1">JS</div>
-      <div class="keen-slider__slide number-slide2">TS</div>
-      <div class="keen-slider__slide number-slide3">Vite</div>
+      <div class="keen-slider__slide keen-slider__slide-js number-slide1"></div>
+      <div class="keen-slider__slide keen-slider__slide-ts number-slide2"></div>
+      <div class="keen-slider__slide keen-slider__slide-vite number-slide3"></div>
       <div class="keen-slider__slide number-slide4">Vue</div>
       <div class="keen-slider__slide number-slide5">HTML</div>
       <div class="keen-slider__slide number-slide6">CSS</div>
@@ -30,6 +30,8 @@ const [container, slider] = useKeenSlider({
       <div class="keen-slider__slide number-slide6">NPM</div>
       <div class="keen-slider__slide number-slide6">Git</div>
       <div class="keen-slider__slide number-slide6">NodeJS</div>
+      <div class="keen-slider__slide number-slide6">ThreeJS</div>
+      <div class="keen-slider__slide number-slide6">ThreeJS</div>
       <div class="keen-slider__slide number-slide6">ThreeJS</div>
     </div>
   </div>
@@ -66,5 +68,21 @@ const [container, slider] = useKeenSlider({
   height: 76px;
   color: var(--color-primary);
   font-size: 20px;
+
+  &-js {
+    background-image: url('./images/js.png');
+    background-size: cover;
+  }
+
+  &-ts {
+    background-image: url('./images/typescript.png');
+    background-size: cover;
+  }
+
+  &-vite {
+    background-image: url('./images/vite.png');
+    background-size: cover;
+  }
+    
 }
 </style>

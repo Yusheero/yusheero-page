@@ -5,12 +5,11 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
 <template>
   <div class="contacts-block">
     <div class="contacts-block__links">
-      <a class="contacts-block__item telegram" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt="">yusheero</a>
-      <a class="contacts-block__item twitch" href=""><img class="contacts-block__image" src="./images/twitch.svg" alt="">yusheero</a>
-      <a class="contacts-block__item github" href=""><img class="contacts-block__image" src="./images/github.svg" alt="">yusheero</a>
-      <a class="contacts-block__item inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt="">yusheero_dev</a>
+      <a class="contacts-block__item contacts-block__item-telegram" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-github" href=""><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
     </div>
-    <a class="contacts-block__item discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt="">discord</a>
   </div>
 </template>
 
@@ -25,7 +24,8 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
   align-items: center;
   padding: 8px;
   color: var(--color-secondary);
-  border: var(--color-secondary) solid 2px;
+  background: var(--color-secondary);
+  // background: var(--color-primary);
 
   &__text {
     font-size: 32px;
@@ -33,59 +33,53 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
 
   &__links {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-template-areas:
-      "telegram twitch"
-      "github inst"
-      "discord discord"
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
 
   &__item {
     width: 100%;
+    height: 100%;
     text-decoration: none;
     color: var(--color-primary);
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
     gap: 6px;
     font-size: 18px;
-    border: var(--color-primary) solid 2px;
     border-radius: 6px;
     padding: 4px;
-    background: var(--color-secondary);
+
+    &-telegram {
+      background: #229ED9;
+    }
+
+    &-discord {
+      background: #5865F2;
+    }
+
+    &-github {
+      background: #000000;
+    }
+
+    &-inst {
+      background: rgb(64,93,230);
+      background: linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
+    }
 
     &:hover {
-      background: var(--color-primary-light);
-      transition: background .3s;
+      opacity: 85%;
     }
   }
 
   &__image {
-    width: 42px;
-    height: 42px;
-  }
-
-  .telegram {
-    grid-area: telegram;
-  }
-
-  .twitch {
-    grid-area: twitch;
-  }
-
-  .github {
-    grid-area: github;
-  }
-
-  .inst {
-    grid-area: inst;
-  }
-
-  .discord {
-    grid-area: discord;
+    width: 50px;
+    height: 50px;
   }
 }
 </style>

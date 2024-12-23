@@ -7,13 +7,13 @@ const enabled = ref(true)
 const twallpaper = ref()
 const options = ref({
   colors: [
-    '#103969',
-    '#720881',
-    '#7b279c',
-    '#790035'
+    '#d05baa',
+    '#291046',
+    '#3c2693',
+    '#7a213d'
   ],
-  fps: 60,
-  tails: 80,
+  fps: 80,
+  tails: 300,
   pattern: {
     mask: false,
   }

@@ -7,6 +7,8 @@ import ExperienceBlock from '../components/home-blocks/experience-block/Experien
 import TechBlock from '../components/home-blocks/tech-block/TechBlock.vue';
 import ContactsBlock from '../components/home-blocks/contacts-block/ContactsBlock.vue';
 import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
+import TwitchBlock from '../components/home-blocks/twitch-block/TwitchBlock.vue';
+import GifBlock from '../components/home-blocks/gif-block/GifBlock.vue';
 </script>
 
 <template>
@@ -20,6 +22,8 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
       <LanguagesBlock class="home-view__languages" />
       <TechBlock class="home-view__tech" />
       <ContactsBlock class="home-view__contacts" />
+      <TwitchBlock class="home-view__twitch" />
+      <GifBlock class="home-view__gif" />
     </div>
   </div>
 </template>
@@ -39,7 +43,7 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
     "navigation logo name name experience"
     "languages languages languages pc experience"
     "tech tech tech tech tech"
-    "contacts contacts contacts slot slot";
+    "gif contacts contacts contacts twitch";
 
     &__navigation {
       grid-area: navigation;
@@ -75,6 +79,14 @@ import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.
 
     &__pc {
       grid-area: pc;
+    }
+
+    &__twitch {
+      grid-area: twitch;
+    }
+
+    &__gif {
+      grid-area: gif;
     }
 }
 </style>
