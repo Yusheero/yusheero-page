@@ -1,21 +1,21 @@
 <script setup>
-import Navigation from '../components/navigation/Navigation.vue';
+import Navigation from '../../components/navigation/Navigation.vue';
 </script>
 
 <template>
   <div class="page-container">
-    <div class="contacts-view">
-      <Navigation class="contacts-view__navigation" />
-      <div class="contacts-view__title">Contacts Page</div>
+    <div class="projects-view">
+      <Navigation class="projects-view__navigation" />
+      <div class="projects-view__title">Projects Page</div>
       <div class="projects-view__content">Content</div>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@import '../assets/styles/style.scss';
+@import '../../assets/styles/style.scss';
 
-.contacts-view {
+.projects-view {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
