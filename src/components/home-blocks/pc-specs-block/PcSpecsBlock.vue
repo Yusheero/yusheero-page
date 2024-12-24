@@ -1,9 +1,14 @@
 <script setup>
 import { SquareArrowOutUpRight } from 'lucide-vue-next';
+import { useStore } from '../../../store/store';
+import PcSpecsBlockMobile from './pc-specs-block-mobile/PcSpecsBlockMobile.vue';
+
+const store = useStore()
 </script>
 
 <template>
-  <div class="pc-block">
+  <PcSpecsBlockMobile v-if="store.isMobile" />
+  <div v-else class="pc-block">
     <div class="pc-block__item">
       MOTHERBOARD - GIGABYTE GA-H61M-S2PV
       <a 
@@ -51,7 +56,7 @@ import { SquareArrowOutUpRight } from 'lucide-vue-next';
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pc-block {
   height: 100%;
   width: 100%;
@@ -60,6 +65,7 @@ import { SquareArrowOutUpRight } from 'lucide-vue-next';
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 8px;
   padding: 8px;
   background: var(--color-secondary);
   color: var(--color-primary);

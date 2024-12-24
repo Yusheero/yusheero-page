@@ -37,7 +37,7 @@ const [container, slider] = useKeenSlider({
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('keen-slider/keen-slider.css');
 
 .tech-block {

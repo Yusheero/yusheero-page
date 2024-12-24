@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .avatar-block {
     height: 100%;
     width: 100%;

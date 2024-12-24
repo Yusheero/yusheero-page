@@ -1,23 +1,18 @@
 <script setup>
 import { LocateFixed } from 'lucide-vue-next';
-import NameBlockMobile from './name-block-mobile/NameBlockMobile.vue';
-import { useStore } from '../../../store/store';
-
-const store = useStore()
 </script>
 <template>
-  <NameBlockMobile v-if="store.isMobile" />
-  <div v-else class="name-block">
-    <div class="name-block__titles">
-      <h1 class="name-block__title">Hello, I am Yusheero</h1>
-      <h2 class="name-block__subtitle">Frontend Developer</h2>
+  <div class="name-block-mobile">
+    <div class="name-block-mobile__titles">
+      <h1 class="name-block-mobile__title">Hello, I am Yusheero</h1>
+      <h2 class="name-block-mobile__subtitle">Frontend Developer</h2>
     </div>
-    <div class="name-block__location"><LocateFixed color="white" size="24" stroke-width="1.5" />Vladivostok, Russia</div>
+    <div class="name-block-mobile__location"><LocateFixed color="white" size="24" stroke-width="1.5" />Vladivostok, Russia</div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.name-block {
+.name-block-mobile {
   height: 100%;
   width: 100%;
   border-radius: 8px;
@@ -25,8 +20,8 @@ const store = useStore()
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 22px;
-  padding: 24px;
+  gap: 12px;
+  padding: 16px;
   background: transparent;
   color: var(--color-secondary);
   border: var(--color-secondary) solid 2px;
@@ -36,7 +31,7 @@ const store = useStore()
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 8px;
+    gap: 16px;
   }
 
   &__title {
@@ -53,7 +48,7 @@ const store = useStore()
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    gap: 6px;
+    gap: 8px;
   }
 }
 </style>

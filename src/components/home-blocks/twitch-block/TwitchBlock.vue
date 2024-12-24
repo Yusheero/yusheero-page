@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .twitch-block {
   height: 100%;
   width: 100%;

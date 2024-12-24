@@ -1,8 +1,29 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onBeforeMount, onMounted, onUnmounted } from 'vue'
+import { useStore } from './store/store';
 import TWallpaper from '@twallpaper/vue'
 import '@twallpaper/vue/css'
 
+const store = useStore();
+
+const onResize = () => {
+  store.isMobile = window.innerWidth <= 768
+}
+
+onMounted(() => {
+  window.addEventListener('resize', onResize);
+})
+
+onUnmounted(() => { 
+  window.removeEventListener('resize', onResize); 
+})
+
+onBeforeMount(() => {
+  store.isMobile = window.innerWidth <= 768
+  console.log('before mount', store.isMobile);
+})
+
+/** Background приложения */
 const enabled = ref(true)
 const twallpaper = ref()
 const options = ref({
@@ -39,5 +60,11 @@ const options = ref({
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 22px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    height: 100%;
+  }
 }
 </style>

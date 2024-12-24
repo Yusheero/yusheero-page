@@ -1,24 +1,18 @@
-<script setup>
-import { useStore } from '../../../store/store';
-import LanguagesBlockMobile from './language-block-mobile/LanguagesBlockMobile.vue'
-
-const store = useStore()
-</script>
+<script setup></script>
 
 <template>
-  <LanguagesBlockMobile v-if="store.isMobile" />
-  <div v-else class="languages-block">
-    <div class="languages-block__language-main">Russian</div>
-    <div class="languages-block__language-second">
-      <div class="languages-block__language english">English</div>
-      <div class="languages-block__language japanese">Japanese</div>
+  <div class="languages-block-mobile">
+    <div class="languages-block-mobile__language-main">Russian</div>
+    <div class="languages-block-mobile__language-second">
+      <div class="languages-block-mobile__language english">English</div>
+      <div class="languages-block-mobile__language japanese">Japanese</div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.languages-block {
-  height: 100%;
+.languages-block-mobile {
+  height: 200px;
   width: 100%;
   border-radius: 10px;
   display: flex;

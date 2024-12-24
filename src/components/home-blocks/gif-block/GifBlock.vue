@@ -6,7 +6,7 @@
   <div class="gif-block"></div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .gif-block {
   height: 100%;
   width: 100%;

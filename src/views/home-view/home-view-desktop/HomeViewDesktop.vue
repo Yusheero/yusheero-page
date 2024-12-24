@@ -1,14 +1,14 @@
 <script setup>
-import LogoBlock from '../components/home-blocks/logo-block/LogoBlock.vue';
-import NameBlock from '../components/home-blocks/name-block/NameBlock.vue';
-import LanguagesBlock from '../components/home-blocks/languages-block/LanguagesBlock.vue';
-import Navigation from '../components/navigation/Navigation.vue';
-import ExperienceBlock from '../components/home-blocks/experience-block/ExperienceBlock.vue';
-import TechBlock from '../components/home-blocks/tech-block/TechBlock.vue';
-import ContactsBlock from '../components/home-blocks/contacts-block/ContactsBlock.vue';
-import PcSpecsBlock from '../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
-import TwitchBlock from '../components/home-blocks/twitch-block/TwitchBlock.vue';
-import GifBlock from '../components/home-blocks/gif-block/GifBlock.vue';
+import LogoBlock from '../../../components/home-blocks/logo-block/LogoBlock.vue';
+import NameBlock from '../../../components/home-blocks/name-block/NameBlock.vue';
+import LanguagesBlock from '../../../components/home-blocks/languages-block/LanguagesBlock.vue';
+import Navigation from '../../../components/navigation/Navigation.vue';
+import ExperienceBlock from '../../../components/home-blocks/experience-block/ExperienceBlock.vue';
+import TechBlock from '../../../components/home-blocks/tech-block/TechBlock.vue';
+import ContactsBlock from '../../../components/home-blocks/contacts-block/ContactsBlock.vue';
+import PcSpecsBlock from '../../../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
+import TwitchBlock from '../../../components/home-blocks/twitch-block/TwitchBlock.vue';
+import GifBlock from '../../../components/home-blocks/gif-block/GifBlock.vue';
 </script>
 
 <template>
@@ -28,8 +28,8 @@ import GifBlock from '../components/home-blocks/gif-block/GifBlock.vue';
   </div>
 </template>
 
-<style lang="scss">
-@import '../assets/styles/style.scss';
+<style lang="scss" scoped>
+@import '../../../assets/styles/style.scss';
 
 .home-view {
   height: 100%;

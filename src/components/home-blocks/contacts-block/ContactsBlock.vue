@@ -13,7 +13,7 @@ import { Send, Github, Instagram, Twitch } from 'lucide-vue-next';
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .contacts-block {
   height: 100%;
   width: 100%;

@@ -1,5 +1,8 @@
 <script setup>
-import ExperienceItem from './experience-item/ExperienceItem.vue';
+import { useStore } from '../../../store/store';
+import ExperienceItem from './experience-item/ExperienceItem.vue'
+
+const store = useStore()
 </script>
 
 <template>
@@ -19,7 +22,7 @@ import ExperienceItem from './experience-item/ExperienceItem.vue';
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .experience-block {
   height: 100%;
   width: 100%;
