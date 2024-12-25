@@ -4,7 +4,7 @@
 
 <template>
   <div class="twitch-block">
-    SOON
+    <h2>SOON</h2>
   </div>
 </template>
 
