@@ -1,14 +1,9 @@
 <script setup>
-import { useStore } from '@/store/store';
 import ExperienceItem from '@/components/home-blocks/experience-block/experience-item/ExperienceItem.vue'
-import ExperienceBlockMobile from '@/components/home-blocks/experience-block/experience-block-mobile/ExperienceBlockMobile.vue';
-
-const store = useStore()
 </script>
 
 <template>
-  <ExperienceBlockMobile v-if="store.isMobile" />
-  <div v-else class="experience-block">
+  <div class="experience-block">
     <ExperienceItem
       :company="'DNS Technologies'"
       :job="'Technical support specialist'"

@@ -1,14 +1,14 @@
 <script setup>
-import LogoBlock from '../../../components/home-blocks/logo-block/LogoBlock.vue';
-import NameBlock from '../../../components/home-blocks/name-block/NameBlock.vue';
-import LanguagesBlock from '../../../components/home-blocks/languages-block/LanguagesBlock.vue';
-import Navigation from '../../../components/navigation/Navigation.vue';
-import ExperienceBlock from '../../../components/home-blocks/experience-block/ExperienceBlock.vue';
-import TechBlock from '../../../components/home-blocks/tech-block/TechBlock.vue';
-import ContactsBlock from '../../../components/home-blocks/contacts-block/ContactsBlock.vue';
-import PcSpecsBlock from '../../../components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
-import TwitchBlock from '../../../components/home-blocks/twitch-block/TwitchBlock.vue';
-import GifBlock from '../../../components/home-blocks/gif-block/GifBlock.vue';
+import LogoBlock from '@/components/home-blocks/logo-block/LogoBlock.vue';
+import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
+import LanguagesBlock from '@/components/home-blocks/languages-block/LanguagesBlock.vue';
+import Navigation from '@/components/navigation/Navigation.vue';
+import ExperienceBlock from '@/components/home-blocks/experience-block/ExperienceBlock.vue';
+import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
+import ContactsBlock from '@/components/home-blocks/contacts-block/ContactsBlock.vue';
+import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
+import TwitchBlock from '@/components/home-blocks/twitch-block/TwitchBlock.vue';
+import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
 </script>
 
 <template>
@@ -29,7 +29,7 @@ import GifBlock from '../../../components/home-blocks/gif-block/GifBlock.vue';
 </template>
 
 <style lang="scss" scoped>
-@import '../../../assets/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 .home-view {
   height: 100%;
@@ -37,8 +37,8 @@ import GifBlock from '../../../components/home-blocks/gif-block/GifBlock.vue';
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 500px;
-  grid-template-rows: 150px 250px 100px 200px;
-  gap: 16px;
+  grid-template-rows: 150px 250px 105px 200px;
+  gap: 8px;
   grid-template-areas:
     "navigation logo name name experience"
     "languages languages languages pc experience"

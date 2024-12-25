@@ -1,5 +1,5 @@
 <script setup>
-import Navigation from '../../../components/navigation/Navigation.vue';
+import Navigation from '@/components/navigation/Navigation.vue';
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import Navigation from '../../../components/navigation/Navigation.vue';
 </template>
 
 <style lang="scss">
-@import '../../../assets/styles/style.scss';
+@import '@/assets/styles/style.scss';
 
 .blog-view {
   height: 100%;

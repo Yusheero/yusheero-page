@@ -1,7 +1,7 @@
 <script setup>
-import BlogViewMobile from './blog-view-mobile/BlogViewMobile.vue';
-import BlogViewDesktop from './blog-view-desktop/BlogViewDesktop.vue';
-import { useStore } from '../../store/store';
+import BlogViewMobile from '@/views/blog-view/blog-view-mobile/BlogViewMobile.vue';
+import BlogViewDesktop from '@/views/blog-view/blog-view-desktop/BlogViewDesktop.vue';
+import { useStore } from '@/store/store';
 
 const store = useStore()
 </script>

@@ -18,7 +18,7 @@
   gap: 8px;
   background: #1f1f23;
   color: var(--color-primary);
-  background-image: url('./images/huh-cat.gif');
+  background-image: url('@/components/home-blocks/gif-block/images/huh-cat.gif');
   background-size: cover;
   background-repeat: no-repeat;
 }

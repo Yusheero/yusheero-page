@@ -4,7 +4,7 @@
 
 <template>
   <div class="twitch-block">
-    
+    SOON
   </div>
 </template>
 
@@ -20,6 +20,6 @@
   gap: 8px;
   padding: 8px;
   background: #1f1f23;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 </style>

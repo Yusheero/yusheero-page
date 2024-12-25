@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onBeforeMount, onMounted, onUnmounted } from 'vue'
-import { useStore } from './store/store';
+import { useStore } from '@/store/store';
 import TWallpaper from '@twallpaper/vue'
 import '@twallpaper/vue/css'
 

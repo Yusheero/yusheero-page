@@ -1,7 +1,6 @@
 <script setup>
 import NavigationDesktop from './navigation-desktop/NavigationDesktop.vue';
 import NavigationMobile from './navigation-mobile/NavigationMobile.vue';
-
 import { useStore } from '../../store/store';
 
 const store = useStore()

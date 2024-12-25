@@ -1,15 +1,11 @@
 <script setup>
-import { useKeenSlider } from 'keen-slider/vue'
-import TechBlockMobile from '@/components/home-blocks/tech-block/tech-block-mobile/TechBlockMobile.vue';
-import { useStore } from '@/store/store';
-
-const store = useStore()
+import { useKeenSlider } from 'keen-slider/vue';
 
 const [container, slider] = useKeenSlider({ 
   loop: true,
   initial: 0,
   slides: {
-    perView: 11,
+    perView: 5,
     spacing: 12
   },
 },
@@ -19,8 +15,7 @@ const [container, slider] = useKeenSlider({
 </script>
 
 <template>
-  <TechBlockMobile v-if="store.isMobile" />
-  <div v-else class="tech-block">
+  <div class="tech-block-mobile">
     <div ref="container" class="keen-slider">
       <div class="keen-slider__slide keen-slider__slide-js number-slide1"></div>
       <div class="keen-slider__slide keen-slider__slide-ts number-slide2"></div>
@@ -41,7 +36,7 @@ const [container, slider] = useKeenSlider({
 <style lang="scss" scoped>
 @import url('keen-slider/keen-slider.css');
 
-.tech-block {
+.tech-block-mobile {
   height: 100%;
   width: 100%;
   border-radius: 8px;
@@ -53,74 +48,80 @@ const [container, slider] = useKeenSlider({
   color: var(--color-secondary);
 }
 
+.image {
+  width: 60px;
+  height: 60px;
+}
+
 .keen-slider__slide {
   display: flex;
   justify-content: center;
   align-items: center;
   background: var(--color-secondary);
   border-radius: 8px;
-  height: 100px;
+  height: 65.6px;
   color: var(--color-primary);
   font-size: 20px;
 
   &-js {
-    background-image: url('./images/js.png');
+    background-image: url('../images/js.png');
     background-size: cover;
   }
 
   &-ts {
-    background-image: url('./images/ts.png');
+    background-image: url('../images/ts.png');
     background-size: cover;
   }
 
   &-vite {
-    background-image: url('./images/vite.png');
+    background-image: url('../images/vite.png');
     background-size: cover;
   }
 
   &-vue {
-    background-image: url('./images/vue.png');
+    background-image: url('../images/vue.png');
     background-size: cover;
   }
 
   &-sass {
-    background-image: url('./images/sass.png');
+    background-image: url('../images/sass.png');
     background-size: cover;
   }
 
   &-nuxt {
-    background-image: url('./images/nuxt.png');
+    background-image: url('../images/nuxt.png');
     background-size: cover;
   }
 
   &-router {
-    background-image: url('./images/router.png');
+    background-image: url('../images/router.png');
     background-size: cover;
   }
 
   &-pinia {
-    background-image: url('./images/pinia.png');
+    background-image: url('../images/pinia.png');
     background-size: cover;
   }
 
   &-npm {
-    background-image: url('./images/npm.png');
+    background-image: url('../images/npm.png');
     background-size: cover;
   }
 
   &-git {
-    background-image: url('./images/git.png');
+    background-image: url('../images/git.png');
     background-size: cover;
   }
 
   &-nodejs {
-    background-image: url('./images/nodejs.png');
+    background-image: url('../images/nodejs.png');
     background-size: cover;
   }
 
   &-threejs {
-    background-image: url('./images/threejs.png');
+    background-image: url('../images/threejs.png');
     background-size: cover;
-  }  
+  }
+    
 }
 </style>

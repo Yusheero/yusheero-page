@@ -23,9 +23,9 @@ defineProps({
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
-  padding: 10px;
+  padding: 12px;
   background: var(--color-primary);
   color: var(--color-secondary);
 
@@ -34,11 +34,15 @@ defineProps({
   }
 
   &__job {
-    font-size: 24px;
+    font-size: 18px;
   }
 
   &__date {
-    font-size: 16px;
+    font-size: 12px;
   }
+}
+
+@media (max-width: 768px) {
+
 }
 </style>

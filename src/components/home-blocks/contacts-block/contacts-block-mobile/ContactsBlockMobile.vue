@@ -1,25 +1,21 @@
 <script setup>
-import ContactsBlockMobile from '@/components/home-blocks/contacts-block/contacts-block-mobile/ContactsBlockMobile.vue';
-import { useStore } from '@/store/store';
 
-const store = useStore()
 </script>
 
 <template>
-  <ContactsBlockMobile v-if="store.isMobile" />
-  <div v-else class="contacts-block">
-    <div class="contacts-block__links">
-      <a class="contacts-block__item contacts-block__item-telegram" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-github" href=""><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
+  <div class="contacts-block-mobile">
+    <div class="contacts-block-mobile__links">
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-telegram" href=""><img class="contacts-block-mobile__image" src="../images/telegram.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-discord" href=""><img class="contacts-block-mobile__image" src="../images/discord.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-github" href=""><img class="contacts-block-mobile__image" src="../images/github.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-inst" href=""><img class="contacts-block-mobile__image" src="../images/inst.svg" alt=""></a>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.contacts-block {
-  height: 100%;
+.contacts-block-mobile {
+  height: 120px;
   width: 100%;
   border-radius: 8px;
   display: flex;
@@ -82,8 +78,8 @@ const store = useStore()
   }
 
   &__image {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 </style>
