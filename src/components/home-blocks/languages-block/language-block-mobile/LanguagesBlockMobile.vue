@@ -21,7 +21,7 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
-  border: var(--color-secondary) solid 1px;
+  background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
 
   &__language-main {

@@ -22,8 +22,8 @@ import Navigation from '@/components/navigation/Navigation.vue';
   color: var(--color-secondary);
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
+  gap: 8px;
+  padding: 8px;
 
   &__title {
     height: 100%;
@@ -59,7 +59,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
   }
 
   &__image {

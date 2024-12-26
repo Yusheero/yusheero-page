@@ -29,7 +29,6 @@ const store = useStore()
   padding: 4px;
   color: var(--color-secondary);
   background: rgb(255, 255, 255, 0.25);
-  // background: var(--color-primary);
 
   &__text {
     font-size: 32px;

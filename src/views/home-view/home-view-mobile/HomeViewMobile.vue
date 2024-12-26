@@ -34,18 +34,18 @@ import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
 
 .home-view {
   width: 100%;
-  padding: 16px;
+  padding: 8px;
   color: var(--color-secondary);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 
   &__header {
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
   }
 
   &__image {

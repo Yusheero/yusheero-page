@@ -39,7 +39,7 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 100px 400px;
-  grid-template-rows: 150px 250px 105px 200px;
+  grid-template-rows: 150px 250px 100px 200px;
   gap: 8px;
   grid-template-areas:
     "navigation logo name name experience experience"

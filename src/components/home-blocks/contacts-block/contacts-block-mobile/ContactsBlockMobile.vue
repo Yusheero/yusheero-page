@@ -24,8 +24,7 @@
   align-items: center;
   padding: 8px;
   color: var(--color-secondary);
-  border: var(--color-secondary) solid 1px;
-  // background: var(--color-primary);
+  background: rgb(255, 255, 255, 0.25);
 
   &__text {
     font-size: 32px;

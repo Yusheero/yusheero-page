@@ -60,7 +60,7 @@ const [container, slider] = useKeenSlider({
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   color: var(--color-secondary);
 }
 

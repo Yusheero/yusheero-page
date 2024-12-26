@@ -1,27 +1,20 @@
 <script setup>
-import ExperienceItem from '@/components/home-blocks/experience-block/experience-item/ExperienceItem.vue'
+
 </script>
 
 <template>
-  <div class="experience-block">
-    <ExperienceItem
-      :company="'DNS Technologies'"
-      :job="'Technical support specialist'"
-      :dateStart="'18 August 2023'"
-      :dateEnd="'18 February 2024'"
-    />
-    <ExperienceItem
-      :company="'DNS Technologies'"
-      :job="'Frontend Developer'"
-      :dateStart="'18 February 2024'"
-      :dateEnd="'Now'"
-    />
+  <div class="experience-block-mobile">
+    <div class="experience-block-mobile__content">
+      Your AD could be here, but it won't be here
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.experience-block {
-  height: 100%;
+@import '@/assets/styles/style.scss';
+
+.experience-block-mobile {
+  height: 300px;
   width: 100%;
   border-radius: 8px;
   display: flex;
@@ -30,7 +23,14 @@ import ExperienceItem from '@/components/home-blocks/experience-block/experience
   align-items: center;
   gap: 8px;
   padding: 8px;
-  border: var(--color-secondary) solid 1px;
+  background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
+
+  &__content {
+    text-align: center;
+    width: 70%;
+    font-size: 32px;
+    line-height: 1.1;
+  }
 }
 </style>

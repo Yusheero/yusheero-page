@@ -4,10 +4,10 @@ import Navigation from '../../../components/navigation/Navigation.vue';
 
 <template>
   <div class="page-container">
-    <div class="contacts-view-desktop">
-      <Navigation class="contacts-view-desktop__navigation" />
-      <div class="contacts-view-desktop__title">Contacts Page</div>
-      <div class="contacts-view-desktop__content">Content</div>
+    <div class="experience-view-desktop">
+      <Navigation class="experience-view-desktop__navigation" />
+      <div class="experience-view-desktop__title">Experience Page</div>
+      <div class="experience-view-desktop__content">Content</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Navigation from '../../../components/navigation/Navigation.vue';
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.contacts-view-desktop {
+.experience-view-desktop {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);

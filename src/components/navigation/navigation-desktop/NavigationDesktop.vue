@@ -1,12 +1,12 @@
 <script setup>
-import { ContactRound, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
+import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
 </script>
 
 <template>
   <div class="navigation">
     <router-link class="navigation__button" :to="{name: 'Home'}"><PanelsTopLeft color="white" size="40" stroke-width="1.5" /></router-link>
     <router-link class="navigation__button" :to="{name: 'Projects'}"><Target color="white" size="40" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button" :to="{name: 'Contacts'}"><ContactRound color="white" size="40" stroke-width="1.5" /></router-link>
+    <router-link class="navigation__button" :to="{name: 'Experience'}"><Eye color="white" size="40" stroke-width="1.5" /></router-link>
     <router-link class="navigation__button" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="40" stroke-width="1.5" /></router-link>
   </div>
 </template>

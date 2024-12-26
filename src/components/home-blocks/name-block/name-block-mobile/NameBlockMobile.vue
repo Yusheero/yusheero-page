@@ -24,7 +24,7 @@ import { LocateFixed } from 'lucide-vue-next';
   padding: 16px;
   background: transparent;
   color: var(--color-secondary);
-  border: var(--color-secondary) solid 2px;
+  background: rgb(255, 255, 255, 0.25);
 
   &__titles {
     display: flex;
