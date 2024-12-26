@@ -12,7 +12,7 @@ const [container, slider] = useKeenSlider({
   initial: 0,
   slides: {
     perView: 11,
-    spacing: 12
+    spacing: 8
   },
   created(s) {
     s.moveToIdx(5, true, animation)
@@ -70,7 +70,7 @@ const [container, slider] = useKeenSlider({
   align-items: center;
   background: var(--color-secondary);
   border-radius: 8px;
-  height: 100px;
+  height: 105px;
   color: var(--color-primary);
   font-size: 20px;
 

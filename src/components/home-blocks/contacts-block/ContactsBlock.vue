@@ -13,6 +13,10 @@ const store = useStore()
       <a class="contacts-block__item contacts-block__item-discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
       <a class="contacts-block__item contacts-block__item-github" href=""><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
       <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
+    </div>
+    <div class="contacts-block__mail">
+      yusheero.dev@gmail.com
     </div>
   </div>
 </template>
@@ -26,6 +30,7 @@ const store = useStore()
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 4px;
   padding: 4px;
   color: var(--color-secondary);
   background: rgb(255, 255, 255, 0.25);
@@ -83,6 +88,17 @@ const store = useStore()
   &__image {
     width: 50px;
     height: 50px;
+  }
+
+  &__mail {
+    height: 60px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary);
+    font-size: 20px;
   }
 }
 </style>
