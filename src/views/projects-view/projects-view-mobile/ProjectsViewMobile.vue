@@ -4,10 +4,10 @@ import Navigation from '@/components/navigation/Navigation.vue';
 
 <template>
   <div class="page-container">
-    <div class="projects-view">
-      <Navigation class="projects-view__navigation" />
-      <div class="projects-view__title">Projects Page</div>
-      <div class="projects-view__content">Content</div>
+    <div class="projects-view-mobile">
+      <Navigation class="projects-view-mobile__navigation" />
+      <div class="projects-view-mobile__title">Projects Page</div>
+      <div class="projects-view-mobile__content">Content</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.projects-view {
+.projects-view-mobile {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
