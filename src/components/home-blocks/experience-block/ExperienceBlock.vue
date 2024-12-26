@@ -33,9 +33,9 @@ const store = useStore()
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
-  background: var(--color-secondary);
+  gap: 4px;
+  padding: 4px;
+  background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
 }
 </style>

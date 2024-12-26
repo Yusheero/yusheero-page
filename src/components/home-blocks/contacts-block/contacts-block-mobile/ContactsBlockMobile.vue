@@ -24,7 +24,7 @@
   align-items: center;
   padding: 8px;
   color: var(--color-secondary);
-  background: var(--color-secondary);
+  border: var(--color-secondary) solid 1px;
   // background: var(--color-primary);
 
   &__text {

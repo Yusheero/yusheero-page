@@ -30,7 +30,7 @@ import ExperienceItem from '@/components/home-blocks/experience-block/experience
   align-items: center;
   gap: 8px;
   padding: 8px;
-  background: var(--color-secondary);
+  border: var(--color-secondary) solid 1px;
   color: var(--color-primary);
 }
 </style>

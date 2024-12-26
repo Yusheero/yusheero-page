@@ -42,7 +42,7 @@ import { SquareArrowOutUpRight } from 'lucide-vue-next';
   align-items: flex-start;
   gap: 8px;
   padding: 8px;
-  background: var(--color-secondary);
+  border: var(--color-secondary) solid 1px;
   color: var(--color-primary);
   font-size: 14px;
   line-height: 1.1;

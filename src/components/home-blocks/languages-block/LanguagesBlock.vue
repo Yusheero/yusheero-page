@@ -25,9 +25,9 @@ const store = useStore()
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
-  background: var(--color-secondary);
+  gap: 4px;
+  padding: 4px;
+  background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
 
   &__language-main {
@@ -36,7 +36,6 @@ const store = useStore()
     display: flex;
     justify-content: center;
     align-items: center;
-    border: #000000 solid 2px;
     border-radius: 8px;
     background: var(--color-primary);
     color: var(--color-secondary);
@@ -49,7 +48,7 @@ const store = useStore()
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 
     .english {
       height: 100%;
@@ -57,7 +56,6 @@ const store = useStore()
       display: flex;
       justify-content: center;
       align-items: center;
-      border: #000000 solid 2px;
       border-radius: 8px;
       background: var(--color-primary);
       color: var(--color-secondary);
@@ -69,7 +67,6 @@ const store = useStore()
       display: flex;
       justify-content: center;
       align-items: center;
-      border: #000000 solid 2px;
       border-radius: 8px;
       background: var(--color-primary);
       color: var(--color-secondary);

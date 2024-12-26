@@ -26,9 +26,9 @@ const store = useStore()
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
+  padding: 4px;
   color: var(--color-secondary);
-  background: var(--color-secondary);
+  background: rgb(255, 255, 255, 0.25);
   // background: var(--color-primary);
 
   &__text {
@@ -42,7 +42,7 @@ const store = useStore()
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
   }
 
   &__item {

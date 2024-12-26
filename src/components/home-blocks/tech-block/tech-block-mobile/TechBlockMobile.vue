@@ -1,12 +1,23 @@
 <script setup>
 import { useKeenSlider } from 'keen-slider/vue';
 
+const animation = { duration: 15000, easing: (t) => t }
+
 const [container, slider] = useKeenSlider({ 
   loop: true,
   initial: 0,
   slides: {
     perView: 5,
     spacing: 12
+  },
+  created(s) {
+    s.moveToIdx(5, true, animation)
+  },
+  updated(s) {
+    s.moveToIdx(s.track.details.abs + 5, true, animation)
+  },
+  animationEnded(s) {
+    s.moveToIdx(s.track.details.abs + 5, true, animation)
   },
 },
 [

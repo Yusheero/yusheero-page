@@ -27,10 +27,10 @@ const store = useStore()
   align-items: flex-start;
   gap: 22px;
   padding: 24px;
-  background: transparent;
   color: var(--color-secondary);
+  background: rgb(255, 255, 255, 0.25);
   // border: var(--color-secondary) solid 1px;
-  box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.2) inset;
+  // box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.2) inset;
 
   &__titles {
     display: flex;

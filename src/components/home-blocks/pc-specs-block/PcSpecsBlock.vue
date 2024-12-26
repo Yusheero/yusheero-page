@@ -65,12 +65,12 @@ const store = useStore()
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 8px;
-  padding: 8px;
-  background: var(--color-secondary);
+  padding: 4px;
+  gap: 4px;
+  background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
   font-size: 14px;
-  line-height: 1.1;
+  line-height: 1.2;
 
   &__item {
     display: flex;
@@ -78,6 +78,7 @@ const store = useStore()
     align-items: center;
     gap: 6px;
     width: 100%;
+    height: 50px;
     background: var(--color-primary);
     color: var(--color-secondary);
     padding: 6px;
@@ -87,6 +88,8 @@ const store = useStore()
   &__button {
     text-decoration: none;
     color: var(--color-secondary);
+    width: 24px;
+    height: 24px;
 
     &:active {
       text-decoration: none;

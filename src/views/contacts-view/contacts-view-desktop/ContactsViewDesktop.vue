@@ -1,13 +1,13 @@
 <script setup>
-import Navigation from '@/components/navigation/Navigation.vue';
+import Navigation from '../../../components/navigation/Navigation.vue';
 </script>
 
 <template>
   <div class="page-container">
-    <div class="blog-view-desktop">
-      <Navigation class="blog-view-desktop__navigation" />
-      <div class="blog-view-desktop__title">Blog Page</div>
-      <div class="blog-view-desktop__content">Content</div>
+    <div class="contacts-view-desktop">
+      <Navigation class="contacts-view-desktop__navigation" />
+      <div class="contacts-view-desktop__title">Contacts Page</div>
+      <div class="contacts-view-desktop__content">Content</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.blog-view-desktop {
+.contacts-view-desktop {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);

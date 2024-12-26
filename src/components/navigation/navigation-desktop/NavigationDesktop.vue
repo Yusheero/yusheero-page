@@ -13,7 +13,7 @@ import { ContactRound, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-v
 
 <style lang="scss" scoped>
 .navigation {
-  padding: 8px;
+  padding: 4px;
   height: 100%;
   width: 100%;
   border-radius: 10px;
@@ -22,12 +22,12 @@ import { ContactRound, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-v
   grid-template-rows: repeat(2, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   background: var(--color-secondary);
   color: var(--color-primary);
 
   &__button {
-    height: 63px;
+    height: 69px;
     background: var(--color-primary);
     border-radius: 8px;
     border: none;

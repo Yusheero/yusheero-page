@@ -4,10 +4,10 @@ import Navigation from '@/components/navigation/Navigation.vue';
 
 <template>
   <div class="page-container">
-    <div class="blog-view-desktop">
-      <Navigation class="blog-view-desktop__navigation" />
-      <div class="blog-view-desktop__title">Blog Page</div>
-      <div class="blog-view-desktop__content">Content</div>
+    <div class="projects-view-desktop">
+      <Navigation class="projects-view-desktop__navigation" />
+      <div class="projects-view-desktop__title">Projects Page</div>
+      <div class="projects-view-desktop__content">Content</div>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.blog-view-desktop {
+.projects-view-desktop {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);

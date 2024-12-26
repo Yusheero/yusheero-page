@@ -4,10 +4,10 @@ import Navigation from '@/components/navigation/Navigation.vue';
 
 <template>
   <div class="page-container">
-    <div class="blog-view-desktop">
-      <Navigation class="blog-view-desktop__navigation" />
-      <div class="blog-view-desktop__title">Blog Page</div>
-      <div class="blog-view-desktop__content">Content</div>
+    <div class="projects-view">
+      <Navigation class="projects-view__navigation" />
+      <div class="projects-view__title">Projects Page</div>
+      <div class="projects-view__content">Content</div>
     </div>
   </div>
 </template>
@@ -15,19 +15,19 @@ import Navigation from '@/components/navigation/Navigation.vue';
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.blog-view-desktop {
+.projects-view {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 150px 150px 100px 300px 400px 100px;
+  grid-template-columns: 150px 150px 100px 300px 500px;
   grid-template-rows: 150px 250px 100px 200px;
-  gap: 8px;
+  gap: 16px;
   grid-template-areas:
-    "navigation title title title title title"
-    "content content content content content content"
-    "content content content content content content"
-    "content content content content content content";
+    "navigation title title title title"
+    "content content content content content"
+    "content content content content content"
+    "content content content content content";
 
     &__navigation {
       grid-area: navigation;
@@ -43,7 +43,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
       align-items: center;
       gap: 12px;
       padding: 16px;
-      background: rgb(255, 255, 255, 0.25);
+      background: var(--color-secondary);
       color: var(--color-primary);
       grid-area: title;
     }
@@ -60,6 +60,7 @@ import Navigation from '@/components/navigation/Navigation.vue';
       padding: 16px;
       background: var(--color-primary);
       color: var(--color-secondary);
+      border: var(--color-secondary) solid 2px;
       grid-area: content;
     }
 }
