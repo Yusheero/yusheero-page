@@ -1,15 +1,16 @@
 <script setup>
 import Navigation from '@/components/navigation/Navigation.vue';
+import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop/ViewsTemplateDesktop.vue';
 </script>
 
 <template>
-  <div class="page-container">
+  <ViewsTemplateDesktop>
     <div class="blog-view-desktop">
       <Navigation class="blog-view-desktop__navigation" />
       <div class="blog-view-desktop__title">Blog Page</div>
       <div class="blog-view-desktop__content">Content</div>
     </div>
-  </div>
+  </ViewsTemplateDesktop>
 </template>
 
 <style lang="scss">

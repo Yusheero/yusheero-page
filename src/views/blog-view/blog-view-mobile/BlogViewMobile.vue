@@ -1,29 +1,31 @@
 <script setup>
 import Navigation from '@/components/navigation/Navigation.vue';
+import WatchStream from '@/components/watch-stream/WatchStream.vue';
+import ViewsTemplateMobile from '@/components/views-template/views-template-mobile/ViewsTemplateMobile.vue';
 </script>
 
 <template>
-  <div class="blog-view-mobile">
-    <div class="blog-view-mobile__header">
-      <Navigation />
-      <div class="blog-view-mobile__image"></div>
+  <ViewsTemplateMobile>
+    <div class="blog-view-mobile">
+      <div class="blog-view-mobile__header">
+        <Navigation />
+        <WatchStream />
+      </div>
+      <div class="blog-view-mobile__title">Blog Page</div>
+      <div class="blog-view-mobile__content">Content</div>
     </div>
-    <div class="blog-view-mobile__title">Blog Page</div>
-    <div class="blog-view-mobile__content">Content</div>
-  </div>
+  </ViewsTemplateMobile>
 </template>
 
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
 .blog-view-mobile {
-  height: 100%;
   width: 100%;
-  color: var(--color-secondary);
+  height: 100%;
   display: flex;
-  flex-direction: column;
   gap: 8px;
-  padding: 8px;
+  flex-direction: column;
 
   &__title {
     height: 100%;
@@ -33,7 +35,6 @@ import Navigation from '@/components/navigation/Navigation.vue';
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
     padding: 16px;
     background: var(--color-secondary);
     color: var(--color-primary);
@@ -47,11 +48,9 @@ import Navigation from '@/components/navigation/Navigation.vue';
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 12px;
     padding: 16px;
     background: var(--color-primary);
     color: var(--color-secondary);
-    border: var(--color-secondary) solid 2px;
   }
 
   &__header {

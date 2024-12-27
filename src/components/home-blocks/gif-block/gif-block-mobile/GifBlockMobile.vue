@@ -1,18 +1,14 @@
 <script setup>
-import GifBlockMobile from './gif-block-mobile/GifBlockMobile.vue';
-import { useStore } from '@/store/store';
 
-const store = useStore()
 </script>
 
 <template>
-  <GifBlockMobile v-if="store.isMobile" />
-  <div v-else class="gif-block"></div>
+  <div class="gif-block-mobile"></div>
 </template>
 
 <style lang="scss" scoped>
-.gif-block {
-  height: 100%;
+.gif-block-mobile {
+  height: 300px;
   width: 100%;
   border-radius: 8px;
   display: flex;
@@ -23,6 +19,7 @@ const store = useStore()
   background: #1f1f23;
   color: var(--color-primary);
   background-image: url('@/components/home-blocks/gif-block/images/huh-cat.gif');
+  background-position: 100% 25%;
   background-size: cover;
   background-repeat: no-repeat;
 }

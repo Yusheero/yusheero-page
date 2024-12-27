@@ -8,7 +8,7 @@ const [container, slider] = useKeenSlider({
   initial: 0,
   slides: {
     perView: 5,
-    spacing: 12
+    spacing: 8
   },
   created(s) {
     s.moveToIdx(5, true, animation)

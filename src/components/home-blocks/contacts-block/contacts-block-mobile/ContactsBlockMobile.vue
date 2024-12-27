@@ -9,19 +9,24 @@
       <a class="contacts-block-mobile__item contacts-block-mobile__item-discord" href=""><img class="contacts-block-mobile__image" src="../images/discord.svg" alt=""></a>
       <a class="contacts-block-mobile__item contacts-block-mobile__item-github" href=""><img class="contacts-block-mobile__image" src="../images/github.svg" alt=""></a>
       <a class="contacts-block-mobile__item contacts-block-mobile__item-inst" href=""><img class="contacts-block-mobile__image" src="../images/inst.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-inst" href=""><img class="contacts-block-mobile__image" src="../images/inst.svg" alt=""></a>
+    </div>
+    <div class="contacts-block-mobile__mail">
+      yusheero.dev@gmail.com
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .contacts-block-mobile {
-  height: 120px;
+  height: 140px;
   width: 100%;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
   padding: 8px;
   color: var(--color-secondary);
   background: rgb(255, 255, 255, 0.25);
@@ -79,6 +84,17 @@
   &__image {
     width: 40px;
     height: 40px;
+  }
+
+  &__mail {
+    height: 60px;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary);
+    font-size: 20px;
   }
 }
 </style>

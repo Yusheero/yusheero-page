@@ -9,30 +9,31 @@ import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
 import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
 import ExperienceBlock from '@/components/home-blocks/experience-block/ExperienceBlock.vue';
 import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
+import WatchStream from '@/components/watch-stream/WatchStream.vue'
 </script>
 
 <template>
-<div class="home-view">
-  <div class="home-view__header">
+<div class="home-view-mobile">
+  <div class="home-view-mobile__header">
     <Navigation />
-    <div class="home-view__image"></div>
+    <WatchStream />
   </div>
   <LogoBlock />
   <NameBlock />
-  <PcSpecsBlock />
   <ExperienceBlock />
+  <GifBlock />
+  <PcSpecsBlock />
   <LanguagesBlock />
   <TechBlock />
   <ContactsBlock />
   <TwitchBlock />
-  <GifBlock />
 </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.home-view {
+.home-view-mobile {
   width: 100%;
   padding: 8px;
   color: var(--color-secondary);
@@ -48,13 +49,18 @@ import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
     gap: 8px;
   }
 
-  &__image {
-    background-image: url('@/components/navigation/images/haha3.gif');
-    background-size: cover;
-    background-position: 100% 30%;
-    border-radius: 8px;
+  &__twitch-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
+    background: rgb(255, 255, 255, 0.25);
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--color-secondary);
   }
 }
 </style>
