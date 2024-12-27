@@ -47,7 +47,7 @@ import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
       align-items: center;
       gap: 12px;
       padding: 16px;
-      background: rgb(255, 255, 255, 0.25);
+      background: var(--color-secondary);
       color: var(--color-primary);
       grid-area: title;
     }
@@ -58,7 +58,7 @@ import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
       border-radius: 10px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: flex-start;
       gap: 12px;
       padding: 4px;

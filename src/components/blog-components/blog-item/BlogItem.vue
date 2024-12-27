@@ -1,16 +1,18 @@
 <script setup>
 import { useStore } from '../../../store/store';
 import BlogItemMobile from './blog-item-mobile/BlogItemMobile.vue';
+import data from '@/data/blog.json';
 
+const blogData = data.data;
 const store = useStore()
 </script>
 
 <template>
   <BlogItemMobile v-if="store.isMobile" />
-  <div v-else class="blog-item">
-    <h2 class="blog-item-mobile__title">Работа над CV идет полным ходом</h2>
-    <p class="blog-item-mobile__text">Наконец-то разобрался с мобильной версией и структурой проекта</p>
-    <p class="blog-item-mobile__date">27.12.2024</p>
+  <div v-else v-for="data in blogData" class="blog-item">
+    <h2 class="blog-item__title">{{ data.title }}</h2>
+    <p class="blog-item__text">{{ data.text }}</p>
+    <p class="blog-item__date">{{ data.date }}</p>
   </div>
 </template>
 
@@ -21,7 +23,6 @@ const store = useStore()
   font-family: "Raleway", serif;
   font-weight: 600;
   width: 100%;
-  height: 200px;
   background: #1f1f23;
   border-radius: 8px;
   display: flex;
@@ -32,15 +33,16 @@ const store = useStore()
   padding: 16px;
 
   &__title {
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 800;
   }
 
   &__text {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   &__date {
-    font-size: 14px;
+    font-size: 12px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
   }

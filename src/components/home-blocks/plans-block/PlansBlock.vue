@@ -11,7 +11,7 @@ const actualPlansData = plansData.filter((item) => {
   <div class="plans-block">
     <div v-for="data in actualPlansData" class="plans-block__item">
       <h2 class="plans-block__title">{{ data.title }}</h2>
-      <p>{{'create date: '}} {{ data.date }}</p>
+      <p class="plans-block__date">{{'create date: '}} {{ data.date }}</p>
     </div>
   </div>
 </template>
@@ -39,13 +39,17 @@ const actualPlansData = plansData.filter((item) => {
     border-radius: 6px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-    gap: 4px;
+    gap: 6px;
   }
 
   &__title {
     font-size: 16px;
+  }
+
+  &__date {
+    font-size: 12px;
   }
 }
 </style>
