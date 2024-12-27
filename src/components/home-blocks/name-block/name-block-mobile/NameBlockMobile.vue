@@ -35,7 +35,7 @@ import { LocateFixed } from 'lucide-vue-next';
   }
 
   &__title {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   &__subtitle {

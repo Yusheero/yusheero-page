@@ -5,9 +5,9 @@
 <template>
   <div class="contacts-block-mobile">
     <div class="contacts-block-mobile__links">
-      <a class="contacts-block-mobile__item contacts-block-mobile__item-telegram" href=""><img class="contacts-block-mobile__image" src="../images/telegram.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-telegram" href="https://t.me/yusheero_dev"><img class="contacts-block-mobile__image" src="../images/telegram.svg" alt=""></a>
       <a class="contacts-block-mobile__item contacts-block-mobile__item-discord" href=""><img class="contacts-block-mobile__image" src="../images/discord.svg" alt=""></a>
-      <a class="contacts-block-mobile__item contacts-block-mobile__item-github" href=""><img class="contacts-block-mobile__image" src="../images/github.svg" alt=""></a>
+      <a class="contacts-block-mobile__item contacts-block-mobile__item-github" href="https://github.com/Yusheero"><img class="contacts-block-mobile__image" src="../images/github.svg" alt=""></a>
       <a class="contacts-block-mobile__item contacts-block-mobile__item-inst" href=""><img class="contacts-block-mobile__image" src="../images/inst.svg" alt=""></a>
       <a class="contacts-block-mobile__item contacts-block-mobile__item-inst" href=""><img class="contacts-block-mobile__image" src="../images/inst.svg" alt=""></a>
     </div>
