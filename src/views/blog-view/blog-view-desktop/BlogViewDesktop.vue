@@ -1,6 +1,7 @@
 <script setup>
 import Navigation from '@/components/navigation/Navigation.vue';
 import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop/ViewsTemplateDesktop.vue';
+import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
 </script>
 
 <template>
@@ -8,7 +9,9 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
     <div class="blog-view-desktop">
       <Navigation class="blog-view-desktop__navigation" />
       <div class="blog-view-desktop__title">Blog Page</div>
-      <div class="blog-view-desktop__content">Content</div>
+      <div class="blog-view-desktop__content">
+        <BlogItem />
+      </div>
     </div>
   </ViewsTemplateDesktop>
 </template>
@@ -56,10 +59,10 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
-      padding: 16px;
-      background: var(--color-primary);
+      padding: 4px;
+      background: rgb(255, 255, 255, 0.25);
       color: var(--color-secondary);
       grid-area: content;
     }

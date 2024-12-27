@@ -49,7 +49,7 @@ import ViewsTemplateMobile from '@/components/views-template/views-template-mobi
     justify-content: center;
     align-items: center;
     padding: 16px;
-    background: var(--color-primary);
+    background: rgb(255, 255, 255, 0.25);
     color: var(--color-secondary);
   }
 

@@ -26,8 +26,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
+  gap: 4px;
+  padding: 4px;
   color: var(--color-secondary);
   background: rgb(255, 255, 255, 0.25);
 
@@ -42,7 +42,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
   }
 
   &__item {

@@ -19,8 +19,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  padding: 8px;
+  gap: 4px;
+  padding: 4px;
   background: rgb(255, 255, 255, 0.25);
   color: var(--color-primary);
 
@@ -42,7 +42,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
 
     .english {
       height: 100%;
