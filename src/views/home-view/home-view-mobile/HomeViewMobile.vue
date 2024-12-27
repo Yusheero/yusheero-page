@@ -3,7 +3,7 @@ import ContactsBlock from '@/components/home-blocks/contacts-block/ContactsBlock
 import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
 import LanguagesBlock from '@/components/home-blocks/languages-block/LanguagesBlock.vue';
 import LogoBlock from '@/components/home-blocks/logo-block/LogoBlock.vue';
-import TwitchBlock from '@/components/home-blocks/twitch-block/TwitchBlock.vue';
+import PlansBlock from '@/components/home-blocks/plans-block/PlansBlock.vue';
 import Navigation from '@/components/navigation/Navigation.vue';
 import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
 import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
@@ -26,7 +26,7 @@ import WatchStream from '@/components/watch-stream/WatchStream.vue'
   <LanguagesBlock />
   <TechBlock />
   <ContactsBlock />
-  <TwitchBlock />
+  <PlansBlock />
 </div>
 </template>
 

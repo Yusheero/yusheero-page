@@ -7,7 +7,7 @@ import ExperienceBlock from '@/components/home-blocks/experience-block/Experienc
 import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
 import ContactsBlock from '@/components/home-blocks/contacts-block/ContactsBlock.vue';
 import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
-import TwitchBlock from '@/components/home-blocks/twitch-block/TwitchBlock.vue';
+import PlansBlock from '@/components/home-blocks/plans-block/PlansBlock.vue';
 import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
 </script>
 
@@ -22,7 +22,7 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
       <LanguagesBlock class="home-view__languages" />
       <TechBlock class="home-view__tech" />
       <ContactsBlock class="home-view__contacts" />
-      <TwitchBlock class="home-view__twitch" />
+      <PlansBlock class="home-view__plans" />
       <GifBlock class="home-view__gif" />
       <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero">Watch Stream</a>
     </div>
@@ -83,7 +83,7 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
     grid-area: pc;
   }
 
-  &__twitch {
+  &__plans {
     grid-area: twitch;
   }
 

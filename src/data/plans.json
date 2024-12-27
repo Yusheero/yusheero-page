@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "title": "Install Nuxt",
+      "date": "27.12.2024",
+      "status": "inwork"
+    },
+    {
+      "title": "Refactoring with Nuxt",
+      "date": "27.12.2024",
+      "status": "inwork"
+    },{
+      "title": "Create other Routes",
+      "date": "27.12.2024",
+      "status": "inwork"
+    }
+  ]
+}

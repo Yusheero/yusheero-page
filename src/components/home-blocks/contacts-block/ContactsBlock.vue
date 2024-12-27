@@ -9,11 +9,11 @@ const store = useStore()
   <ContactsBlockMobile v-if="store.isMobile" />
   <div v-else class="contacts-block">
     <div class="contacts-block__links">
-      <a class="contacts-block__item contacts-block__item-telegram" href=""><img class="contacts-block__image" src="./images/telegram.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-discord" href=""><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-github" href=""><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-inst" href=""><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-telegram" href="https://t.me/yusheero_dev"><img class="contacts-block__image" src="./images/telegram.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-discord" href="https://discord.gg/Zv2h3TAACx"><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-github" href="https://github.com/Yusheero"><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-inst" href="https://www.instagram.com/yusheero_dev/"><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-steam" href="https://steamcommunity.com/id/yusheero?ysclid=m56fyyhea3750316694"><img class="contacts-block__image" src="./images/steam.png" alt=""></a>
     </div>
     <div class="contacts-block__mail">
       yusheero.dev@gmail.com
@@ -61,7 +61,7 @@ const store = useStore()
     gap: 6px;
     font-size: 18px;
     border-radius: 6px;
-    padding: 4px;
+    padding: 8px;
 
     &-telegram {
       background: #229ED9;
@@ -78,6 +78,10 @@ const store = useStore()
     &-inst {
       background: rgb(64,93,230);
       background: linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
+    }
+
+    &-steam {
+      background: #fff;
     }
 
     &:hover {
