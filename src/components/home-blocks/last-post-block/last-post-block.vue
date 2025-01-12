@@ -1,7 +1,23 @@
-<script setup></script>
+<script setup>
+import { MessageCircleMore } from 'lucide-vue-next';
+
+import data from '@/data/blog.json';
+const blogData = data.data;
+const DataLength = blogData.length;
+
+const blogLastPost = blogData[DataLength - 1]
+
+</script>
 <template>
   <div class="last-post-block">
-    LAST POST
+    <div class="last-post-block__title">
+      LAST POST
+    </div>
+    <div class="last-post-block__item">
+      <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
+      <div class="last-post-block__item-text">{{ blogLastPost.text }}</div>
+      <router-link class="last-post-block__button" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="30" stroke-width="1.5" /></router-link>
+    </div>
   </div>
 </template>
 
@@ -14,9 +30,57 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 22px;
-  padding: 24px;
+  padding: 6px;
+  gap: 4px;
   color: var(--color-secondary);
   background: var(--color-secondary);
+
+  &__title {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  &__item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 6px;
+    padding: 12px 50px 12px 12px;
+  }
+
+  &__item-title {
+    color: var(--color-secondary);
+    font-family: "Raleway", serif;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  &__item-text {
+    color: var(--color-secondary);
+    font-family: "Raleway", serif;
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &__button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: var(--color-sakura);
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background: var(--color-primary-light);
+      cursor: pointer;
+    }
+  }
 }
 </style>
