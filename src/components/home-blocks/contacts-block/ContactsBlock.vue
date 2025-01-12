@@ -90,12 +90,12 @@ const store = useStore()
   }
 
   &__image {
-    width: 50px;
-    height: 50px;
+    width: 36px;
+    height: 36px;
   }
 
   &__mail {
-    height: 60px;
+    height: 100px;
     border-radius: 8px;
     width: 100%;
     display: flex;

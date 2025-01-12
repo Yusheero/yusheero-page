@@ -21,14 +21,16 @@ const store = useStore()
   height: 100%;
   width: 100%;
   border-radius: 8px;
+  border: 2px solid var(--color-primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   gap: 22px;
-  padding: 24px;
+  padding: 16px;
   color: var(--color-secondary);
-  background: rgb(255, 255, 255, 0.25);
+  background: var(--color-red);
+  opacity: 0.9;
 
   &__titles {
     display: flex;

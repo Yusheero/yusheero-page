@@ -23,12 +23,12 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
   justify-content: center;
   align-items: center;
   gap: 4px;
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: var(--color-primary);
 
   &__button {
     height: 69px;
-    background: var(--color-primary);
+    background: var(--color-sakura);
     border-radius: 8px;
     border: none;
     display: flex;
@@ -38,7 +38,6 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
     &:hover {
       background: var(--color-primary-light);
       cursor: pointer;
-      transition: background .3s;
     }
   }
 }

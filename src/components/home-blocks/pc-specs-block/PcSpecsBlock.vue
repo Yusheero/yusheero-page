@@ -10,16 +10,20 @@ const store = useStore()
   <PcSpecsBlockMobile v-if="store.isMobile" />
   <div v-else class="pc-block">
     <div class="pc-block__item">
-      MOTHERBOARD - GIGABYTE GA-H61M-S2PV
+      <div class="pc-block__item-text">
+        MOTHERBOARD - GIGABYTE GA-H61M-S2PV
+      </div>
       <a 
-        class="pc-block__button" 
+        class="pc-block__button"
         href="https://www.dns-shop.ru/product/f58b8ed34d4f526f/plata-gigabyte-lga1155-h61-ga-h61m-s2pv-2xddr3-1xpci-ex16-dvidsub-sata2-usb2-matx/"
       >
       <SquareArrowOutUpRight /></a>
     </div>
 
     <div class="pc-block__item">
-      CPU - i3-3240
+      <div class="pc-block__item-text">
+        CPU - i3-3240
+      </div>
       <a 
         class="pc-block__button"
         href="https://www.dns-shop.ru/product/ae1e1278e5118499/processor-intel-core-i3-3240-34ghz--3mb-2xddr3-1333-hdgraphics2500-tdp-55w-lga1155--oem/"
@@ -28,7 +32,9 @@ const store = useStore()
     </div>
 
     <div class="pc-block__item">
-      RAM - FURY DDR3 2x8GB
+      <div class="pc-block__item-text">
+        RAM - FURY DDR3 2x8GB
+      </div>
       <a 
         class="pc-block__button"
         href="https://www.dns-shop.ru/product/02f2e1ace0813120/operativnaa-pamat-kingston-hyperx-fury-black-series/"
@@ -37,7 +43,9 @@ const store = useStore()
     </div>
 
     <div class="pc-block__item">
-      VIDEOCARD - Gigabyte NVIDIA GeForce GT 710
+      <div class="pc-block__item-text">
+        VIDEOCARD - Gigabyte NVIDIA GeForce GT 710
+      </div>
       <a 
         class="pc-block__button"
         href="https://www.dns-shop.ru/product/d03b607639273330/videokarta-gigabyte-geforce-gt-710-lp-gv-n710d5-2gl/"
@@ -46,7 +54,9 @@ const store = useStore()
     </div>
 
     <div class="pc-block__item">
-      KEYBOARD - RK R75PRO
+      <div class="pc-block__item-text">
+        KEYBOARD - RK R75PRO
+      </div>
       <a 
         class="pc-block__button"
         href="https://www.dns-shop.ru/product/afc2b197b1515d0f/klaviatura-provodnaa-royal-kludge-r75/"
@@ -81,15 +91,27 @@ const store = useStore()
     height: 50px;
     background: var(--color-primary);
     color: var(--color-secondary);
-    padding: 6px;
     border-radius: 4px;
   }
 
+  &__item-text {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 8px;
+  }
+
   &__button {
+    border-left: 1px solid #fff;
     text-decoration: none;
     color: var(--color-secondary);
-    width: 24px;
-    height: 24px;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:active {
       text-decoration: none;
@@ -99,6 +121,9 @@ const store = useStore()
     &:hover {
       cursor: pointer;
       color: #c35aca;
+      background: #fff;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
   }
 }

@@ -1,12 +1,9 @@
 <script setup>
 import ContactsBlock from '@/components/home-blocks/contacts-block/ContactsBlock.vue';
 import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
-import LanguagesBlock from '@/components/home-blocks/languages-block/LanguagesBlock.vue';
 import LogoBlock from '@/components/home-blocks/logo-block/LogoBlock.vue';
-import PlansBlock from '@/components/home-blocks/plans-block/PlansBlock.vue';
 import Navigation from '@/components/navigation/Navigation.vue';
 import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
-import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
 import ExperienceBlock from '@/components/home-blocks/experience-block/ExperienceBlock.vue';
 import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
 import WatchStream from '@/components/watch-stream/WatchStream.vue'
@@ -22,11 +19,8 @@ import WatchStream from '@/components/watch-stream/WatchStream.vue'
   <NameBlock />
   <ExperienceBlock />
   <GifBlock />
-  <PcSpecsBlock />
-  <LanguagesBlock />
   <TechBlock />
   <ContactsBlock />
-  <PlansBlock />
 </div>
 </template>
 

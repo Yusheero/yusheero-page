@@ -37,7 +37,7 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
     &:hover {
       background: var(--color-primary-light);
       cursor: pointer;
-      transition: background .3s;
+      transition: background .2s;
     }
   }
 }

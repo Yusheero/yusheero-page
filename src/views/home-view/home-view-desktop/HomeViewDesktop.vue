@@ -1,14 +1,14 @@
 <script setup>
 import LogoBlock from '@/components/home-blocks/logo-block/LogoBlock.vue';
 import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
-import LanguagesBlock from '@/components/home-blocks/languages-block/LanguagesBlock.vue';
 import Navigation from '@/components/navigation/Navigation.vue';
-import ExperienceBlock from '@/components/home-blocks/experience-block/ExperienceBlock.vue';
+import Scene from '@/components/scene/Scene.vue';
 import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
 import ContactsBlock from '@/components/home-blocks/contacts-block/ContactsBlock.vue';
-import PcSpecsBlock from '@/components/home-blocks/pc-specs-block/PcSpecsBlock.vue';
-import PlansBlock from '@/components/home-blocks/plans-block/PlansBlock.vue';
 import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
+import ReviewsBlock from '../../../components/home-blocks/reviews-block/reviews-block.vue';
+import LastPostBlock from '@/components/home-blocks/last-post-block/last-post-block.vue';
+import DonateBlock from '@/components/home-blocks/donate-block/donate-block.vue';
 </script>
 
 <template>
@@ -17,13 +17,13 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
       <Navigation class="home-view__navigation" />
       <LogoBlock class="home-view__logo" />
       <NameBlock class="home-view__name" />
-      <PcSpecsBlock class="home-view__pc" />
-      <ExperienceBlock class="home-view__experience" />
-      <LanguagesBlock class="home-view__languages" />
+      <Scene class="home-view__scene" />
       <TechBlock class="home-view__tech" />
       <ContactsBlock class="home-view__contacts" />
-      <PlansBlock class="home-view__plans" />
       <GifBlock class="home-view__gif" />
+      <ReviewsBlock class="home-view__reviews" />
+      <LastPostBlock class="home-view__last-post" />
+      <DonateBlock class="home-view__donate" />
       <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero">Watch Stream</a>
     </div>
   </div>
@@ -36,16 +36,16 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
   position: relative;
   height: 100%;
   width: 100%;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 100px 400px;
   grid-template-rows: 150px 250px 102px 200px;
   gap: 8px;
   grid-template-areas:
-    "navigation logo name name experience experience"
-    "languages languages languages pc experience experience"
+    "navigation logo name name scene scene"
+    "last-post last-post last-post donate scene scene"
     "tech tech tech tech tech tech"
-    "gif contacts contacts contacts contacts twitch";
+    "gif reviews reviews reviews reviews contacts";
 
   &__navigation {
     grid-area: navigation;
@@ -59,12 +59,8 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
     grid-area: name;
   }
 
-  &__languages {
-    grid-area: languages;
-  }
-
-  &__experience {
-    grid-area: experience;
+  &__scene {
+    grid-area: scene;
   }
 
   &__tech {
@@ -75,20 +71,20 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
     grid-area: contacts;
   }
 
-  &__interests {
-    grid-area: interests;
-  }
-
-  &__pc {
-    grid-area: pc;
-  }
-
-  &__plans {
-    grid-area: twitch;
-  }
-
   &__gif {
     grid-area: gif;
+  }
+
+  &__reviews {
+    grid-area: reviews;
+  }
+
+  &__last-post {
+    grid-area: last-post;
+  }
+
+  &__donate {
+    grid-area: donate;
   }
 
   &__contacts-bottom {
@@ -98,7 +94,8 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
     align-items: center;
     width: 200px;
     height: 40px;
-    background: rgb(255, 255, 255, 0.25);
+    background: var(--color-orange);
+    opacity: 0.9;
     border-radius: 4px;
     position: absolute;
     bottom: -50px;
@@ -106,6 +103,11 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
     font-size: 16px;
     text-decoration: none;
     color: var(--color-secondary);
+
+    &:hover {
+      background: var(--color-primary-light);
+      cursor: pointer;
+    }
   }
 }
 </style>

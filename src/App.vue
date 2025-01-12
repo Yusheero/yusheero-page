@@ -43,7 +43,7 @@ const options = ref({
 
 <template>
   <main class="main">
-    <TWallpaper ref="twallpaper" v-if="enabled" :options="options" />
+    <!-- <TWallpaper ref="twallpaper" v-if="enabled" :options="options" /> -->
     <Router-view />
   </main>
 </template>
@@ -60,6 +60,7 @@ const options = ref({
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 22px;
+  background: var(--color-white);
 }
 
 @media (max-width: 768px) {
