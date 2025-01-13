@@ -56,15 +56,15 @@ const blogLastPost = blogData[DataLength - 1]
 
   &__item-title {
     color: var(--color-orange);
-    font-weight: 800;
-    font-size: 28px;
+    font-weight: 700;
+    font-size: 30px;
     margin-bottom: 12px;
   }
 
   &__item-text {
     color: var(--color-primary);
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
   }
 
   &__button {

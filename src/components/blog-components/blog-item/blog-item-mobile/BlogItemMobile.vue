@@ -16,7 +16,7 @@ const blogData = data.data;
 @import '@/assets/styles/style.scss';
 
 .blog-item-mobile {
-  font-family: "Raleway", serif;
+  font-family: "Gabarito", serif;
   font-weight: 600;
   width: 100%;
   background: #1f1f23;

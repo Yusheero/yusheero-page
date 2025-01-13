@@ -57,7 +57,7 @@ const options = ref({
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Gabarito", serif;
   font-weight: 600;
   font-size: 22px;
   background: var(--color-white);

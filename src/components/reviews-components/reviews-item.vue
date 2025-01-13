@@ -6,9 +6,9 @@ const blogData = data.data;
 
 <template>
   <div v-for="data in blogData" class="reviews-item">
+    <p class="reviews-item__name">{{ data.name }}</p>
     <h2 class="reviews-item__title">{{ data.title }}</h2>
     <p class="reviews-item__text">{{ data.text }}</p>
-    <p class="reviews-item__date">{{ data.name }}</p>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ const blogData = data.data;
 @import '@/assets/styles/style.scss';
 
 .reviews-item {
-  font-family: "Raleway", serif;
+  font-family: "Gabarito", serif;
   font-weight: 600;
   width: 100%;
   background: var(--color-secondary);
@@ -38,10 +38,11 @@ const blogData = data.data;
     font-size: 16px;
   }
 
-  &__date {
-    font-size: 12px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
+  &__name {
+    font-size: 24px;
+    font-family: "Gabarito", sans-serif;
+    font-weight: 800;
+    color: var(--color-orange);
   }
 }
 </style>

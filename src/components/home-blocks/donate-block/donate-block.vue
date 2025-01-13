@@ -1,6 +1,8 @@
-<script setup></script>
+<script setup>
+
+</script>
 <template>
-  <div class="donate-block">
+  <div ref="beerCanvas" class="donate-block">
     <div class="donate-block__title">BUY ME A BEER</div>
     <a class="donate-block__button" href="https://donatty.com/yusheero">SURE!</a>
   </div>

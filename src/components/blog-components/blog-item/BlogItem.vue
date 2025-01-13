@@ -20,7 +20,7 @@ const store = useStore()
 @import '@/assets/styles/style.scss';
 
 .blog-item {
-  font-family: "Raleway", serif;
+  font-family: "Gabarito", serif;
   font-weight: 600;
   width: 100%;
   background: var(--color-secondary);
@@ -35,11 +35,13 @@ const store = useStore()
 
   &__title {
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 700;
+    color: var(--color-orange);
   }
 
   &__text {
     font-size: 16px;
+    font-weight: 600;
   }
 
   &__date {

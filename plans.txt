@@ -1,11 +1,8 @@
-1. Палитра цветов страницы
-2. Композиция на странице
-3. https://pocketbase.io/
-4. https://oldiberezko.vercel.app/
-https://www.svgrepo.com/
-https://lucide.dev/icons/
-https://tabler.io/icons
-https://icones.js.org/
-
-ЗАДАЧИ:
-1. Компонент обертка для Twallpaper
+Редизайн блока contacts-block
+Добавление 3D модели
+Анимация пива в блоке donate-block
+Страница проекты
+Страница Опыт
+Страница Блог
+Страница Отзывы
+Страница Библиотека
