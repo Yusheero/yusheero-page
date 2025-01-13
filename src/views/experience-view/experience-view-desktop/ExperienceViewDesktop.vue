@@ -58,7 +58,7 @@ import Navigation from '../../../components/navigation/Navigation.vue';
       align-items: center;
       gap: 12px;
       padding: 16px;
-      background: rgb(255, 255, 255, 0.25);
+      background: var(--color-primary);
       color: var(--color-secondary);
       grid-area: content;
     }

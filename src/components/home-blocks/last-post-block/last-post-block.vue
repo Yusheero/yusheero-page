@@ -16,7 +16,7 @@ const blogLastPost = blogData[DataLength - 1]
     <div class="last-post-block__item">
       <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
       <div class="last-post-block__item-text">{{ blogLastPost.text }}</div>
-      <router-link class="last-post-block__button" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="30" stroke-width="1.5" /></router-link>
+      <router-link class="last-post-block__button" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="25" stroke-width="1.5" /></router-link>
     </div>
   </div>
 </template>
@@ -38,7 +38,11 @@ const blogLastPost = blogData[DataLength - 1]
   &__title {
     color: var(--color-secondary);
     font-weight: 600;
-    font-size: 16px;
+    font-size: 18px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__item {
@@ -52,7 +56,6 @@ const blogLastPost = blogData[DataLength - 1]
 
   &__item-title {
     color: var(--color-orange);
-    font-family: "Raleway", serif;
     font-weight: 800;
     font-size: 28px;
     margin-bottom: 12px;
@@ -60,9 +63,8 @@ const blogLastPost = blogData[DataLength - 1]
 
   &__item-text {
     color: var(--color-primary);
-    font-family: "Raleway", serif;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   &__button {

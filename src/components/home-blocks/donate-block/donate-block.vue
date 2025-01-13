@@ -17,8 +17,8 @@
   align-items: center;
   gap: 12px;
   padding: 24px;
-  color: var(--color-primary);
-  background: var(--color-purple);
+  color: var(--color-secondary);
+  background: var(--color-primary);
 
   &__button {
     display: flex;

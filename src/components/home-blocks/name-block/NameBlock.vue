@@ -12,7 +12,7 @@ const store = useStore()
       <h1 class="name-block__title">Hello, I am Yusheero</h1>
       <h2 class="name-block__subtitle">Frontend Developer</h2>
     </div>
-    <div class="name-block__location"><LocateFixed color="white" size="24" stroke-width="1.5" />Vladivostok, Russia</div>
+    <div class="name-block__location"><LocateFixed color="white" size="20" stroke-width="1.5" />Vladivostok, Russia</div>
   </div>
 </template>
 
@@ -53,7 +53,7 @@ const store = useStore()
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 14px;
     gap: 6px;
   }
 }

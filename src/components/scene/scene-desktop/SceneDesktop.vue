@@ -4,7 +4,7 @@
 </script>
 <template>
   <div class="scene" id="scene">
-    MODEL
+    3D MODEL
   </div>
 </template>
 <style lang="scss" scoped>

@@ -1,25 +1,21 @@
 <script setup>
-import { useStore } from '../../../store/store';
-import BlogItemMobile from './blog-item-mobile/BlogItemMobile.vue';
-import data from '@/data/blog.json';
+import data from '@/data/reviews.json';
 
 const blogData = data.data;
-const store = useStore()
 </script>
 
 <template>
-  <BlogItemMobile v-if="store.isMobile" />
-  <div v-else v-for="data in blogData" class="blog-item">
-    <h2 class="blog-item__title">{{ data.title }}</h2>
-    <p class="blog-item__text">{{ data.text }}</p>
-    <p class="blog-item__date">{{ data.date }}</p>
+  <div v-for="data in blogData" class="reviews-item">
+    <h2 class="reviews-item__title">{{ data.title }}</h2>
+    <p class="reviews-item__text">{{ data.text }}</p>
+    <p class="reviews-item__date">{{ data.name }}</p>
   </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.blog-item {
+.reviews-item {
   font-family: "Raleway", serif;
   font-weight: 600;
   width: 100%;

@@ -1,21 +1,24 @@
 <script setup>
 import Navigation from '@/components/navigation/Navigation.vue';
+import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop/ViewsTemplateDesktop.vue';
 </script>
 
 <template>
-  <div class="page-container">
-    <div class="projects-view-desktop">
-      <Navigation class="projects-view-desktop__navigation" />
-      <div class="projects-view-desktop__title">Projects Page</div>
-      <div class="projects-view-desktop__content">Content</div>
+  <ViewsTemplateDesktop>
+    <div class="game-view-desktop">
+      <Navigation class="game-view-desktop__navigation" />
+      <div class="game-view-desktop__title">Library Page</div>
+      <div class="game-view-desktop__content">
+        Development
+      </div>
     </div>
-  </div>
+  </ViewsTemplateDesktop>
 </template>
 
 <style lang="scss">
 @import '@/assets/styles/style.scss';
 
-.projects-view-desktop {
+.game-view-desktop {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
@@ -56,8 +59,8 @@ import Navigation from '@/components/navigation/Navigation.vue';
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 12px;
-      padding: 16px;
+      gap: 4px;
+      padding: 4px;
       background: var(--color-primary);
       color: var(--color-secondary);
       grid-area: content;
