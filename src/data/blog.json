@@ -1,18 +1,18 @@
 {
   "data": [
     {
-      "title": "Завершение верстки",
-      "text": "Наконец-то разобрался с мобильной версией и структурой проекта",
+      "title": "Completion of layout",
+      "text": "Finally figured out the mobile version and the project structure",
       "date": "27.12.2024"
     },
     {
-      "title": "Я средний пост",
-      "text": "Я средний из постов, задавайте вопросы",
+      "title": "I am a middle post",
+      "text": "I am the middle of the posts, ask questions",
       "date": "27.12.2024"
     },
     {
-      "title": "Перешел на Nuxt и вернулся",
-      "text": "Я последний из постов, задавайте вопросы",
+      "title": "Switched to Nuxt and came back",
+      "text": "I am the last of the posts, ask questions",
       "date": "27.12.2024"
     }
   ]

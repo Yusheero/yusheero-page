@@ -30,7 +30,7 @@ const blogLastPost = blogData[DataLength - 1]
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 4px;
   gap: 4px;
   color: var(--color-secondary);
   background: var(--color-secondary);
@@ -47,7 +47,7 @@ const blogLastPost = blogData[DataLength - 1]
     height: 100%;
     background: var(--color-primary);
     border-radius: 6px;
-    padding: 14px 50px 14px 14px;
+    padding: 18px 50px 18px 18px;
   }
 
   &__item-title {
