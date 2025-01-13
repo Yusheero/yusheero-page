@@ -21,13 +21,13 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: var(--color-primary);
 
   &__button {
     height: 52px;
     width: 52px;
-    background: var(--color-primary);
+    background: var(--color-sakura);
     border-radius: 6px;
     border: none;
     display: flex;

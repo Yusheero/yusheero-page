@@ -51,6 +51,7 @@ import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 4px;
     padding: 4px;
     background: rgb(255, 255, 255, 0.25);
     color: var(--color-secondary);

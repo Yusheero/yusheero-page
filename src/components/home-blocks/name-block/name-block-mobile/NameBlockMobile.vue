@@ -20,18 +20,19 @@ import { LocateFixed } from 'lucide-vue-next';
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 12px;
+  gap: 22px;
   padding: 16px;
   background: transparent;
   color: var(--color-secondary);
-  background: rgb(255, 255, 255, 0.25);
+  background: var(--color-red);
+  opacity: 0.9;
 
   &__titles {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 16px;
+    gap: 6px;
   }
 
   &__title {

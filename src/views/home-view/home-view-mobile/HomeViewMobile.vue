@@ -4,9 +4,11 @@ import GifBlock from '@/components/home-blocks/gif-block/GifBlock.vue';
 import LogoBlock from '@/components/home-blocks/logo-block/LogoBlock.vue';
 import Navigation from '@/components/navigation/Navigation.vue';
 import NameBlock from '@/components/home-blocks/name-block/NameBlock.vue';
-import ExperienceBlock from '@/components/home-blocks/experience-block/ExperienceBlock.vue';
 import TechBlock from '@/components/home-blocks/tech-block/TechBlock.vue';
 import WatchStream from '@/components/watch-stream/WatchStream.vue'
+import ReviewsBlock from '../../../components/home-blocks/reviews-block/reviews-block.vue';
+import LastPostBlock from '../../../components/home-blocks/last-post-block/last-post-block.vue';
+import DonateBlock from '../../../components/home-blocks/donate-block/donate-block.vue';
 </script>
 
 <template>
@@ -17,9 +19,11 @@ import WatchStream from '@/components/watch-stream/WatchStream.vue'
   </div>
   <LogoBlock />
   <NameBlock />
-  <ExperienceBlock />
   <GifBlock />
+  <LastPostBlock />
+  <DonateBlock />
   <TechBlock />
+  <ReviewsBlock />
   <ContactsBlock />
 </div>
 </template>

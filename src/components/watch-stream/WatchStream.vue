@@ -16,12 +16,12 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 255, 255, 0.25);
+  background: var(--color-orange);
   border-radius: 4px;
 
   &__twitch-link {
     color: var(--color-secondary);
-    font-size: 14px;
+    font-size: 12px;
     text-decoration: none;
   }
 }

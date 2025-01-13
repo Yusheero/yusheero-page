@@ -1,12 +1,14 @@
 <script setup>
+import data from '@/data/blog.json';
 
+const blogData = data.data;
 </script>
 
 <template>
-  <div class="blog-item-mobile">
-    <h2 class="blog-item-mobile__title">Работа над CV идет полным ходом</h2>
-    <p class="blog-item-mobile__text">Наконец-то разобрался с мобильной версией и структурой проекта</p>
-    <p class="blog-item-mobile__date">27.12.2024</p>
+  <div v-for="data in blogData" class="blog-item">
+    <h2 class="blog-item-mobile__title">{{ data.title }}</h2>
+    <p class="blog-item-mobile__text">{{ data.text }}</p>
+    <p class="blog-item-mobile__date">{{ data.date }}</p>
   </div>
 </template>
 
@@ -23,19 +25,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 12px;
+  gap: 4px;
   padding: 16px;
 
   &__title {
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 800;
   }
 
   &__text {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   &__date {
-    font-size: 14px;
+    font-size: 12px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
   }

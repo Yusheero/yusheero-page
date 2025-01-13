@@ -33,10 +33,10 @@ const blogLastPost = blogData[DataLength - 1]
   padding: 4px;
   gap: 4px;
   color: var(--color-secondary);
-  background: var(--color-secondary);
+  background: var(--color-primary);
 
   &__title {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
     font-size: 16px;
   }
@@ -45,7 +45,7 @@ const blogLastPost = blogData[DataLength - 1]
     position: relative;
     width: 100%;
     height: 100%;
-    background: var(--color-primary);
+    background: var(--color-secondary);
     border-radius: 6px;
     padding: 18px 50px 18px 18px;
   }
@@ -59,7 +59,7 @@ const blogLastPost = blogData[DataLength - 1]
   }
 
   &__item-text {
-    color: var(--color-secondary);
+    color: var(--color-primary);
     font-family: "Raleway", serif;
     font-weight: 700;
     font-size: 18px;
