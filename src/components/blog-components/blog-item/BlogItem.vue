@@ -29,7 +29,7 @@ const store = useStore()
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 12px;
+  gap: 4px;
   padding: 16px;
 
   &__title {

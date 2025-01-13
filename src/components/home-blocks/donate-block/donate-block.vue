@@ -18,6 +18,5 @@
   padding: 24px;
   color: var(--color-primary);
   background: var(--color-purple);
-  opacity: 0.9;
 }
 </style>

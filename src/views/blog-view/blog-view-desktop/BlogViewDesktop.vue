@@ -26,7 +26,7 @@ import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 400px 100px;
   grid-template-rows: 150px 250px 102px 200px;
-  gap: 8px;
+  gap: 4px;
   grid-template-areas:
     "navigation title title title title title"
     "content content content content content content"
@@ -60,7 +60,7 @@ import BlogItem from '@/components/blog-components/blog-item/BlogItem.vue';
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: 12px;
+      gap: 4px;
       padding: 4px;
       background: rgb(255, 255, 255, 0.25);
       color: var(--color-secondary);

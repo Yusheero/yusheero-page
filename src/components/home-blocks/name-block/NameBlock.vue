@@ -31,6 +31,7 @@ const store = useStore()
   color: var(--color-secondary);
   background: var(--color-red);
   opacity: 0.9;
+  box-sizing: border-box;
 
   &__titles {
     display: flex;

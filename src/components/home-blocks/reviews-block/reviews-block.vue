@@ -18,5 +18,7 @@
   padding: 24px;
   color: var(--color-secondary);
   background: var(--color-sakura);
+  border: 2px solid var(--color-primary);
+  box-sizing: border-box;
 }
 </style>

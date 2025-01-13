@@ -33,7 +33,7 @@ const store = useStore()
   gap: 4px;
   padding: 4px;
   color: var(--color-secondary);
-  background: rgb(255, 255, 255, 0.25);
+  background: var(--color-primary);
 
   &__text {
     font-size: 32px;
@@ -101,7 +101,8 @@ const store = useStore()
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-primary);
+    background: var(--color-secondary);
+    color: var(--color-primary);
     font-size: 20px;
   }
 }
