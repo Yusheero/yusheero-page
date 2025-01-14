@@ -23,18 +23,20 @@ const store = useStore()
   font-family: "Gabarito", serif;
   font-weight: 600;
   width: 100%;
-  background: var(--color-secondary);
+  height: 100%;
+  background: var(--color-purple);
   color: var(--color-primary);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 8px;
   padding: 16px;
 
   &__title {
-    font-size: 24px;
+    height: 80px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--color-orange);
   }

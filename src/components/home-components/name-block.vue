@@ -21,7 +21,6 @@ const store = useStore()
   height: 100%;
   width: 100%;
   border-radius: 8px;
-  border: 2px solid var(--color-primary);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,7 +29,6 @@ const store = useStore()
   padding: 16px;
   color: var(--color-secondary);
   background: var(--color-red);
-  opacity: 0.9;
 
   &__titles {
     display: flex;

@@ -23,10 +23,7 @@ const [container, slider] = useKeenSlider({
   animationEnded(s) {
     s.moveToIdx(s.track.details.abs + 5, true, animation)
   },
-},
-[
-        // add plugins here
-])
+})
 </script>
 
 <template>

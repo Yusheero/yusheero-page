@@ -1,6 +1,7 @@
 <script setup>
 import ContactsBlockMobile from '@/components/home-components/contacts-block-mobile.vue';
 import { useStore } from '@/store/store';
+import { TelegramIcon, DiscordIcon, GitHubIcon, InstagramIcon, SteamIcon, GmailIcon, LinkedInIcon, YouTubeIcon } from 'vue3-simple-icons'
 
 const store = useStore()
 </script>
@@ -8,16 +9,30 @@ const store = useStore()
 <template>
   <ContactsBlockMobile v-if="store.isMobile" />
   <div v-else class="contacts-block">
-    <div class="contacts-block__links">
-      <a class="contacts-block__item contacts-block__item-telegram" href="https://t.me/yusheero_dev"><img class="contacts-block__image" src="@/assets/icons/telegram.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-discord" href="https://discord.gg/Zv2h3TAACx"><img class="contacts-block__image" src="@/assets/icons/discord.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-github" href="https://github.com/Yusheero"><img class="contacts-block__image" src="@/assets/icons/github.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-inst" href="https://www.instagram.com/yusheero_dev/"><img class="contacts-block__image" src="@/assets/icons/inst.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-steam" href="https://steamcommunity.com/id/yusheero?ysclid=m56fyyhea3750316694"><img class="contacts-block__image" src="@/assets/icons/steam.png" alt=""></a>
-    </div>
-    <div class="contacts-block__mail">
-      yusheero.dev@gmail.com
-    </div>
+    <a class="contacts-block__item contacts-block__telegram" href="https://t.me/yusheero_dev">
+      <TelegramIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__discord" href="https://discord.gg/Zv2h3TAACx">
+      <DiscordIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__github" href="https://github.com/Yusheero">
+      <GitHubIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__inst" href="https://www.instagram.com/yusheero_dev/">
+      <InstagramIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__steam" href="">
+      <SteamIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__gmail" href="">
+      <GmailIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__linkedin" href="">
+      <LinkedInIcon style="fill: white" size="24px" />
+    </a>
+    <a class="contacts-block__item contacts-block__youtube" href="">
+      <YouTubeIcon style="fill: white" size="24px" />
+    </a>
   </div>
 </template>
 
@@ -26,32 +41,19 @@ const store = useStore()
   height: 100%;
   width: 100%;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  grid-template-areas:
+    "telegram discord github inst"
+    "steam gmail linkedin youtube";
   gap: 4px;
   padding: 4px;
   color: var(--color-secondary);
   background: var(--color-primary);
 
-  &__text {
-    font-size: 32px;
-  }
-
-  &__links {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4px;
-  }
-
   &__item {
-    width: 100%;
-    height: 100%;
     text-decoration: none;
     color: var(--color-primary);
     display: flex;
@@ -63,47 +65,50 @@ const store = useStore()
     border-radius: 6px;
     padding: 8px;
 
-    &-telegram {
-      background: #229ED9;
-    }
-
-    &-discord {
-      background: #5865F2;
-    }
-
-    &-github {
-      background: #000000;
-    }
-
-    &-inst {
-      background: rgb(64,93,230);
-      background: linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
-    }
-
-    &-steam {
-      background: #fff;
-    }
-
     &:hover {
-      opacity: 85%;
+      background: var(--color-primary-light);
     }
   }
 
-  &__image {
-    width: 36px;
-    height: 36px;
+  &__telegram {
+    grid-area: telegram;
+    background: #229ED9;
   }
 
-  &__mail {
-    height: 100px;
-    border-radius: 8px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--color-secondary);
-    color: var(--color-primary);
-    font-size: 20px;
+  &__discord {
+    grid-area: discord;
+    background: #5865F2;
+  }
+
+  &__github {
+    grid-area: github;
+    background: #000000;
+  }
+
+  &__inst {
+    grid-area: inst;
+    background: rgb(64,93,230);
+    background: linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
+  }
+
+  &__steam {
+    grid-area: steam;
+    background: #000000;
+  }
+
+  &__gmail {
+    grid-area: gmail;
+    background: #c01818;
+  }
+
+  &__linkedin {
+    grid-area: linkedin;
+    background: #15468b;
+  }
+
+  &__youtube {
+    grid-area: youtube;
+    background: #c01818;
   }
 }
 </style>
