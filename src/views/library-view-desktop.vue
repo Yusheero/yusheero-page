@@ -9,7 +9,7 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
       <Navigation class="game-view-desktop__navigation" />
       <div class="game-view-desktop__title">Library Page</div>
       <div class="game-view-desktop__content">
-        Development
+        Yusheero Library
       </div>
     </div>
   </ViewsTemplateDesktop>
