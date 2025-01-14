@@ -7,7 +7,7 @@ import TechBlock from '@/components/home-components/tech-block.vue';
 import ReviewsBlock from '@/components/home-components/reviews-block.vue';
 import LastPostBlock from '@/components/home-components/last-post-block.vue';
 import DonateBlock from '@/components/home-components/donate-block.vue';
-import WatchStream from '@/components/watch-stream/watch-stream.vue'
+import WatchStream from '@/components/watch-stream/watch-stream.vue';
 import Navigation from '@/components/navigation/navigation.vue';
 </script>
 
