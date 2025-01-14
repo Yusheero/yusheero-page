@@ -11,4 +11,5 @@ const store = useStore()
   <NavigationDesktop v-if="!store.isMobile" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
