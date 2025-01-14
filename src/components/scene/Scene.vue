@@ -1,6 +1,6 @@
 <script setup>
-import SceneDesktop from './scene-desktop/SceneDesktop.vue';
-import SceneMobile from './scene-mobile/SceneMobile.vue';
+import SceneDesktop from '@/components/scene/scene-desktop.vue';
+import SceneMobile from '@/components/scene/scene-mobile.vue';
 import { useStore } from '@/store/store';
 
 const store = useStore()
@@ -9,6 +9,4 @@ const store = useStore()
   <SceneMobile v-if="store.isMobile" />
   <SceneDesktop v-else />
 </template>
-<style lang="scss" scoped>
-  
-</style>
+<style lang="scss" scoped></style>

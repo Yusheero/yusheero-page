@@ -1,8 +1,6 @@
 <script setup>
-import { ref, onBeforeMount, onMounted, onUnmounted } from 'vue'
+import { onBeforeMount, onMounted, onUnmounted } from 'vue'
 import { useStore } from '@/store/store';
-import TWallpaper from '@twallpaper/vue'
-import '@twallpaper/vue/css'
 
 const store = useStore();
 
@@ -22,28 +20,10 @@ onBeforeMount(() => {
   store.isMobile = window.innerWidth <= 768
   console.log('before mount', store.isMobile);
 })
-
-/** Background приложения */
-const enabled = ref(true)
-const twallpaper = ref()
-const options = ref({
-  colors: [
-    '#d05baa',
-    '#291046',
-    '#3c2693',
-    '#7a213d'
-  ],
-  fps: 80,
-  tails: 300,
-  pattern: {
-    mask: false,
-  }
-})
 </script>
 
 <template>
   <main class="main">
-    <!-- <TWallpaper ref="twallpaper" v-if="enabled" :options="options" /> -->
     <Router-view />
   </main>
 </template>

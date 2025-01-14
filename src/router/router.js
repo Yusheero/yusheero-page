@@ -1,11 +1,11 @@
 import { createMemoryHistory, createRouter } from 'vue-router'
 
-import HomeView from '../views/home-view/HomeView.vue';
-import ExperienceView from '../views/experience-view/ExperienceView.vue';
-import ProjectsView from '../views/projects-view/ProjectsView.vue';
-import BlogView from '../views/blog-view/BlogView.vue';
-import ReviewsView from '@/views/reviews-view/ReviewsView.vue';
-import LibraryView from '@/views/library-view/LibraryView.vue';
+import HomeView from '@/views/home-view.vue';
+import ExperienceView from '@/views/experience-view.vue';
+import ProjectsView from '@/views/projects-view.vue';
+import BlogView from '@/views/blog-view.vue';
+import ReviewsView from '@/views/reviews-view.vue';
+import LibraryView from '@/views/library-view.vue';
 
 const routes = [
   { path: '/', component: HomeView, name: 'Home' },

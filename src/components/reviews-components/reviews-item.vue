@@ -13,7 +13,7 @@ const blogData = data.data;
 </template>
 
 <style lang="scss">
-@import '@/assets/styles/style.scss';
+@import '@/assets/style/style.scss';
 
 .reviews-item {
   font-family: "Gabarito", serif;

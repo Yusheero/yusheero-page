@@ -1,7 +1,7 @@
 <script setup>
-import NavigationDesktop from './navigation-desktop/NavigationDesktop.vue';
-import NavigationMobile from './navigation-mobile/NavigationMobile.vue';
-import { useStore } from '../../store/store';
+import NavigationDesktop from '@/components/navigation/navigation-desktop.vue';
+import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
+import { useStore } from '@/store/store';
 
 const store = useStore()
 </script>
@@ -11,6 +11,4 @@ const store = useStore()
   <NavigationDesktop v-if="!store.isMobile" />
 </template>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
