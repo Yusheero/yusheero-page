@@ -65,7 +65,7 @@ import ViewsTemplateMobile from '@/components/views-template/views-template-mobi
   }
 
   &__image {
-    background-image: url('@/components/navigation/images/haha3.gif');
+    // background-image: url('@/components/navigation/images/haha3.gif');
     background-size: cover;
     background-position: 100% 30%;
     border-radius: 8px;

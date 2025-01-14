@@ -9,11 +9,11 @@ const store = useStore()
   <ContactsBlockMobile v-if="store.isMobile" />
   <div v-else class="contacts-block">
     <div class="contacts-block__links">
-      <a class="contacts-block__item contacts-block__item-telegram" href="https://t.me/yusheero_dev"><img class="contacts-block__image" src="./images/telegram.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-discord" href="https://discord.gg/Zv2h3TAACx"><img class="contacts-block__image" src="./images/discord.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-github" href="https://github.com/Yusheero"><img class="contacts-block__image" src="./images/github.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-inst" href="https://www.instagram.com/yusheero_dev/"><img class="contacts-block__image" src="./images/inst.svg" alt=""></a>
-      <a class="contacts-block__item contacts-block__item-steam" href="https://steamcommunity.com/id/yusheero?ysclid=m56fyyhea3750316694"><img class="contacts-block__image" src="./images/steam.png" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-telegram" href="https://t.me/yusheero_dev"><img class="contacts-block__image" src="@/assets/icons/telegram.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-discord" href="https://discord.gg/Zv2h3TAACx"><img class="contacts-block__image" src="@/assets/icons/discord.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-github" href="https://github.com/Yusheero"><img class="contacts-block__image" src="@/assets/icons/github.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-inst" href="https://www.instagram.com/yusheero_dev/"><img class="contacts-block__image" src="@/assets/icons/inst.svg" alt=""></a>
+      <a class="contacts-block__item contacts-block__item-steam" href="https://steamcommunity.com/id/yusheero?ysclid=m56fyyhea3750316694"><img class="contacts-block__image" src="@/assets/icons/steam.png" alt=""></a>
     </div>
     <div class="contacts-block__mail">
       yusheero.dev@gmail.com
