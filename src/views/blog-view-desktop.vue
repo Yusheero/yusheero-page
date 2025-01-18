@@ -3,13 +3,16 @@ import Navigation from '@/components/navigation/navigation.vue';
 import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop.vue';
 import BlogItem from '@/components/blog-components/blog-item.vue';
 import { useKeenSlider } from 'keen-slider/vue';
+import data from '@/data/blog.json';
+
+const blogData = data.data;
 
 const [container, slider] = useKeenSlider({ 
   loop: true,
   initial: 0,
   slides: {
-    perView: 11,
-    spacing: 8
+    perView: 3,
+    spacing: 4
   }
 })
 </script>
@@ -21,7 +24,7 @@ const [container, slider] = useKeenSlider({
       <div class="blog-view-desktop__title">Blog Page</div>
       <div class="blog-view-desktop__content">
         <div ref="container" class="keen-slider">
-          <BlogItem class="keen-slider__slide keen-slider__slide-js" />
+          <BlogItem v-for="data in blogData" :blogData="data" class="keen-slider__slide keen-slider__slide-js" />
         </div>
       </div>
     </div>
@@ -79,15 +82,22 @@ const [container, slider] = useKeenSlider({
     grid-area: content;
   }
 }
-
-.keen-slider__slide {
+.keen-slider {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--color-secondary);
-  border-radius: 8px;
-  height: 105px;
-  color: var(--color-primary);
-  font-size: 20px;
+  height: 100%;
+
+  &__slide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: var(--color-secondary);
+    border-radius: 8px;
+    height: 100%;
+    color: var(--color-primary);
+    font-size: 20px;
+  }
 }
+
 </style>

@@ -1,18 +1,17 @@
 <script setup>
 import { useStore } from '@/store/store';
-import BlogItemMobile from '@/components/blog-components/blog-item-mobile.vue';
-import data from '@/data/blog.json';
-
-const blogData = data.data;
 const store = useStore()
+
+defineProps({
+  blogData: Object,
+})
 </script>
 
 <template>
-  <BlogItemMobile v-if="store.isMobile" />
-  <div v-else v-for="data in blogData" class="blog-item">
-    <h2 class="blog-item__title">{{ data.title }}</h2>
-    <p class="blog-item__text">{{ data.text }}</p>
-    <p class="blog-item__date">{{ data.date }}</p>
+  <div class="blog-item">
+    <h2 class="blog-item__title">{{ blogData.title }}</h2>
+    <p class="blog-item__text">{{ blogData.text }}</p>
+    <p class="blog-item__date">{{ blogData.date }}</p>
   </div>
 </template>
 
@@ -35,19 +34,19 @@ const store = useStore()
   padding: 16px;
 
   &__title {
-    height: 80px;
+    height: 70px;
     font-size: 32px;
     font-weight: 700;
     color: var(--color-orange);
   }
 
   &__text {
-    font-size: 16px;
+    font-size: 22px;
     font-weight: 600;
   }
 
   &__date {
-    font-size: 12px;
+    font-size: 16px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
   }
