@@ -1,52 +1,50 @@
 <script setup>
-// import * as THREE from 'three';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { onMounted, ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import modelPath from '@/assets/models/trueno/toyota_ae86.glb';
 
-// const canvasContainer = ref(null);
-// let scene, camera, renderer;
+const canvasContainer = ref();
+let scene, camera, renderer, controls;
+let cube;
 
-// const initThreeJS = () => {
-//   scene = new THREE.Scene();
+const initThreeJS = () => {
+  // Создаем сцену
+  scene = new THREE.Scene();
 
-//   // Настройка камеры
-//   camera = new THREE.PerspectiveCamera(75, 300 / 300, 0.1, 1000);
-//   camera.position.z = 5;
+  console.log('canvasContainer.offsetHeight', canvasContainer.value.offsetHeight);
+  console.log('canvasContainer.offsetWidth', canvasContainer.value.offsetWidth);
 
-//   // Настройка рендерера
-//   renderer = new THREE.WebGLRenderer();
-//   renderer.setSize(300, 300);
-//   canvasContainer.value.appendChild(renderer.domElement);
+  // Создаем камеру
+  camera = new THREE.PerspectiveCamera(75, canvasContainer.value.offsetWidth / canvasContainer.value.offsetHeight, 0.1, 1000);
+  camera.position.set(0, 0, 5);
 
-//   // Добавление освещения
-//   const light = new THREE.AmbientLight(0xffffff); // мягкий белый свет
-//   scene.add(light);
+  // Настройка рендерера
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(canvasContainer.value.offsetWidth, canvasContainer.value.offsetHeight);
+  canvasContainer.value.appendChild(renderer.domElement);
 
-//   // Загрузка модели GLB
-//   const loader = new GLTFLoader();
-//   loader.load('/assets/models/trueno/toyota_ae86.glb', (gltf) => {
-//     scene.add(gltf.scene);
-//   }, undefined, (error) => {
-//     console.error(error);
-//   });
 
-//   // Запуск анимации
-//   animate();
-// };
 
-// const animate = () => {
-//   requestAnimationFrame(animate);
-//   renderer.render(scene, camera);
-// };
+  // Создаем куб
+  const geometry = new THREE.BoxGeometry(2, 2, 2);
+  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+  cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
 
-// onMounted(() => {
-//   initThreeJS();
-// });
+  // Добавляем OrbitControls
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; // Включаем затухание
+  controls.dampingFactor = 0.25; // Фактор затухания
+  controls.screenSpacePanning = false; // Запрет панорамирования в пространстве экрана
+};
+
+onMounted(() => {
+  initThreeJS();
+});
 </script>
 <template>
-  <div class="scene" ref="canvasContainer">
-    THERE WILL BE MY CAR
-  </div>
+  <div class="scene" ref="canvasContainer"></div>
 </template>
 <style lang="scss" scoped>
 .scene {

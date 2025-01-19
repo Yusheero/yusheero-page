@@ -9,5 +9,6 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)) // Alias for src folder
     }
-  }
+  },
+  assetsInclude: ['**/*.glb'],
 })

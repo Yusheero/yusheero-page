@@ -7,13 +7,13 @@ import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
 
 <template>
   <ViewsTemplateMobile>
-    <div class="blog-view-mobile">
-      <div class="blog-view-mobile__header">
+    <div class="rewievs-view-mobile">
+      <div class="rewievs-view-mobile__header">
         <Navigation />
         <WatchStream />
       </div>
-      <div class="blog-view-mobile__title">Blog Page</div>
-      <div class="blog-view-mobile__content">
+      <div class="rewievs-view-mobile__title">Blog Page</div>
+      <div class="rewievs-view-mobile__content">
         <ReviewsItem />
       </div>
     </div>
@@ -23,7 +23,7 @@ import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
 <style lang="scss">
 @import '@/assets/style/style.scss';
 
-.blog-view-mobile {
+.rewievs-view-mobile {
   width: 100%;
   height: 100%;
   display: flex;

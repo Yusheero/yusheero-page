@@ -9,7 +9,6 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
       <Navigation class="game-view-desktop__navigation" />
       <div class="game-view-desktop__title">Library Page</div>
       <div class="game-view-desktop__content content">
-        <div class="content__filters">filters block</div>
         <div class="content__sections">
           <div class="content__sections-item">Games</div>
           <div class="content__sections-item">Movies</div>
@@ -74,18 +73,8 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
 }
 
 .content {
-  &__filters {
-    width: 100%;
-    height: 50px;
-    background: var(--color-secondary);
-    border-radius: 6px;
-    color: var(--color-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   &__sections {
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -95,7 +84,7 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
 
   &__sections-item {
     // TODO:Убрать хардкод у height
-    height: 510px;
+    height: 100%;
     width: 25%;
     background: var(--color-orange);
     border-radius: 6px;

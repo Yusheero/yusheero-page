@@ -2,7 +2,6 @@
 import Navigation from '@/components/navigation/navigation.vue';
 import WatchStream from '@/components/watch-stream/watch-stream.vue';
 import ViewsTemplateMobile from '@/components/views-template/views-template-mobile.vue';
-import BlogItem from '@/components/blog-components/blog-item.vue';
 </script>
 
 <template>
@@ -14,7 +13,7 @@ import BlogItem from '@/components/blog-components/blog-item.vue';
       </div>
       <div class="blog-view-mobile__title">Blog Page</div>
       <div class="blog-view-mobile__content">
-        <BlogItem />
+        Content
       </div>
     </div>
   </ViewsTemplateMobile>
@@ -25,13 +24,13 @@ import BlogItem from '@/components/blog-components/blog-item.vue';
 
 .blog-view-mobile {
   width: 100%;
-  height: 100%;
+  height: 98.5vh;
   display: flex;
   gap: 8px;
   flex-direction: column;
 
   &__title {
-    height: 100%;
+    height: 100px;
     width: 100%;
     border-radius: 10px;
     display: flex;
@@ -54,7 +53,7 @@ import BlogItem from '@/components/blog-components/blog-item.vue';
     gap: 4px;
     padding: 4px;
     background: rgb(255, 255, 255, 0.25);
-    color: var(--color-secondary);
+    color: var(--color-primary);
   }
 
   &__header {

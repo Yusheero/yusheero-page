@@ -8,7 +8,6 @@ import data from '@/data/blog.json';
 const blogData = data.data;
 
 const [container, slider] = useKeenSlider({ 
-  loop: true,
   initial: 0,
   slides: {
     perView: 3,
@@ -24,7 +23,7 @@ const [container, slider] = useKeenSlider({
       <div class="blog-view-desktop__title">Blog Page</div>
       <div class="blog-view-desktop__content">
         <div ref="container" class="keen-slider">
-          <BlogItem v-for="data in blogData" :blogData="data" class="keen-slider__slide keen-slider__slide-js" />
+          <BlogItem v-for="data in blogData" :blogData="data" class="keen-slider__slide" />
         </div>
       </div>
     </div>
@@ -83,10 +82,11 @@ const [container, slider] = useKeenSlider({
   }
 }
 .keen-slider {
+  width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 100%;
+  overflow: hidden;
 
   &__slide {
     display: flex;

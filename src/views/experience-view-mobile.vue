@@ -22,13 +22,13 @@ import ViewsTemplateMobile from '@/components/views-template/views-template-mobi
 
 .experience-view-mobile {
   width: 100%;
-  height: 100%;
+  height: 98.5vh;
   display: flex;
   gap: 8px;
   flex-direction: column;
 
   &__title {
-    height: 100%;
+    height: 100px;
     width: 100%;
     border-radius: 10px;
     display: flex;
@@ -41,7 +41,7 @@ import ViewsTemplateMobile from '@/components/views-template/views-template-mobi
   }
 
   &__content {
-    height: 650px;
+    height: 100%;
     width: 100%;
     border-radius: 10px;
     display: flex;

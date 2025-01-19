@@ -1,5 +1,5 @@
 <script setup>
-import { MessageCircleMore } from 'lucide-vue-next';
+import { ArrowRight } from 'lucide-vue-next';
 
 import data from '@/data/blog.json';
 const blogData = data.data;
@@ -16,7 +16,8 @@ const blogLastPost = blogData[DataLength - 1]
     <div class="last-post-block__item">
       <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
       <div class="last-post-block__item-text">{{ blogLastPost.text }}</div>
-      <router-link class="last-post-block__button" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="25" stroke-width="1.5" /></router-link>
+      <div class="last-post-block__item-date">{{ blogLastPost.date }}</div>
+      <router-link class="last-post-block__button" :to="{name: 'Blog'}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
     </div>
   </div>
 </template>
@@ -65,6 +66,19 @@ const blogLastPost = blogData[DataLength - 1]
     color: var(--color-primary);
     font-weight: 600;
     font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  &__item-date {
+    width: 25%;
+    font-size: 12px;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__button {
@@ -73,8 +87,8 @@ const blogLastPost = blogData[DataLength - 1]
     right: 4px;
     background: var(--color-sakura);
     border-radius: 6px;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;

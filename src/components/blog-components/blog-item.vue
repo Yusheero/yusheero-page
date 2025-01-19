@@ -46,6 +46,13 @@ defineProps({
   }
 
   &__date {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;

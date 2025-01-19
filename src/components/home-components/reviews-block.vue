@@ -1,5 +1,5 @@
 <script setup>
-import { Smile } from 'lucide-vue-next';
+import { ArrowRight } from 'lucide-vue-next';
 
 import data from '@/data/reviews.json';
 const reviewsData = data.data;
@@ -16,7 +16,7 @@ const reviewsLastPost = reviewsData[DataLength - 1]
       <div class="reviews-block__item-author">{{ reviewsLastPost.name }}</div>
       <div class="reviews-block__item-title">{{ reviewsLastPost.title }}</div>
       <div class="reviews-block__item-text">{{ reviewsLastPost.text }}</div>
-      <router-link class="reviews-block__button" :to="{name: 'Reviews'}"><Smile color="white" size="25" stroke-width="1.5" /></router-link>
+      <router-link class="reviews-block__button" :to="{name: 'Reviews'}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
     </div>
   </div>
 </template>
@@ -82,8 +82,8 @@ const reviewsLastPost = reviewsData[DataLength - 1]
     right: 4px;
     background: var(--color-primary);
     border-radius: 6px;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
