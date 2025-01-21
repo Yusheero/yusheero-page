@@ -5,7 +5,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import modelPath from '@/assets/models/trueno/toyota_ae86.glb';
 
-const useScene = false;
+/** Флаг отображения сцены с моделью */
+const useScene = true;
+
 if (useScene) {
   const canvasContainer = useTemplateRef('canvasContainer');
   const initThreeJS = () => {
