@@ -37,6 +37,7 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
     }
 
     &__title {
+      font-size: 28px;
       height: 100%;
       width: 100%;
       border-radius: 10px;

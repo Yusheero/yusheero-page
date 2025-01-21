@@ -34,6 +34,7 @@ import Navigation from '@/components/navigation/navigation.vue';
     }
 
     &__title {
+      font-size: 28px;
       height: 100%;
       width: 100%;
       border-radius: 10px;

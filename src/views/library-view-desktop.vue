@@ -1,6 +1,11 @@
 <script setup>
 import Navigation from '@/components/navigation/navigation.vue';
 import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop.vue';
+import data from '@/data/library.json';
+
+const libraryData = data;
+console.log('libraryData', libraryData);
+
 </script>
 
 <template>
@@ -10,10 +15,11 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
       <div class="game-view-desktop__title">Library Page</div>
       <div class="game-view-desktop__content content">
         <div class="content__sections">
-          <div class="content__sections-item">Games</div>
-          <div class="content__sections-item">Movies</div>
-          <div class="content__sections-item">Music</div>
-          <div class="content__sections-item">Other</div>
+          <div v-for="category in libraryData" class="content__sections-item section">
+            <div class="section__item" v-for="data in category">
+              {{ data.title }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -42,6 +48,7 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
     }
 
     &__title {
+      font-size: 28px;
       height: 100%;
       width: 100%;
       border-radius: 10px;
@@ -83,14 +90,27 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
   }
 
   &__sections-item {
+    padding: 16px;
     // TODO:Убрать хардкод у height
     height: 100%;
     width: 25%;
     background: var(--color-orange);
     border-radius: 6px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.section {
+  &__item {
+    background: var(--color-primary);
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: center;
   }
 }
 </style>

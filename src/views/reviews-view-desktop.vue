@@ -2,6 +2,18 @@
 import Navigation from '@/components/navigation/navigation.vue';
 import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop.vue';
 import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
+import data from '@/data/reviews.json';
+import { useKeenSlider } from 'keen-slider/vue';
+
+const [container, slider] = useKeenSlider({ 
+  initial: 0,
+  slides: {
+    perView: 3,
+    spacing: 4
+  }
+})
+
+const reviewData = data.data;
 </script>
 
 <template>
@@ -10,13 +22,15 @@ import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
       <Navigation class="review-view-desktop__navigation" />
       <div class="review-view-desktop__title">Reviews Page</div>
       <div class="review-view-desktop__content">
-        <ReviewsItem />
+        <div ref="container" class="keen-slider">
+          <ReviewsItem v-for="data in reviewData" :reviewData="data" class="keen-slider__slide" />
+        </div>
       </div>
     </div>
   </ViewsTemplateDesktop>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
 .review-view-desktop {
@@ -33,38 +47,58 @@ import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
     "content content content content content content"
     "content content content content content content";
 
-    &__navigation {
-      grid-area: navigation;
-    }
+  &__navigation {
+    grid-area: navigation;
+  }
 
-    &__title {
-      height: 100%;
-      width: 100%;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      padding: 16px;
-      background: var(--color-secondary);
-      color: var(--color-primary);
-      grid-area: title;
-    }
+  &__title {
+    font-size: 28px;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    grid-area: title;
+  }
 
-    &__content {
-      height: 100%;
-      width: 100%;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      background: var(--color-primary);
-      color: var(--color-secondary);
-      grid-area: content;
-    }
+  &__content {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 4px;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    grid-area: content;
+  }
+}
+
+.keen-slider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  &__slide {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: var(--color-secondary);
+    border-radius: 8px;
+    height: 100%;
+    color: var(--color-primary);
+    font-size: 20px;
+  }
 }
 </style>

@@ -6,12 +6,7 @@
       "date": "27.12.2024"
     },
     {
-      "title": "I am a middle post",
-      "text": "I am the middle of the posts, ask questions",
-      "date": "27.12.2024"
-    },
-    {
-      "title": "Switched to Nuxt and came back",
+      "title": "Start Nuxt and came back",
       "text": "I am the last of the posts, ask questions",
       "date": "27.12.2024"
     },
@@ -19,6 +14,11 @@
       "title": "Homepage will be ready soon",
       "text": "There is still a little bit of work left to do on the block with the car model, but the main work is almost finished. In the future, I will only make small, professional edits.",
       "date": "19.01.2025"
+    },
+    {
+      "title": "ThreeJS model ready",
+      "text": "Thats was hard, but trully interesting",
+      "date": "21.01.2025"
     }
   ]
 }

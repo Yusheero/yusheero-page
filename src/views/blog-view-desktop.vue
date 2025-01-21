@@ -30,7 +30,7 @@ const [container, slider] = useKeenSlider({
   </ViewsTemplateDesktop>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
 .blog-view-desktop {
@@ -52,6 +52,7 @@ const [container, slider] = useKeenSlider({
   }
 
   &__title {
+    font-size: 28px;
     height: 100%;
     width: 100%;
     border-radius: 10px;
@@ -81,6 +82,7 @@ const [container, slider] = useKeenSlider({
     grid-area: content;
   }
 }
+
 .keen-slider {
   width: 100%;
   display: flex;
@@ -99,5 +101,4 @@ const [container, slider] = useKeenSlider({
     font-size: 20px;
   }
 }
-
 </style>
