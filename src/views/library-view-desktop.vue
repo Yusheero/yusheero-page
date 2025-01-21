@@ -90,7 +90,7 @@ console.log('libraryData', libraryData);
   }
 
   &__sections-item {
-    padding: 16px;
+    padding: 4px;
     // TODO:Убрать хардкод у height
     height: 100%;
     width: 25%;
