@@ -1,5 +1,5 @@
 {
-  "games": [
+  "Games": [
     {
       "title": "Dota 2"
     },
@@ -16,7 +16,7 @@
       "title": "Minecraft"
     }
   ],
-  "movies": [
+  "Movies": [
     {
       "title": "Oppenheimer"
     },
@@ -33,24 +33,33 @@
       "title": "A Beautiful Mind"
     }
   ],
-  "music": [
+  "Music": [
     {
-      "title": "The Midnight"
+      "title": "crystal maiden - dope17",
+      "genre": "dota rap",
+      "link": "https://www.youtube.com/watch?v=FSump8Zjm-c"
     },
     {
-      "title": "The Midnight"
+      "title": "HARM - SXNSTXRM, Send 1",
+      "genre": "phonk"
     },
     {
-      "title": "The Midnight"
+      "title": "Black Seas - KSLV Noh",
+      "genre": "phonk",
+      "link": "https://www.youtube.com/watch?v=9ZzhdVVfpMw"
     },
     {
-      "title": "The Midnight"
+      "title": "zitraks mode - shadowraze",
+      "genre": "dota rap",
+      "link": "https://www.youtube.com/watch?v=d0P_Kzbi08I"
     },
     {
-      "title": "The Midnight"
+      "title": "shadow walk - dope17, GENJUTSU",
+      "genre": "dota rap",
+      "link": "https://www.youtube.com/watch?v=6qbfF1ltLX8"
     }
   ],
-  "animes": [
+  "Anime": [
     {
       "title": "Solo Leveleing"
     },
