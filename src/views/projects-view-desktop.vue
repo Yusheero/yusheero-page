@@ -1,10 +1,9 @@
 <script setup>
 import Navigation from '@/components/navigation/navigation.vue';
-import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop.vue'
 </script>
 
 <template>
-  <ViewsTemplateDesktop>
+  <div class="page-container">
     <div class="projects-view-desktop">
       <Navigation class="projects-view-desktop__navigation" />
       <div class="projects-view-desktop__title">Projects Page</div>
@@ -12,10 +11,10 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
         Content
       </div>
     </div>
-  </ViewsTemplateDesktop>
+  </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
 .projects-view-desktop {
@@ -24,7 +23,7 @@ import ViewsTemplateDesktop from '@/components/views-template/views-template-des
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 400px 100px;
-  grid-template-rows: 150px 250px 102px 200px;
+  grid-template-rows: 150px 250px 130px 200px;
   gap: 8px;
   grid-template-areas:
     "navigation title title title title title"

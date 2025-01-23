@@ -39,7 +39,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   color: var(--color-primary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 100px 400px;
-  grid-template-rows: 150px 250px 102px 200px;
+  grid-template-rows: 150px 250px 130px 200px;
   gap: 8px;
   grid-template-areas:
     "navigation logo name name scene scene"

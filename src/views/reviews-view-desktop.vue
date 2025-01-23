@@ -17,7 +17,7 @@ const reviewData = data.data;
 </script>
 
 <template>
-  <ViewsTemplateDesktop>
+  <div class="page-container">
     <div class="review-view-desktop">
       <Navigation class="review-view-desktop__navigation" />
       <div class="review-view-desktop__title">Reviews Page</div>
@@ -27,7 +27,7 @@ const reviewData = data.data;
         </div>
       </div>
     </div>
-  </ViewsTemplateDesktop>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -39,7 +39,7 @@ const reviewData = data.data;
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 400px 100px;
-  grid-template-rows: 150px 250px 102px 200px;
+  grid-template-rows: 150px 250px 130px 200px;
   gap: 8px;
   grid-template-areas:
     "navigation title title title title title"

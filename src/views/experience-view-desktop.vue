@@ -12,7 +12,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
 .experience-view-desktop {
@@ -21,7 +21,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   color: var(--color-secondary);
   display: grid;
   grid-template-columns: 150px 150px 100px 300px 400px 100px;
-  grid-template-rows: 150px 250px 102px 200px;
+  grid-template-rows: 150px 250px 130px 200px;
   gap: 8px;
   grid-template-areas:
     "navigation title title title title title"
