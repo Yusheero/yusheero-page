@@ -1,5 +1,5 @@
 <script setup>
-import { SquareArrowOutUpRight } from 'lucide-vue-next';
+import { ArrowRight } from 'lucide-vue-next';
 
 const props = defineProps({
   data: Array,
@@ -9,14 +9,13 @@ const props = defineProps({
 
 <template>
   <div class="library-item">
-    <div class="library-item__title">{{ props.index }}</div>
-    <div class="library-item__item" v-for="data in props.data">
-      <p class="library-item__item-title">{{ data.title }}</p>
-      <div class="library-item__item-info">
-        <p v-if="data.genre" class="library-item__item-genre">{{ data.genre }}</p>
-        <a v-if="data.link" class="library-item__item-link" :href="data.link"><SquareArrowOutUpRight color="black" size="18" stroke-width="1.5" /></a>
+    <div class="library-item__item">
+      <div class="library-item__title">{{ props.index }}</div>
+      <div class="library-item__names">
+        <p v-for="data in data" class="library-item__name">{{ data.title }}</p>
       </div>
     </div>
+    <div class="library-item__button"><ArrowRight color="black" size="30" stroke-width="1.5" /></div>
   </div>
 </template>
 
@@ -24,20 +23,31 @@ const props = defineProps({
 @import '@/assets/style/style.scss';
 
 .library-item {
-  padding: 4px;
-  height: 100%;
-  width: 25%;
+  width: 100%;
   background: var(--color-secondary);
   border-radius: 6px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 4px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    color: var(--color-secondary);
+    border-radius: 6px;
+    text-align: center;
+  }
 
   &__title {
     width: 100%;
-    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,28 +55,38 @@ const props = defineProps({
     color: var(--color-primary);
   }
 
-  &__item {
-    height: 70px;
+  &__names {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    font-size: 16px;
-    background: var(--color-orange);
-    color: var(--color-primary);
-    padding: 8px 8px;
-    border-radius: 6px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid var(--color-primary);
   }
 
-  &__item-info {
+  &__name {
+    color: var(--color-secondary);
+    background: var(--color-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  &__button {
+    width: 7rem;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    border-left: 2px solid var(--color-primary);
+    background: var(--color-sakura);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    &:hover {
+      background: var(--color-primary-light);
+      cursor: pointer;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
   }
 }
 </style>

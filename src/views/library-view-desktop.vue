@@ -14,9 +14,7 @@ console.log('libraryData', libraryData);
       <Navigation class="library-view-desktop__navigation" />
       <div class="library-view-desktop__title">Library Page</div>
       <div class="library-view-desktop__content content">
-        <div class="content__sections">
-          <LibraryItem v-for="(category, index) in libraryData" :data="category" :index="index" />
-        </div>
+        <LibraryItem v-for="(category, index) in libraryData" :data="category" :index="index" />
       </div>
     </div>
   </div>
@@ -71,17 +69,6 @@ console.log('libraryData', libraryData);
     background: var(--color-primary);
     color: var(--color-secondary);
     grid-area: content;
-  }
-}
-
-.content {
-  &__sections {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 4px;
   }
 }
 </style>
