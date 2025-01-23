@@ -9,6 +9,7 @@ import LastPostBlock from '@/components/home-components/last-post-block.vue';
 import DonateBlock from '@/components/home-components/donate-block.vue';
 import Scene from '@/components/scene/scene.vue';
 import Navigation from '@/components/navigation/navigation.vue';
+import { TwitchIcon } from 'vue3-simple-icons';
 </script>
 
 <template>
@@ -24,7 +25,7 @@ import Navigation from '@/components/navigation/navigation.vue';
       <ReviewsBlock class="home-view__reviews" />
       <LastPostBlock class="home-view__last-post" />
       <DonateBlock class="home-view__donate" />
-      <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero">Watch Stream</a>
+      <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero"><TwitchIcon style="fill: white" size="24px" />Watch Stream</a>
     </div>
   </div>
 </template>
@@ -38,8 +39,8 @@ import Navigation from '@/components/navigation/navigation.vue';
   width: 100%;
   color: var(--color-primary);
   display: grid;
-  grid-template-columns: 150px 150px 100px 300px 100px 400px;
-  grid-template-rows: 150px 250px 130px 200px;
+  grid-template-columns: 10rem 10rem 5rem 20rem 5rem 25rem;
+  grid-template-rows: 10rem 15rem 10rem 12rem;
   gap: 8px;
   grid-template-areas:
     "navigation logo name name scene scene"
@@ -92,15 +93,16 @@ import Navigation from '@/components/navigation/navigation.vue';
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 8px;
     width: 200px;
-    height: 40px;
-    background: var(--color-orange);
+    height: 50px;
+    background: var(--color-sakura);
     opacity: 0.9;
     border-radius: 4px;
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     right: 0;
-    font-size: 16px;
+    font-size: 18px;
     text-decoration: none;
     color: var(--color-secondary);
 

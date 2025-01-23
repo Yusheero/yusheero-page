@@ -1,9 +1,10 @@
 <script setup>
-
+import { TwitchIcon } from 'vue3-simple-icons';
 </script>
 
 <template>
   <div class="watch-stream">
+    <TwitchIcon style="fill: white" size="24px" />
     <a class="watch-stream__twitch-link" href="https://www.twitch.tv/yusheero">Watch Stream</a>
   </div>
 </template>

@@ -22,8 +22,8 @@ import Navigation from '@/components/navigation/navigation.vue';
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 150px 150px 100px 300px 400px 100px;
-  grid-template-rows: 150px 250px 130px 200px;
+  grid-template-columns: 10rem 10rem 5rem 20rem 5rem 25rem;
+  grid-template-rows: 10rem 15rem 10rem 12rem;
   gap: 8px;
   grid-template-areas:
     "navigation title title title title title"
