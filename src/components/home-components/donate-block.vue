@@ -12,13 +12,12 @@
 .donate-block {
   height: 100%;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 24px;
+  gap: 1rem;
   color: var(--color-secondary);
   background: var(--color-primary);
 
@@ -27,15 +26,14 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 200px;
-    height: 40px;
+    width: 10rem;
+    height: 3rem;
     background: var(--color-orange);
     opacity: 0.9;
-    border-radius: 4px;
-    font-size: 16px;
+    border-radius: 0.3rem;
+    font-size: 1rem;
     text-decoration: none;
     color: var(--color-secondary);
-    border: 2px solid var(--color-primary);
 
     &:hover {
       background: var(--color-primary-light);

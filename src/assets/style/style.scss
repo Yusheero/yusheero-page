@@ -75,3 +75,15 @@ table {
 	align-items: center;
 	font-size: 28px;
 }
+
+@media (max-width: 1600px) {
+  html {
+    font-size: 12px; /* уменьшенный размер шрифта для маленьких экранов */
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 22px; /* увеличенный размер шрифта для больших экранов */
+  }
+}

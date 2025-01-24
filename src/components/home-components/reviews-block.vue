@@ -25,13 +25,13 @@ const reviewsLastPost = reviewsData[DataLength - 1]
 .reviews-block {
   height: 100%;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4px;
-  gap: 4px;
+  padding: 0.3rem;
+  gap: 0.3rem;
   color: var(--color-secondary);
   background: var(--color-sakura);
   box-sizing: border-box;
@@ -40,8 +40,8 @@ const reviewsLastPost = reviewsData[DataLength - 1]
   &__title {
     color: var(--color-secondary);
     font-weight: 600;
-    font-size: 18px;
-    height: 30px;
+    font-size: 1rem;
+    height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,38 +52,38 @@ const reviewsLastPost = reviewsData[DataLength - 1]
     width: 100%;
     height: 100%;
     background: var(--color-secondary);
-    border-radius: 6px;
-    padding: 18px 50px 18px 18px;
+    border-radius: 0.3rem;
+    padding: 1rem 3.5rem 1rem 1rem;
   }
 
   &__item-author {
     color: var(--color-orange);
-    font-weight: 700;
-    font-size: 40px;
-    margin-bottom: 12px;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
 
   &__item-title {
     color: var(--color-primary);
     font-weight: 700;
-    font-size: 30px;
-    margin-bottom: 6px;
+    font-size: 1.5rem;
+    margin-bottom: 0.2rem;
   }
 
   &__item-text {
     color: var(--color-primary);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1rem;
   }
 
   &__button {
     position: absolute;
-    top: 4px;
-    right: 4px;
+    top: 0.3rem;
+    right: 0.3rem;
     background: var(--color-primary);
-    border-radius: 6px;
-    width: 35px;
-    height: 35px;
+    border-radius: 0.3rem;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;

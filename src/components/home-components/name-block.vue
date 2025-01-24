@@ -20,13 +20,12 @@ const store = useStore()
 .name-block {
   height: 100%;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 22px;
-  padding: 16px;
+  padding: 1rem;
   color: var(--color-secondary);
   background: var(--color-red);
 
@@ -35,15 +34,15 @@ const store = useStore()
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   &__title {
-    font-size: 32px;
+    font-size: 2rem;
   }
 
   &__subtitle {
-    font-size: 20px;
+    font-size: 1.5rem;
   }
 
   &__location {
@@ -51,8 +50,8 @@ const store = useStore()
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 14px;
-    gap: 6px;
+    font-size: 1rem;
+    gap: 0.5rem;
   }
 }
 </style>
