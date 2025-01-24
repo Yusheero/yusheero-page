@@ -3,6 +3,7 @@ import Navigation from '@/components/navigation/navigation.vue';
 import BlogItem from '@/components/blog-components/blog-item.vue';
 import { useKeenSlider } from 'keen-slider/vue';
 import data from '@/data/blog.json';
+import { ArrowLeft, ArrowRight } from 'lucide-vue-next';
 
 const blogData = data.data;
 
@@ -23,6 +24,8 @@ const [container, slider] = useKeenSlider({
       <div class="blog-view-desktop__content">
         <div ref="container" class="keen-slider">
           <BlogItem v-for="data in blogData" :blogData="data" class="keen-slider__slide" />
+          <button id="prev" @click="slider.prev()" class="keen-slider__button-left"><ArrowLeft color="white" size="20" stroke-width="1.5" /></button>
+          <button id="next" @click="slider.next()" class="keen-slider__button-right"><ArrowRight color="white" size="20" stroke-width="1.5" /></button>
         </div>
       </div>
     </div>
@@ -88,6 +91,7 @@ const [container, slider] = useKeenSlider({
   align-items: center;
   height: 100%;
   overflow: hidden;
+  position: relative;
 
   &__slide {
     display: flex;
@@ -98,6 +102,39 @@ const [container, slider] = useKeenSlider({
     height: 100%;
     color: var(--color-primary);
     font-size: 20px;
+  }
+
+  &__button-left {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    background: var(--color-primary);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+
+    &:hover {
+      cursor: pointer;
+      background: var(--color-primary-light);
+    }
+  }
+
+  &__button-right {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    background: var(--color-primary);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 4px;
+
+    
+    &:hover {
+      cursor: pointer;
+      background: var(--color-primary-light);
+    }
   }
 }
 </style>

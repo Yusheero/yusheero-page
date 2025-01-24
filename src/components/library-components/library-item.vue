@@ -48,6 +48,7 @@ const props = defineProps({
 
   &__title {
     width: 100%;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,14 +61,20 @@ const props = defineProps({
     justify-content: center;
     align-items: center;
     gap: 8px;
+    padding: 4px;
   }
 
   &__name {
     color: var(--color-secondary);
     background: var(--color-primary);
-    padding: 4px 8px;
+    padding: 4px 14px;
     border-radius: 4px;
     font-size: 14px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
   }
 
   &__button {

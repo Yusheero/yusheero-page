@@ -96,7 +96,7 @@ defineProps({
   &__button {
     background: var(--color-sakura);
     border-radius: 6px;
-    width: 35px;
+    width: 70px;
     height: 35px;
     display: flex;
     justify-content: center;

@@ -17,8 +17,13 @@
     },
     {
       "title": "ThreeJS model ready",
-      "text": "Thats was hard, but trully interesting",
+      "text": "Thats was hard, but trully interesting. But I temporarily disabled the display of the ThreeJS model",
       "date": "21.01.2025"
+    },
+    {
+      "title": "Redisign Blog and Library",
+      "text": "Added navigation buttons to the Blog page, completely changed the look of the Library page. Of course, this is not the final look of the pages and the site as a whole",
+      "date": "24.01.2025"
     }
   ]
 }
