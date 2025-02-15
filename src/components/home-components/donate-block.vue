@@ -11,6 +11,7 @@
 <style lang="scss" scoped>
 .donate-block {
   height: 100%;
+  min-height: 200px;
   width: 100%;
   border-radius: 0.5rem;
   display: flex;

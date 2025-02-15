@@ -1,28 +1,22 @@
 <script setup>
-import Navigation from '@/components/navigation/navigation.vue';
-import WatchStream from '@/components/watch-stream/watch-stream.vue';
-import ViewsTemplateMobile from '@/components/views-template/views-template-mobile.vue';
+import Header from '@/components/header/header.vue';
 </script>
 
 <template>
-  <ViewsTemplateMobile>
-    <div class="blog-view-mobile">
-      <div class="blog-view-mobile__header">
-        <Navigation />
-        <WatchStream />
-      </div>
-      <div class="blog-view-mobile__title">Blog Page</div>
-      <div class="blog-view-mobile__content">
-        Content
-      </div>
+  <div class="blog-view-mobile">
+    <Header />
+    <div class="blog-view-mobile__title">Blog Page</div>
+    <div class="blog-view-mobile__content">
+      Content
     </div>
-  </ViewsTemplateMobile>
+  </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/style/style.scss';
 
 .blog-view-mobile {
+  padding: 60px 8px 0 8px;
   width: 100%;
   height: 98.5vh;
   display: flex;

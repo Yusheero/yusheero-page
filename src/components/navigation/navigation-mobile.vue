@@ -13,8 +13,6 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
 
 <style lang="scss" scoped>
 .navigation {
-  padding: 4px;
-  height: 100%;
   width: 310px;
   border-radius: 8px;
   display: flex;
@@ -25,8 +23,8 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft } from 'lucide-vue-next';
   color: var(--color-primary);
 
   &__button {
-    height: 52px;
-    width: 52px;
+    height: 44px;
+    width: 44px;
     background: var(--color-sakura);
     border-radius: 6px;
     border: none;

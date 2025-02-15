@@ -24,8 +24,22 @@ const [container, slider] = useKeenSlider({
       <div class="blog-view-desktop__content">
         <div ref="container" class="keen-slider">
           <BlogItem v-for="data in blogData" :blogData="data" class="keen-slider__slide" />
-          <button id="prev" @click="slider.prev()" class="keen-slider__button-left"><ArrowLeft color="white" size="20" stroke-width="1.5" /></button>
-          <button id="next" @click="slider.next()" class="keen-slider__button-right"><ArrowRight color="white" size="20" stroke-width="1.5" /></button>
+          <button
+            v-if="blogData.length >= 4"
+            id="prev" 
+            @click="slider.prev()" 
+            class="keen-slider__button-left"
+          >
+          <ArrowLeft color="white" size="20" stroke-width="1.5" />
+          </button>
+          <button
+            v-if="blogData.length >= 4"
+            id="next" 
+            @click="slider.next()" 
+            class="keen-slider__button-right"
+          >
+            <ArrowRight color="white" size="20" stroke-width="1.5" />
+          </button>
         </div>
       </div>
     </div>
