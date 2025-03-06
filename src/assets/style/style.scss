@@ -8,7 +8,7 @@
 	--color-secondary: #e3e3e3;
 
 	--color-white: #e1d5c9;
-	--color-red: #9d3131;
+	--color-red: #c52c2c;
 	--color-purple: #623963;
 	--color-orange: #ca5833;
 	--color-sakura: #896789;
@@ -65,6 +65,10 @@ table {
 	justify-content: center;
   align-items: center;
   color: var(--color-secondary);
+
+  @media (min-width: 1280px) and (max-width: 1900px) {
+    zoom: 0.75;
+  }
 }
 
 .logo {
@@ -74,16 +78,4 @@ table {
 	justify-content: center;
 	align-items: center;
 	font-size: 28px;
-}
-
-@media (max-width: 1600px) {
-  html {
-    font-size: 12px; /* уменьшенный размер шрифта для маленьких экранов */
-  }
-}
-
-@media (min-width: 2560px) {
-  html {
-    font-size: 22px; /* увеличенный размер шрифта для больших экранов */
-  }
 }

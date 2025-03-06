@@ -96,7 +96,6 @@ import { TwitchIcon } from 'vue3-simple-icons';
     gap: 8px;
     width: 200px;
     height: 50px;
-    background: var(--color-sakura);
     opacity: 0.9;
     border-radius: 4px;
     position: absolute;
@@ -105,6 +104,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
     font-size: 18px;
     text-decoration: none;
     color: var(--color-secondary);
+    background: var(--color-primary);
 
     &:hover {
       background: var(--color-primary-light);

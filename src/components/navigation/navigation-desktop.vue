@@ -1,15 +1,15 @@
 <script setup>
-import { Eye, Target, MessageCircleMore, PanelsTopLeft, Smile , SquareLibrary } from 'lucide-vue-next';
+import { Eye, MessageCircleMore, PanelsTopLeft, Smile , SquareLibrary, BicepsFlexed, BriefcaseBusiness } from 'lucide-vue-next';
 </script>
 
 <template>
   <div class="navigation">
-    <router-link class="navigation__button navigation__home" :to="{name: 'Home'}"><PanelsTopLeft color="white" size="60" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button navigation__projects" :to="{name: 'Projects'}"><Target color="white" size="25" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button navigation__experience" :to="{name: 'Experience'}"><Eye color="white" size="25" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button navigation__blog" :to="{name: 'Blog'}"><MessageCircleMore color="white" size="25" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button navigation__reviews" :to="{name: 'Reviews'}"><Smile  color="white" size="25" stroke-width="1.5" /></router-link>
-    <router-link class="navigation__button navigation__game" :to="{name: 'Library'}"><SquareLibrary color="white" size="25" stroke-width="1.5" /></router-link>
+    <router-link title="Home" class="navigation__button navigation__home" :to="{name: 'Home'}"><PanelsTopLeft color="black" size="60" stroke-width="1.8" /></router-link>
+    <router-link title="Projects" class="navigation__button navigation__projects" :to="{name: 'Projects'}"><BriefcaseBusiness color="black" size="28" stroke-width="1.8" /></router-link>
+    <router-link title="Experience" class="navigation__button navigation__experience" :to="{name: 'Experience'}"><BicepsFlexed color="black" size="28" stroke-width="1.8" /></router-link>
+    <router-link title="Blog" class="navigation__button navigation__blog" :to="{name: 'Blog'}"><MessageCircleMore color="black" size="28" stroke-width="1.8" /></router-link>
+    <router-link title="Reviews" class="navigation__button navigation__reviews" :to="{name: 'Reviews'}"><Eye color="black" size="28" stroke-width="1.8" /></router-link>
+    <router-link title="Library" class="navigation__button navigation__game" :to="{name: 'Library'}"><SquareLibrary color="black" size="28" stroke-width="1.8" /></router-link>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft, Smile , SquareLibrary } 
   padding: 4px;
   height: 100%;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -31,8 +31,8 @@ import { Eye, Target, MessageCircleMore, PanelsTopLeft, Smile , SquareLibrary } 
   color: var(--color-primary);
 
   &__button {
-    background: var(--color-sakura);
-    border-radius: 8px;
+    background: var(--color-secondary);
+    border-radius: 4px;
     border: none;
     display: flex;
     justify-content: center;

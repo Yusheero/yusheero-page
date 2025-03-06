@@ -33,7 +33,7 @@ const reviewsLastPost = reviewsData[DataLength - 1]
   padding: 0.3rem;
   gap: 0.3rem;
   color: var(--color-secondary);
-  background: var(--color-sakura);
+  background: var(--color-primary);
   box-sizing: border-box;
   position: relative;
 
@@ -57,7 +57,7 @@ const reviewsLastPost = reviewsData[DataLength - 1]
   }
 
   &__item-author {
-    color: var(--color-orange);
+    color: var(--color-red);
     font-weight: 800;
     font-size: 2rem;
     margin-bottom: 1rem;

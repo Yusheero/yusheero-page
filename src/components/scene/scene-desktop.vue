@@ -8,7 +8,6 @@ import { useStore } from '@/store/store';
 
 const store = useStore()
 
-if (!store.noScene) {
   const canvasContainer = useTemplateRef('canvasContainer');
   const initThreeJS = () => {
     // Создаем сцену
@@ -50,11 +49,10 @@ if (!store.noScene) {
     }
     animate();
   };
-}
 
 
 onMounted(() => {
-  // initThreeJS();
+  initThreeJS();
 });
 </script>
 <template>
@@ -65,6 +63,7 @@ onMounted(() => {
   height: 100%;
   width: 100%;
   border-radius: 8px;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;

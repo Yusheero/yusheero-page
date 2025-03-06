@@ -29,12 +29,13 @@
     align-items: center;
     width: 10rem;
     height: 3rem;
-    background: var(--color-orange);
+    background: var(--color-primary);
     opacity: 0.9;
     border-radius: 0.3rem;
     font-size: 1rem;
     text-decoration: none;
     color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
 
     &:hover {
       background: var(--color-primary-light);
