@@ -15,8 +15,8 @@ defineProps({
       <p class="projects-item__text">{{ projectsData.text }}</p>
     </div>
     <div class="projects-item__bottom">
-      <a class="projects-item__link" href=""><Eye color="white" size="20" stroke-width="1.5" /></a>
-      <router-link class="projects-item__button" :to="{}"><Github color="white" size="20" stroke-width="1.5" /></router-link>
+      <a class="projects-item__link" :href="projectsData.link"><Eye color="white" size="20" stroke-width="1.5" /></a>
+      <a class="projects-item__button" :href="projectsData.linkGithub"><Github color="white" size="20" stroke-width="1.5" /></a>
     </div>
   </div>
 </template>
@@ -41,12 +41,12 @@ defineProps({
   &__header {
     width: 100%;
     height: 120px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    color: var(--color-secondary);
+    color: var(--color-primary);
+    background: var(--color-white);
     border-bottom: 2px solid var(--color-primary);
     padding: 16px;
-    background: var(--color-orange);
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     display: flex;
@@ -66,7 +66,7 @@ defineProps({
   }
 
   &__text {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
   }
 
@@ -94,7 +94,7 @@ defineProps({
   }
 
   &__button {
-    background: var(--color-sakura);
+    background: var(--color-primary);
     border-radius: 6px;
     width: 35px;
     height: 35px;
@@ -109,7 +109,7 @@ defineProps({
   }
 
   &__link {
-    background: var(--color-sakura);
+    background: var(--color-primary);
     border-radius: 6px;
     width: 35px;
     height: 35px;

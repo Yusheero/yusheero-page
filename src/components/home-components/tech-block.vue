@@ -67,7 +67,7 @@ const [container, slider] = useKeenSlider({
   align-items: center;
   background: var(--color-secondary);
   border-radius: 8px;
-  height: 9.6rem;
+  height: 10.4rem;
   color: var(--color-primary);
   font-size: 20px;
 

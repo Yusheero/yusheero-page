@@ -1,4 +1,6 @@
 <script setup>
+import NavigationMarker from '@/components/navigation-marker/navigation-marker.vue';
+import Plans from '@/components/plans/plans.vue';
 import LogoBlock from '@/components/home-components/logo-block.vue';
 import NameBlock from '@/components/home-components/name-block.vue';
 import TechBlock from '@/components/home-components/tech-block.vue';
@@ -25,7 +27,9 @@ import { TwitchIcon } from 'vue3-simple-icons';
       <ReviewsBlock class="home-view__reviews" />
       <LastPostBlock class="home-view__last-post" />
       <DonateBlock class="home-view__donate" />
-      <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero"><TwitchIcon style="fill: white" size="24px" />Watch Stream</a>
+      <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero"><TwitchIcon style="fill: white" size="22px" /></a>
+      <Plans class="home-view__plans" />
+      <NavigationMarker class="home-view__navigation-marker" />
     </div>
   </div>
 </template>
@@ -39,8 +43,8 @@ import { TwitchIcon } from 'vue3-simple-icons';
   width: 100%;
   color: var(--color-primary);
   display: grid;
-  grid-template-columns: 10rem 10rem 5rem 20rem 5rem 25rem;
-  grid-template-rows: 10rem 15rem 10rem 12rem;
+  grid-template-columns: 10rem 10rem 10rem 20rem 10rem 25rem;
+  grid-template-rows: 10rem 20rem 10.3rem 12rem;
   gap: 8px;
   grid-template-areas:
     "navigation logo name name scene scene"
@@ -94,22 +98,35 @@ import { TwitchIcon } from 'vue3-simple-icons';
     justify-content: center;
     align-items: center;
     gap: 8px;
-    width: 200px;
-    height: 50px;
+    height: 3rem;
+    width: 7rem;
     opacity: 0.9;
     border-radius: 4px;
     position: absolute;
-    bottom: -60px;
-    right: 0;
+    top: 0px;
+    right: -120px;
     font-size: 18px;
     text-decoration: none;
     color: var(--color-secondary);
-    background: var(--color-primary);
+    background: var(--color-sakura);
 
     &:hover {
       background: var(--color-primary-light);
       cursor: pointer;
     }
+  }
+
+  &__plans {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 56px;
+    right: -120px;
+  }
+
+  &__navigation-marker {
+    position: absolute;
+    top: 0px;
+    left: -128px;
   }
 }
 </style>

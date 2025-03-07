@@ -1,29 +1,18 @@
 <script setup>
-import Navigation from '@/components/navigation/navigation.vue';
-import ViewsTemplateDesktop from '@/components/views-template/views-template-desktop.vue';
-import ReviewsItem from '@/components/reviews-components/reviews-item.vue';
-import data from '@/data/reviews.json';
-import { useKeenSlider } from 'keen-slider/vue';
-
-const [container, slider] = useKeenSlider({ 
-  initial: 0,
-  slides: {
-    perView: 3,
-    spacing: 4
-  }
-})
-
-const reviewData = data.data;
+import { ArrowLeft } from 'lucide-vue-next';
+import plans from '@/data/plans.json';
 </script>
 
 <template>
   <div class="page-container">
-    <div class="review-view-desktop">
-      <Navigation class="review-view-desktop__navigation" />
-      <div class="review-view-desktop__title">Reviews Page</div>
-      <div class="review-view-desktop__content">
-        <div ref="container" class="keen-slider">
-          <ReviewsItem v-for="data in reviewData" :reviewData="data" class="keen-slider__slide" />
+    <div class="plans-view-desktop">
+      <router-link class="plans-view-desktop__navigation" to="/">
+        <ArrowLeft color="black" size="36" stroke-width="2" />
+      </router-link>
+      <div class="plans-view-desktop__title">Plans Page</div>
+      <div class="plans-view-desktop__content">
+        <div class="plans-view-desktop__content-item" v-for="plan in plans.data" :key="plan.id">
+          <div class="plans-view-desktop__content-item-title">{{ plan.title }}</div>
         </div>
       </div>
     </div>
@@ -33,7 +22,7 @@ const reviewData = data.data;
 <style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
-.review-view-desktop {
+.plans-view-desktop {
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
@@ -49,6 +38,11 @@ const reviewData = data.data;
 
   &__navigation {
     grid-area: navigation;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-secondary);
+    border-radius: 8px;
   }
 
   &__title {
@@ -71,34 +65,28 @@ const reviewData = data.data;
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 4px;
-    padding: 4px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5rem;
+    padding: 0.5rem;
     background: var(--color-primary);
     color: var(--color-secondary);
     grid-area: content;
   }
-}
 
-.keen-slider {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-
-  &__slide {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background: var(--color-secondary);
-    border-radius: 8px;
+  &__content-item {
     height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--color-secondary);
     color: var(--color-primary);
-    font-size: 20px;
   }
 }
 </style>

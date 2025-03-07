@@ -1,7 +1,5 @@
 <script setup>
-import { useStore } from '@/store/store';
 import { ArrowRight } from 'lucide-vue-next';
-const store = useStore();
 
 defineProps({
   reviewData: Object,
@@ -9,15 +7,13 @@ defineProps({
 </script>
 
 <template>
-  <div class="blog-item">
-    <h2 class="blog-item__header">{{ reviewData.name }}</h2>
-    <div class="blog-item__main">
-      <p class="blog-item__title">{{ reviewData.title }}</p>
-      <p class="blog-item__text">{{ reviewData.text }}</p>
+  <div class="reviews-item">
+    <h2 class="reviews-item__header">{{ reviewData.name }}</h2>
+    <div class="reviews-item__main">
+      <p class="reviews-item__text">{{ reviewData.text }}</p>
     </div>
-    <div class="blog-item__bottom">
-      <p class="blog-item__date">{{ reviewData.date }}</p>
-      <router-link class="blog-item__button" :to="{}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
+    <div class="reviews-item__bottom">
+      <p class="reviews-item__date">{{ reviewData.date }}</p>
     </div>
   </div>
 </template>
@@ -25,7 +21,7 @@ defineProps({
 <style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
-.blog-item {
+.reviews-item {
   font-family: "Gabarito", serif;
   font-weight: 600;
   width: 100%;
@@ -42,12 +38,12 @@ defineProps({
   &__header {
     width: 100%;
     height: 120px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    color: var(--color-secondary);
+    color: var(--color-primary);
     border-bottom: 2px solid var(--color-primary);
     padding: 16px;
-    background: var(--color-orange);
+    background: var(--color-white);
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     display: flex;
@@ -66,15 +62,8 @@ defineProps({
     padding: 16px;
   }
 
-  &__title {
-    background: var(--color-primary);
-    padding: 12px;
-    color: var(--color-secondary);
-    border-radius: 8px;
-  }
-
   &__text {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
   }
 

@@ -1,8 +1,4 @@
 <script setup>
-import { useStore } from '@/store/store';
-import { ArrowRight } from 'lucide-vue-next';
-const store = useStore()
-
 defineProps({
   blogData: Object,
 })
@@ -16,7 +12,6 @@ defineProps({
     </div>
     <div class="blog-item__bottom">
       <p class="blog-item__date">{{ blogData.date }}</p>
-      <router-link class="blog-item__button" :to="{}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
     </div>
   </div>
 </template>
@@ -41,12 +36,12 @@ defineProps({
   &__header {
     width: 100%;
     height: 120px;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    color: var(--color-secondary);
+    color: var(--color-primary);
     border-bottom: 2px solid var(--color-primary);
     padding: 16px;
-    background: var(--color-orange);
+    background: var(--color-white);
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     display: flex;
@@ -66,7 +61,7 @@ defineProps({
   }
 
   &__text {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
   }
 

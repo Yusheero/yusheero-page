@@ -28,8 +28,8 @@ console.log('libraryData', libraryData);
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 10rem 10rem 5rem 20rem 5rem 25rem;
-  grid-template-rows: 10rem 15rem 10rem 12rem;
+  grid-template-columns: 10rem 10rem 10rem 20rem 10rem 25rem;
+  grid-template-rows: 10rem 20rem 10.3rem 12rem;
   gap: 8px;
   grid-template-areas:
     "navigation title title title title title"

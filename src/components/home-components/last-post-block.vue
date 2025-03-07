@@ -14,8 +14,10 @@ const blogLastPost = blogData[DataLength - 1]
       LAST POST
     </div>
     <div class="last-post-block__item">
-      <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
-      <div class="last-post-block__item-text">{{ blogLastPost.text }}</div>
+      <div class="last-post-block__item-header">
+        <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
+        <div class="last-post-block__item-text">{{ blogLastPost.text }}</div> 
+      </div>
       <div class="last-post-block__item-date">{{ blogLastPost.date }}</div>
       <router-link class="last-post-block__button" :to="{name: 'Blog'}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
     </div>
@@ -57,6 +59,14 @@ const blogLastPost = blogData[DataLength - 1]
     background: var(--color-secondary);
     border-radius: 0.3rem;
     padding: 1rem 3.5rem 1rem 1rem;
+  }
+
+  &__item-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   &__item-title {
