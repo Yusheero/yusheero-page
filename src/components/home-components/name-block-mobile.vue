@@ -4,7 +4,7 @@ import { LocateFixed } from 'lucide-vue-next';
 <template>
   <div class="name-block-mobile">
     <div class="name-block-mobile__titles">
-      <h1 class="name-block-mobile__title glitch">Hello, I am Yusheero</h1>
+      <h1 class="name-block-mobile__title glitch">Привет, я Yusheero</h1>
       <h2 class="name-block-mobile__subtitle">Frontend Developer</h2>
     </div>
     <div class="name-block-mobile__location"><LocateFixed color="white" size="24" stroke-width="1.5" />Vladivostok, Russia</div>
@@ -55,7 +55,7 @@ import { LocateFixed } from 'lucide-vue-next';
 }
 
 .glitch::before {
-  content: "Hello, I am Yusheero";
+  content: "Привет, я Yusheero";
   position: absolute;
   top: 0;
   left: 0;
@@ -67,7 +67,7 @@ import { LocateFixed } from 'lucide-vue-next';
 
 @keyframes glitch {
   0%, 100% {
-      content: "Hello, I am Yusheero";
+      content: "Привет, я Yusheero";
       transform: translate(0, 0);
   }
   25% {
@@ -75,7 +75,7 @@ import { LocateFixed } from 'lucide-vue-next';
       transform: translate(-5px, 5px);
   }
   50% {
-      content: "Hello, I am Yusheero";
+      content: "Привет, я Yusheero";
       transform: translate(5px, -5px);
   }
   75% {

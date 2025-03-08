@@ -11,7 +11,6 @@
 <style lang="scss" scoped>
 .donate-block {
   height: 100%;
-  min-height: 200px;
   width: 100%;
   border-radius: 0.5rem;
   display: flex;
@@ -21,21 +20,22 @@
   gap: 1rem;
   color: var(--color-secondary);
   background: var(--color-primary);
+  font-size: 1rem;
 
   &__button {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 10rem;
+    width: 6rem;
     height: 3rem;
     background: var(--color-primary);
     opacity: 0.9;
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     font-size: 1rem;
     text-decoration: none;
     color: var(--color-secondary);
-    border: 1px solid var(--color-secondary);
+    border: 2px solid var(--color-secondary);
 
     &:hover {
       background: var(--color-primary-light);

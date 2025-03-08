@@ -52,7 +52,7 @@ const store = useStore()
     justify-content: center;
     align-items: center;
     font-size: 1.3rem;
-    gap: 0.5rem;
+    gap: 0.3rem;
   }
 }
 

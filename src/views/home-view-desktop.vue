@@ -1,4 +1,5 @@
 <script setup>
+import EmailBlock from '@/components/home-components/email-block.vue';
 import NavigationMarker from '@/components/navigation-marker/navigation-marker.vue';
 import Plans from '@/components/plans/plans.vue';
 import LogoBlock from '@/components/home-components/logo-block.vue';
@@ -27,6 +28,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
       <ReviewsBlock class="home-view__reviews" />
       <LastPostBlock class="home-view__last-post" />
       <DonateBlock class="home-view__donate" />
+      <EmailBlock class="home-view__email" />
       <a class="home-view__contacts-bottom" href="https://www.twitch.tv/yusheero"><TwitchIcon style="fill: white" size="22px" /></a>
       <Plans class="home-view__plans" />
       <NavigationMarker class="home-view__navigation-marker" />
@@ -48,9 +50,9 @@ import { TwitchIcon } from 'vue3-simple-icons';
   gap: 8px;
   grid-template-areas:
     "navigation logo name name scene scene"
-    "last-post last-post last-post donate scene scene"
+    "last-post last-post last-post email scene scene"
     "tech tech tech tech tech tech"
-    "gif reviews reviews reviews reviews contacts";
+    "gif reviews reviews reviews donate contacts";
 
   &__navigation {
     grid-area: navigation;
@@ -90,6 +92,10 @@ import { TwitchIcon } from 'vue3-simple-icons';
 
   &__donate {
     grid-area: donate;
+  }
+
+  &__email {
+    grid-area: email;
   }
 
   &__contacts-bottom {

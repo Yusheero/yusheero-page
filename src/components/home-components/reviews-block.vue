@@ -14,7 +14,6 @@ const reviewsLastPost = reviewsData[DataLength - 1]
     </div>
     <div class="reviews-block__item">
       <div class="reviews-block__item-author">{{ reviewsLastPost.name }}</div>
-      <div class="reviews-block__item-title">{{ reviewsLastPost.title }}</div>
       <div class="reviews-block__item-text">{{ reviewsLastPost.text }}</div>
       <router-link class="reviews-block__button" :to="{name: 'Reviews'}"><ArrowRight color="white" size="20" stroke-width="1.5" /></router-link>
     </div>
