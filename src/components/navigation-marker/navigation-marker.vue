@@ -11,8 +11,8 @@ import { ArrowRight } from 'lucide-vue-next';
 
 <style lang="scss" scoped>
 .plans {
-  height: 2rem;
-  width: 7.5rem;
+  height: 3rem;
+  width: 10rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

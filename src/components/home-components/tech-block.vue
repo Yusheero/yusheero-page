@@ -11,7 +11,7 @@ const [container, slider] = useKeenSlider({
   loop: true,
   initial: 0,
   slides: {
-    perView: 12,
+    perView: 11,
     spacing: 6
   },
   created(s) {
@@ -42,6 +42,7 @@ const [container, slider] = useKeenSlider({
       <div class="keen-slider__slide keen-slider__slide-git number-slide6"></div>
       <div class="keen-slider__slide keen-slider__slide-nodejs number-slide6"></div>
       <div class="keen-slider__slide keen-slider__slide-threejs number-slide6"></div>
+      <div class="keen-slider__slide keen-slider__slide-threejs number-slide6"></div>
     </div>
   </div>
 </template>
@@ -67,7 +68,7 @@ const [container, slider] = useKeenSlider({
   align-items: center;
   background: var(--color-secondary);
   border-radius: 8px;
-  height: 6.8rem;
+  height: 7rem;
   color: var(--color-primary);
   font-size: 20px;
 

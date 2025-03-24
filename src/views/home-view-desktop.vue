@@ -41,7 +41,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
   width: 100%;
   color: var(--color-primary);
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem 20rem 10rem 25rem;
+  grid-template-columns: 10rem 10rem 10rem 14rem 10rem 25rem;
   grid-template-rows: 10rem 20rem 7rem 14rem;
   gap: 8px;
   grid-template-areas:
@@ -128,7 +128,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
   &__navigation-marker {
     position: absolute;
     top: 0px;
-    left: -128px;
+    left: -168px;
   }
 }
 </style>

@@ -25,5 +25,6 @@ const store = useStore()
   background-image: url('@/assets/images/huh-cat.gif');
   background-size: cover;
   background-repeat: no-repeat;
+  background-position-y: -80px;
 }
 </style>
