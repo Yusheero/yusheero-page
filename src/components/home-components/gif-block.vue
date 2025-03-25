@@ -12,9 +12,9 @@ const store = useStore()
 
 <style lang="scss" scoped>
 .gif-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;

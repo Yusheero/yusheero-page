@@ -10,11 +10,11 @@
   .logo-block {
     height: 100%;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
 
     &__image {
       width: 100%;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-bottom: -4px;
     }
   }

@@ -38,9 +38,9 @@ const store = useStore()
 
 <style lang="scss" scoped>
 .contacts-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 8px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -62,7 +62,7 @@ const store = useStore()
     align-items: flex-end;
     gap: 6px;
     font-size: 18px;
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 8px;
 
     &:hover {

@@ -22,9 +22,9 @@ const reviewsLastPost = reviewsData[DataLength - 1]
 
 <style lang="scss" scoped>
 .reviews-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,9 +38,9 @@ const reviewsLastPost = reviewsData[DataLength - 1]
 
   &__title {
     color: var(--color-secondary);
-    font-weight: 600;
-    font-size: 1rem;
-    height: 2rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    height: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,8 +51,8 @@ const reviewsLastPost = reviewsData[DataLength - 1]
     width: 100%;
     height: 100%;
     background: var(--color-secondary);
-    border-radius: 0.3rem;
-    padding: 1rem 3.5rem 1rem 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem 4rem 1rem 1rem;
   }
 
   &__item-author {
@@ -77,10 +77,10 @@ const reviewsLastPost = reviewsData[DataLength - 1]
 
   &__button {
     position: absolute;
-    top: 0.3rem;
-    right: 0.3rem;
+    top: 0.5rem;
+    right: 0.5rem;
     background: var(--color-primary);
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;

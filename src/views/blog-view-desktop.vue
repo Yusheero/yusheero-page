@@ -50,21 +50,25 @@ const [container, slider] = useKeenSlider({
 @import '@/assets/style/style.scss';
 
 .blog-view-desktop {
+  position: relative;
   height: 100%;
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem 20rem 10rem 25rem;
-  grid-template-rows: 10rem 20rem 10.3rem 12rem;
+  grid-template-columns: 10rem 10rem 10rem 14rem 8rem 29rem;
+  grid-template-rows: 10rem 20rem 7rem 14rem;
   gap: 8px;
   grid-template-areas:
-    "navigation title title title title title"
+    "title title title title title title"
     "content content content content content content"
     "content content content content content content"
     "content content content content content content";
 
   &__navigation {
-    grid-area: navigation;
+    position: absolute;
+    top: 0;
+    left: -148px;
+    z-index: 100;
   }
 
   &__title {

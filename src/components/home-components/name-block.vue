@@ -18,9 +18,9 @@ const store = useStore()
 
 <style lang="scss" scoped>
 .name-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,7 +43,7 @@ const store = useStore()
   }
 
   &__subtitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   &__location {

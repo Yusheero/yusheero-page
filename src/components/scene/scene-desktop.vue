@@ -62,7 +62,7 @@ onMounted(() => {
 .scene {
   height: 100%;
   width: 100%;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   display: flex;
   justify-content: center;

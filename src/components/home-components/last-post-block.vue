@@ -26,9 +26,9 @@ const blogLastPost = blogData[DataLength - 1]
 
 <style lang="scss" scoped>
 .last-post-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 0.5rem; // 8px
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,9 +40,9 @@ const blogLastPost = blogData[DataLength - 1]
 
   &__title {
     color: var(--color-secondary);
-    font-weight: 600;
-    font-size: 1rem; // 18px
-    height: 2rem; // 30px
+    font-weight: 700;
+    font-size: 1.4rem; // 18px
+    height: 3rem; // 30px
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,8 +57,8 @@ const blogLastPost = blogData[DataLength - 1]
     justify-content: space-between;
     align-items: flex-start;
     background: var(--color-secondary);
-    border-radius: 0.3rem;
-    padding: 1rem 3.5rem 1rem 1rem;
+    border-radius: 8px;
+    padding: 1rem 4rem 1rem 1rem;
   }
 
   &__item-header {
@@ -72,14 +72,13 @@ const blogLastPost = blogData[DataLength - 1]
   &__item-title {
     color: var(--color-red);
     font-weight: 800;
-    font-size: 1.5rem;
-    // margin-bottom: 0.5rem;
+    font-size: 2rem;
   }
 
   &__item-text {
     color: var(--color-primary);
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
   }
 
@@ -96,10 +95,10 @@ const blogLastPost = blogData[DataLength - 1]
 
   &__button {
     position: absolute;
-    top: 0.3rem;
-    right: 0.3rem;
+    top: 0.5rem;
+    right: 0.5rem;
     background: var(--color-primary);
-    border-radius: 0.3rem;
+    border-radius: 0.5rem;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;

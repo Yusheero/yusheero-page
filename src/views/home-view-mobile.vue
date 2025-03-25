@@ -6,7 +6,6 @@ import NameBlock from '@/components/home-components/name-block.vue';
 import TechBlock from '@/components/home-components/tech-block.vue';
 import ReviewsBlock from '@/components/home-components/reviews-block.vue';
 import LastPostBlock from '@/components/home-components/last-post-block.vue';
-import DonateBlock from '@/components/home-components/donate-block.vue';
 import Header from '../components/header/header.vue';
 </script>
 
@@ -17,7 +16,6 @@ import Header from '../components/header/header.vue';
   <NameBlock />
   <GifBlock />
   <LastPostBlock />
-  <DonateBlock />
   <TechBlock />
   <ReviewsBlock />
   <ContactsBlock />

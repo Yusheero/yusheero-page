@@ -1,22 +1,30 @@
 <script setup>
-
+import { TwitchIcon } from 'vue3-simple-icons'
 </script>
 
 <template>
-  <div class="twitch-block"></div>
+  <a class="twitch-block" href="https://www.twitch.tv/yusheero">
+    <TwitchIcon style="fill: white" size="64px" />
+  </a>
 </template>
 
 <style lang="scss" scoped>
 .twitch-block {
+  border-radius: 12px;
   height: 100%;
   width: 100%;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background: #1f1f23;
+  background: #8956FB;
   color: var(--color-primary);
+
+  &:hover {
+    background: #6633C0;
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
 }
 </style>

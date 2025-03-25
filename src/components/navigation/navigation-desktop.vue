@@ -69,7 +69,7 @@
   &__button {
     border: 2px solid var(--color-primary);
     color: var(--color-primary);
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +80,7 @@
 
     &:hover {
       background: var(--color-primary-light);
+      transition: background 0.3s ease;
       cursor: pointer;
     }
   }
