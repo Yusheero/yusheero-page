@@ -1,6 +1,5 @@
-
 <script setup>
-import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, BriefcaseBusiness } from 'lucide-vue-next';
+
 </script>
 
 <template>
@@ -47,32 +46,37 @@ import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, Bri
     >
       library
     </router-link>
+    <router-link 
+      title="Plans" 
+      class="navigation__button" 
+      :to="{name: 'Plans'}"
+    >
+      plans
+    </router-link>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .navigation {
-  padding: 4px;
   height: 100%;
-  width: 100%;
+  width: 140px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: var(--color-primary);
   color: var(--color-primary);
 
   &__button {
-    background: var(--color-secondary);
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
     border-radius: 4px;
-    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
 
     &:hover {
       background: var(--color-primary-light);

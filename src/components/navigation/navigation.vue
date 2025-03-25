@@ -7,9 +7,12 @@ const store = useStore()
 </script>
 
 <template>
-  <NavigationMobile v-if="store.isMobile" />
-  <NavigationDesktop v-if="!store.isMobile" />
+  <div>
+    <NavigationMobile v-if="store.isMobile" />
+    <NavigationDesktop v-if="!store.isMobile" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
+
 </style>

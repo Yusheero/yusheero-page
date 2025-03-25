@@ -1,6 +1,4 @@
 <script setup>
-import NavigationMarker from '@/components/navigation-marker/navigation-marker.vue';
-import Plans from '@/components/plans/plans.vue';
 import LogoBlock from '@/components/home-components/logo-block.vue';
 import NameBlock from '@/components/home-components/name-block.vue';
 import TechBlock from '@/components/home-components/tech-block.vue';
@@ -10,7 +8,7 @@ import ReviewsBlock from '@/components/home-components/reviews-block.vue';
 import LastPostBlock from '@/components/home-components/last-post-block.vue';
 import Scene from '@/components/scene/scene.vue';
 import Navigation from '@/components/navigation/navigation.vue';
-import { TwitchIcon } from 'vue3-simple-icons';
+import TwitchBlock from '@/components/home-components/twitch-block.vue';
 </script>
 
 <template>
@@ -25,8 +23,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
       <GifBlock class="home-view-desktop__gif" />
       <ReviewsBlock class="home-view-desktop__reviews" />
       <LastPostBlock class="home-view-desktop__last-post" />
-      <a class="home-view-desktop__contacts-bottom" href="https://www.twitch.tv/yusheero"><TwitchIcon style="fill: white" size="22px" /></a>
-      <Plans class="home-view-desktop__plans" />
+      <TwitchBlock class="home-view-desktop__twitch" />
     </div>
   </div>
 </template>
@@ -44,7 +41,7 @@ import { TwitchIcon } from 'vue3-simple-icons';
   grid-template-rows: 10rem 20rem 7rem 14rem;
   gap: 8px;
   grid-template-areas:
-    "logo zxc name name scene scene"
+    "logo twitch name name scene scene"
     "last-post last-post last-post last-post scene scene"
     "tech tech tech tech tech tech"
     "gif gif reviews reviews reviews contacts";
@@ -52,7 +49,8 @@ import { TwitchIcon } from 'vue3-simple-icons';
   &__navigation {
     position: absolute;
     top: 0;
-    left: 0;
+    left: -148px;
+    z-index: 100;
   }
 
   &__logo {
@@ -95,6 +93,10 @@ import { TwitchIcon } from 'vue3-simple-icons';
     grid-area: email;
   }
 
+  &__twitch {
+    grid-area: twitch;
+  }
+
   &__contacts-bottom {
     display: flex;
     flex-direction: row;
@@ -117,13 +119,6 @@ import { TwitchIcon } from 'vue3-simple-icons';
       background: var(--color-primary-light);
       cursor: pointer;
     }
-  }
-
-  &__plans {
-    font-size: 1.5rem;
-    position: absolute;
-    top: 56px;
-    right: -120px;
   }
 }
 </style>
