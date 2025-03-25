@@ -1,3 +1,4 @@
+
 <script setup>
 import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, BriefcaseBusiness } from 'lucide-vue-next';
 </script>
@@ -6,45 +7,45 @@ import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, Bri
   <div class="navigation">
     <router-link 
       title="Home" 
-      class="navigation__button navigation__home" 
+      class="navigation__button" 
       :to="{name: 'Home'}"
     >
-      <PanelsTopLeft color="black" size="60" stroke-width="1" />
+      home
     </router-link>
     <router-link 
       title="Projects" 
-      class="navigation__button navigation__projects" 
+      class="navigation__button" 
       :to="{name: 'Projects'}"
     >
-      <BriefcaseBusiness color="black" size="26" stroke-width="1.4" />
+      projects
     </router-link>
     <router-link 
       title="Experience" 
-      class="navigation__button navigation__experience" 
+      class="navigation__button" 
       :to="{name: 'Experience'}"
     >
-      <BicepsFlexed color="black" size="26" stroke-width="1.4" />
+      experience
     </router-link>
     <router-link 
       title="Blog" 
-      class="navigation__button navigation__blog" 
+      class="navigation__button" 
       :to="{name: 'Blog'}"
     >
-      <MessageCircleMore color="black" size="26" stroke-width="1.4" />
+      blog
     </router-link>
     <router-link 
       title="Reviews" 
-      class="navigation__button navigation__reviews" 
+      class="navigation__button" 
       :to="{name: 'Reviews'}"
     >
-      <Eye color="black" size="26" stroke-width="1.4" />
+      reviews
     </router-link>
     <router-link 
       title="Library" 
-      class="navigation__button navigation__game" 
+      class="navigation__button" 
       :to="{name: 'Library'}"
     >
-      <SquareLibrary color="black" size="26" stroke-width="1.4" />
+      library
     </router-link>
   </div>
 </template>
@@ -55,13 +56,8 @@ import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, Bri
   height: 100%;
   width: 100%;
   border-radius: 8px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-areas:
-    "home home projects"
-    "home home experience"
-    "blog reviews game";
+  display: flex;
+  flex-direction: column;
   gap: 0.25rem;
   background: var(--color-primary);
   color: var(--color-primary);
@@ -73,35 +69,15 @@ import { Eye, MessageCircleMore, PanelsTopLeft, SquareLibrary, BicepsFlexed, Bri
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
 
     &:hover {
       background: var(--color-primary-light);
       cursor: pointer;
     }
-  }
-
-  &__home {
-    grid-area: home;
-  }
-
-  &__projects {
-    grid-area: projects;
-  }
-
-  &__experience {
-    grid-area: experience;
-  }
-
-  &__blog {
-    grid-area: blog;
-  }
-
-  &__reviews {
-    grid-area: reviews;
-  }
-
-  &__game {
-    grid-area: game;
   }
 }
 </style>
