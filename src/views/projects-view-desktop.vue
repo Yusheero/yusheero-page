@@ -41,8 +41,8 @@ const [container, slider] = useKeenSlider({
   width: 100%;
   color: var(--color-secondary);
   display: grid;
-  grid-template-columns: 10rem 10rem 10rem 14rem 8rem 29rem;
-  grid-template-rows: 10rem 20rem 7rem 14rem;
+  grid-template-columns: 10rem 10rem 10rem 14rem 8rem 32rem;
+  grid-template-rows: 10rem 20rem 7rem 16rem;
   gap: 8px;
   grid-template-areas:
     "title title title title title title"
