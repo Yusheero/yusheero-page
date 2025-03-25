@@ -165,6 +165,7 @@ onMounted(() => {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 1rem;
     background: var(--color-secondary);
     border-radius: 8px;
     padding: 1.5rem;
@@ -177,11 +178,11 @@ onMounted(() => {
     position: absolute;
     top: 0;
     right: 1.5rem;
-    background: var(--color-sakura);
+    background: var(--color-primary);
     color: white;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 700;
-    padding: 0.3rem 0.8rem;
+    padding: 0.5rem 1rem;
     border-radius: 0 0 8px 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -199,13 +200,9 @@ onMounted(() => {
   &__item-title {
     color: var(--color-primary);
     font-weight: 800;
-    font-size: 1.7rem;
+    font-size: 2rem;
     line-height: 1.2;
     transition: color 0.3s ease;
-    
-    &:hover {
-      color: var(--color-sakura);
-    }
   }
 
   &__item-text {
@@ -220,30 +217,24 @@ onMounted(() => {
   &__tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.1rem;
-    margin-bottom: 1rem;
+    gap: 0.5rem;
+    margin-top: auto;
     width: 100%;
   }
   
   &__tag {
     display: flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: 0.1rem;
     background-color: rgba(var(--color-sakura-rgb), 0.1);
     color: var(--color-sakura);
     font-size: 0.8rem;
     font-weight: 600;
-    padding: 0.2rem 0.4rem;
     border-radius: 4px;
     transition: all 0.2s ease;
     
     &-icon {
       opacity: 0.7;
-    }
-    
-    &:hover {
-      background-color: rgba(var(--color-sakura-rgb), 0.2);
-      transform: translateY(-2px);
     }
   }
   
@@ -252,7 +243,6 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: auto;
   }
 
   &__item-date {
@@ -278,19 +268,6 @@ onMounted(() => {
     &:hover {
       color: var(--color-primary);
     }
-  }
-  
-  &__arrow {
-    transition: transform 0.3s ease;
-    
-    &.arrow-animate {
-      transform: translateX(5px);
-    }
-  }
-  
-  &__icon {
-    color: var(--color-primary);
-    opacity: 0.7;
   }
 }
 </style>
