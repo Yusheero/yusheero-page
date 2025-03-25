@@ -1,11 +1,6 @@
 {
   "data": [
     {
-      "title": "Completion of layout",
-      "text": "Finally figured out the mobile version and the project structure",
-      "date": "27.12.2024"
-    },
-    {
       "title": "Start Nuxt and came back",
       "text": "I am the last of the posts, ask questions",
       "date": "27.12.2024"
@@ -29,6 +24,11 @@
       "title": "Full redisign of the site",
       "text": "Change the color scheme, add new pages, change the layout of the existing pages. Now the site has a more modern and clean look.",
       "date": "24.01.2025"
+    },
+    {
+      "title": "Finally, Design system is ready",
+      "text": "I finally finished the design system. Now I can start working on the site. I will add new pages and features to the site, but the main structure is ready. I hope you like it!",
+      "date": "26.03.2025"
     }
   ]
 }

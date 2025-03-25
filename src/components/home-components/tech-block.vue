@@ -11,7 +11,7 @@ const [container, slider] = useKeenSlider({
   loop: true,
   initial: 0,
   slides: {
-    perView: 11,
+    perView: 12,
     spacing: 6
   },
   created(s) {

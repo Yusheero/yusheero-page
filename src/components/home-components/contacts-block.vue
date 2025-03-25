@@ -23,7 +23,7 @@ const socialLinks = [
   { name: 'steam', icon: SteamIcon, url: '#', label: 'Steam', color: '#000000' },
   { name: 'gmail', icon: GmailIcon, url: '#', label: 'Gmail', color: '#c01818' },
   { name: 'linkedin', icon: LinkedInIcon, url: '#', label: 'LinkedIn', color: '#15468b' },
-  { name: 'youtube', icon: YouTubeIcon, url: '#', label: 'YouTube', color: '#c01818' }
+  { name: 'youtube', icon: YouTubeIcon, url: 'https://www.youtube.com/@yusheero', label: 'YouTube', color: '#c01818' }
 ];
 </script>
 
