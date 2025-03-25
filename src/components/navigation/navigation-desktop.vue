@@ -67,6 +67,8 @@
   color: var(--color-primary);
 
   &__button {
+    position: relative;
+    overflow: hidden;
     border: 2px solid var(--color-primary);
     color: var(--color-primary);
     border-radius: 6px;
@@ -77,11 +79,51 @@
     font-size: 1rem;
     font-weight: 600;
     padding: 0.8rem 1rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Эффект линии снизу */
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-sakura);
+      transition: all 0.5s ease;
+      transform: translateX(-50%);
+    }
 
     &:hover {
-      background: var(--color-primary-light);
-      transition: background 0.3s ease;
-      cursor: pointer;
+      transform: translateX(-6px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      color: var(--color-sakura);
+      border-color: var(--color-sakura);
+      
+      &::after {
+        width: 80%;
+      }
+      
+      &::before {
+        width: 300px;
+        height: 300px;
+      }
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  /* Анимация для активной ссылки */
+  .router-link-active {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    border-color: var(--color-primary);
+    
+    &:hover {
+      color: var(--color-secondary);
     }
   }
 }
