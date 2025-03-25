@@ -13,22 +13,45 @@ const isHovered = ref(false);
 
 // Форматирование даты
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', { 
-    day: 'numeric', 
-    month: 'short', 
-    year: 'numeric' 
-  });
+  // Проверяем, является ли входная строка корректной датой
+  if (!dateString) return 'Нет даты';
+  
+  try {
+    // Предполагаем, что дата может быть в формате "DD.MM.YYYY" или ISO
+    let date;
+    
+    // Проверяем, если дата в формате "DD.MM.YYYY"
+    if (dateString.includes('.')) {
+      const [day, month, year] = dateString.split('.');
+      date = new Date(`${year}-${month}-${day}`);
+    } else {
+      date = new Date(dateString);
+    }
+    
+    // Проверяем, валидная ли дата
+    if (isNaN(date.getTime())) {
+      return dateString; // Возвращаем исходную строку, если дата невалидна
+    }
+    
+    // Форматируем дату
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  } catch (error) {
+    console.error('Ошибка при форматировании даты:', error);
+    return dateString; // Возвращаем исходную строку в случае ошибки
+  }
 };
 
 // Создание обрезанной версии текста
 const truncateText = (text, length = 120) => {
+  if (!text) return '';
   if (text.length <= length) return text;
   return text.substring(0, length) + '...';
 };
 
-const formattedDate = formatDate(blogLastPost.date);
-const truncatedText = truncateText(blogLastPost.text);
+// Используем безопасное получение даты и текста
+const formattedDate = formatDate(blogLastPost?.date || '');
+const truncatedText = truncateText(blogLastPost?.text || '');
 
 onMounted(() => {
   // Запускаем анимацию появления после монтирования компонента
