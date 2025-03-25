@@ -124,10 +124,6 @@ onMounted(() => {
     font-size: 1.2rem;
     font-weight: 500;
     margin: 0;
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeInUp 0.6s ease forwards;
-    animation-delay: 2s;
   }
 
   &__location {
@@ -147,12 +143,6 @@ onMounted(() => {
       transform: translateX(5px);
       cursor: pointer;
     }
-  }
-  
-  &__city {
-    opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: 2.5s;
   }
 }
 
