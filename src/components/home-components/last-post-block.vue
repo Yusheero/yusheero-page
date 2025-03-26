@@ -120,17 +120,6 @@ onMounted(() => {
           <Calendar size="14" strokeWidth="2" class="last-post-block__icon" />
           <span>{{ formattedDate }}</span>
         </div>
-
-        <div class="last-post-block__tags">
-          <div 
-            v-for="(tag, index) in postTags" 
-            :key="index"
-            class="last-post-block__tag"
-          >
-            <Hash size="12" strokeWidth="2.5" class="last-post-block__tag-icon" />
-            {{ tag }}
-          </div>
-        </div>
         
         <router-link class="last-post-block__read-more" :to="{name: 'Blog'}">
           Read more
@@ -212,31 +201,6 @@ onMounted(() => {
     opacity: 0.8;
   }
   
-  &__tags {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 20em;
-    padding: 0 1.5rem;
-  }
-  
-  &__tag {
-    display: flex;
-    align-items: center;
-    gap: 0.1rem;
-    background-color: rgba(var(--color-sakura-rgb), 0.1);
-    color: var(--color-sakura);
-    font-size: 0.8rem;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    
-    &-icon {
-      opacity: 0.7;
-    }
-  }
-  
   &__item-footer {
     display: flex;
     justify-content: space-between;
@@ -254,7 +218,6 @@ onMounted(() => {
     align-items: center;
     gap: 0.3rem;
     padding: 1.5rem;
-    border-right: 2px solid var(--color-primary);
     width: 10rem;
   }
   
