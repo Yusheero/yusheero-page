@@ -168,6 +168,7 @@ const voightKampffQuestions = [
 const bootTerminal = () => {
   isTerminalOn.value = true;
   bootingProgress.value = 0;
+  terminalHistory.value = []; // Clear history
   
   // Simulate flickering when turning on (old CRT effect)
   const terminalElement = document.querySelector('.retro-terminal-container');
@@ -201,7 +202,7 @@ const bootTerminal = () => {
         
         // Clear history and start printing boot messages
         setTimeout(() => {
-          terminalHistory.value = [];
+          terminalText.value = ''; // Ensure no partial text is displayed
           printTextToTerminal(terminalData.bootMessages.join('\n'));
           
           // After boot messages are complete, show welcome message
@@ -408,10 +409,18 @@ const rebootTerminal = () => {
   
   // Reset terminal state but keep attempt count
   setTimeout(() => {
+    terminalText.value = ''; // Ensure no text is being typed
+    if (typingInterval) {
+      clearInterval(typingInterval); // Stop any ongoing typing
+    }
+    
     // Set boot progress to 0 immediately
     bootingProgress.value = 0;
     // Disable terminal booted state BEFORE showing the boot screen
     isTerminalBooted.value = false;
+    
+    // Clear terminal history before reboot to avoid duplicate messages
+    terminalHistory.value = [];
     
     // Show "rebooting" message for a moment before starting the boot sequence
     setTimeout(() => {
@@ -427,9 +436,9 @@ const rebootTerminal = () => {
             // Now transition to the boot screen
             isTerminalBooted.value = true;
             
-            // Clear history and print boot messages
+            // Start printing boot messages
             setTimeout(() => {
-              terminalHistory.value = [];
+              terminalText.value = ''; // Ensure no partial text is displayed
               printTextToTerminal(terminalData.bootMessages.join('\n'));
               
               // After boot messages are complete, show welcome message
