@@ -76,17 +76,6 @@ onMounted(() => {
       
       <div class="reviews-block__item-header">
         <div class="reviews-block__item-author">{{ reviewsLastPost.name }}</div>
-        
-        <div class="reviews-block__rating">
-          <Star 
-            v-for="star in rating" 
-            :key="star" 
-            :size="16" 
-            :fill="'var(--color-yellow)'" 
-            :color="'var(--color-yellow)'" 
-            strokeWidth="1.5" 
-          />
-        </div>
       </div>
       
       <div class="reviews-block__item-text">{{ truncatedText }}</div>
@@ -97,10 +86,7 @@ onMounted(() => {
           <span>{{ formattedDate }}</span>
         </div>
         
-        <router-link class="reviews-block__read-more" :to="{name: 'Reviews'}">
-          Check more
-          <ArrowRight size="14" strokeWidth="2" class="reviews-block__arrow" :class="{ 'arrow-animate': isHovered }" />
-        </router-link>
+        <router-link class="reviews-block__read-more" :to="{name: 'Reviews'}">Check more</router-link>
       </div>
     </div>
   </div>
@@ -130,10 +116,8 @@ onMounted(() => {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1.5rem;
     background: var(--color-secondary);
     border-radius: 8px;
-    padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
@@ -160,6 +144,7 @@ onMounted(() => {
     align-items: flex-start;
     gap: 0.5rem;
     width: 100%;
+    padding: 1rem;
   }
 
   &__item-author {
@@ -180,29 +165,12 @@ onMounted(() => {
   &__item-text {
     color: var(--color-primary);
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     opacity: 0.8;
-    font-style: italic;
     position: relative;
-    
-    &::before {
-      content: '"';
-      font-size: 1.5rem;
-      line-height: 0;
-      margin-right: 0.2rem;
-      vertical-align: -0.3em;
-      opacity: 0.5;
-    }
-    
-    &::after {
-      content: '"';
-      font-size: 1.5rem;
-      line-height: 0;
-      margin-left: 0.2rem;
-      vertical-align: -0.3em;
-      opacity: 0.5;
-    }
+    height: 100%;
+    padding: 0 1rem;
   }
   
   &__item-footer {
@@ -210,7 +178,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: auto;
+    border-top: 2px solid var(--color-primary);
   }
 
   &__item-date {
@@ -221,20 +189,25 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
+    padding: 1rem;
   }
   
   &__read-more {
+    padding: 1rem;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--color-sakura);
+    color: var(--color-primary);
+    background-color: var(--color-sakura);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    transition: color 0.3s ease;
+    border-left: 2px solid var(--color-primary);
+    transition: all 0.5s ease;
     
     &:hover {
-      color: var(--color-primary);
+      color: var(--color-secondary);
+      background-color: var(--color-primary);
     }
   }
 }

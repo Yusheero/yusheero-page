@@ -80,19 +80,7 @@
     font-weight: 600;
     padding: 0.8rem 1rem;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    
-    /* Эффект линии снизу */
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 2px;
-      background-color: var(--color-sakura);
-      transition: all 0.5s ease;
-      transform: translateX(-50%);
-    }
+  
 
     &:hover {
       transform: translateX(-6px);

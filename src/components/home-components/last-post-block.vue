@@ -115,26 +115,25 @@ onMounted(() => {
         <div class="last-post-block__item-text">{{ truncatedText }}</div> 
       </div>
       
-      <div class="last-post-block__tags">
-        <div 
-          v-for="(tag, index) in postTags" 
-          :key="index"
-          class="last-post-block__tag"
-        >
-          <Hash size="12" strokeWidth="2.5" class="last-post-block__tag-icon" />
-          {{ tag }}
-        </div>
-      </div>
-      
       <div class="last-post-block__item-footer">
         <div class="last-post-block__item-date">
           <Calendar size="14" strokeWidth="2" class="last-post-block__icon" />
           <span>{{ formattedDate }}</span>
         </div>
+
+        <div class="last-post-block__tags">
+          <div 
+            v-for="(tag, index) in postTags" 
+            :key="index"
+            class="last-post-block__tag"
+          >
+            <Hash size="12" strokeWidth="2.5" class="last-post-block__tag-icon" />
+            {{ tag }}
+          </div>
+        </div>
         
         <router-link class="last-post-block__read-more" :to="{name: 'Blog'}">
           Read more
-          <ArrowRight size="14" strokeWidth="2" class="last-post-block__arrow" :class="{ 'arrow-animate': isHovered }" />
         </router-link>
       </div>
     </div>
@@ -165,10 +164,8 @@ onMounted(() => {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
     background: var(--color-secondary);
     border-radius: 8px;
-    padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
@@ -195,12 +192,13 @@ onMounted(() => {
     align-items: flex-start;
     gap: 1rem;
     width: 100%;
+    padding: 1.5rem;
   }
 
   &__item-title {
     color: var(--color-primary);
     font-weight: 800;
-    font-size: 2rem;
+    font-size: 1.5rem;
     line-height: 1.2;
     transition: color 0.3s ease;
   }
@@ -216,10 +214,11 @@ onMounted(() => {
   
   &__tags {
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: auto;
-    width: 100%;
+    width: 20em;
+    padding: 0 1.5rem;
   }
   
   &__tag {
@@ -243,6 +242,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-top: 2px solid var(--color-primary);
   }
 
   &__item-date {
@@ -253,20 +253,28 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     gap: 0.3rem;
+    padding: 1.5rem;
+    border-right: 2px solid var(--color-primary);
+    width: 10rem;
   }
   
   &__read-more {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--color-sakura);
+    color: var(--color-primary);
+    background-color: var(--color-sakura);
     text-decoration: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.3rem;
-    transition: color 0.3s ease;
-    
+    transition: all 0.5s ease;
+    height: 100%;
+    width: 8rem;
+    border-left: 2px solid var(--color-primary);
     &:hover {
-      color: var(--color-primary);
+      background-color: var(--color-primary);
+      color: var(--color-secondary);
     }
   }
 }
