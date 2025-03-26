@@ -32,7 +32,7 @@ const terminalData = {
   bootMessages: [
     'YUSHEERO INDUSTRIES UNIFIED OPERATING SYSTEM',
     'COPYRIGHT 2025-2077 YUSHEERO INDUSTRIES',
-    '- SERVER 6 -',
+    '- SERVER 666 -',
     '',
     'Initializing system...',
     'Loading data segments...',
@@ -43,7 +43,6 @@ const terminalData = {
     '* Network interface.......... OK',
     '',
     '>>> System ready',
-    ''
   ],
   welcomeMessage: [
     '>>> TERMINAL READY FOR USE',
@@ -543,10 +542,9 @@ onUnmounted(() => {
     <!-- Turned off terminal screen -->
     <div v-if="!isTerminalOn" class="terminal-off" @click="bootTerminal">
       <div class="terminal-off-text">
-        [ CLICK TO POWER ON TERMINAL ]
+        CLICK TO POWER ON TERMINAL
       </div>
       <div class="scanlines"></div>
-      <div class="power-button"></div>
     </div>
     
     <!-- Loading screen -->
@@ -650,27 +648,6 @@ $terminal-amber: #ffb000;
     letter-spacing: 2px;
     text-transform: uppercase;
     animation: pulse 2s infinite;
-  }
-  
-  .power-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid rgba($terminal-green, 0.3);
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 2px;
-      height: 10px;
-      background-color: rgba($terminal-green, 0.3);
-    }
   }
 }
 
