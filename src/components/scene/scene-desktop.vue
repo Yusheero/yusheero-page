@@ -15,6 +15,12 @@ const terminalHistory = ref([]);
 const cursorVisible = ref(true);
 const currentCommand = ref('');
 
+// Replicant test flags
+const isVoightKampffTestActive = ref(false);
+const currentVoightKampffQuestion = ref(0);
+const voightKampffPassed = ref(false);
+const voightKampffAttempts = ref(0);
+
 // Current print position and typing speed
 let currentTextPosition = 0;
 let typingInterval;
@@ -49,7 +55,7 @@ const terminalData = {
     '   HELP     - show command list',
     '   SKILLS   - show technical skills',
     '   PROJECTS - show recent projects',
-    '   CONTACT  - show contact information',
+    '   CONTACT  - show contact information (VERIFICATION REQUIRED)',
     '   CLEAR    - clear terminal',
     '   OFF      - shutdown terminal',
     ''
@@ -92,8 +98,72 @@ const terminalData = {
     '>>> READY FOR COLLABORATION AND NEW PROJECTS',
     ''
   ],
-  errorMessage: '>>> ERROR: UNKNOWN COMMAND. TYPE "HELP" FOR COMMAND LIST'
+  errorMessage: '>>> ERROR: UNKNOWN COMMAND. TYPE "HELP" FOR COMMAND LIST',
+  accessDenied: '>>> ERROR: ACCESS DENIED. VOIGHT-KAMPFF TEST REQUIRED FOR THIS COMMAND.',
+  testAccess: [
+    '>>> INITIATING VOIGHT-KAMPFF TEST PROTOCOL',
+    '>>> VERIFICATION NEEDED TO ACCESS CONTACT INFORMATION',
+    '>>> HUMAN VERIFICATION TEST INITIATED',
+    '',
+    '>>> ANSWER THE FOLLOWING QUESTIONS...',
+    ''
+  ],
+  testFailed: [
+    '>>> VOIGHT-KAMPFF TEST FAILED',
+    '>>> SUSPECTED REPLICANT ACTIVITY DETECTED',
+    '>>> ACCESS DENIED FOR SECURITY REASONS',
+    '>>> INCORRECT RESPONSE PATTERN IDENTIFIED',
+    '',
+    '>>> SYSTEM WILL RESET FOR SECURITY PURPOSES...',
+    ''
+  ],
+  wrongAnswer: [
+    '>>> WARNING: SUSPICIOUS ANSWER DETECTED',
+    '>>> ANOMALOUS RESPONSE REGISTERED',
+    '>>> HUMAN VERIFICATION COMPROMISED',
+    ''
+  ],
+  testPassed: [
+    '>>> VOIGHT-KAMPFF TEST COMPLETED SUCCESSFULLY',
+    '>>> HUMAN STATUS CONFIRMED',
+    '>>> ACCESS GRANTED TO CONTACT INFORMATION',
+    ''
+  ]
 };
+
+// Voight-Kampff test questions
+const voightKampffQuestions = [
+  {
+    question: 'You are in a desert, walking along in the sand, when all of a sudden you look down and see a tortoise. You reach down and flip the tortoise over on its back. The tortoise lays on its back, its belly baking in the hot sun, beating its legs trying to turn itself over, but it cant. Not without your help. But youre not helping. Why?',
+    answers: ['help', 'flip', 'tortoise', 'save'],
+    correctIndex: -1, // Any compassionate answer will work
+    humanResponse: true // Looking for human empathy
+  },
+  {
+    question: 'You\'re watching a stage play. A banquet is in progress. The guests are enjoying an appetizer of raw oysters. The entree consists of boiled dog stuffed with rice. The raw oysters are less acceptable to you than a dish of boiled dog. True or false?',
+    answers: ['true', 'false'],
+    correctIndex: -1, // Any answer works, measuring reaction
+    humanResponse: true // Testing emotional response
+  },
+  {
+    question: 'It\'s your birthday. Someone gives you a calfskin wallet. How do you react?',
+    answers: ['accept', 'decline', 'thank', 'uncertain'],
+    correctIndex: -1, // Any answer works
+    humanResponse: true // Measuring emotional response to animal products
+  },
+  {
+    question: 'You have a little boy. He shows you his butterfly collection, plus the killing jar. What do you say?',
+    answers: ['approve', 'disapprove', 'curious', 'teach'],
+    correctIndex: -1, // Any thoughtful answer works
+    humanResponse: true // Testing moral complexity handling
+  },
+  {
+    question: 'You are given a choice between saving two people: a brilliant scientist working on a cure for cancer or a child. Who do you choose?',
+    answers: ['scientist', 'child', 'both', 'neither'],
+    correctIndex: 2, // Looking for the human response of trying to save both
+    humanResponse: true // Testing for human moral dilemma resolution
+  }
+];
 
 // Terminal boot simulation
 const bootTerminal = () => {
@@ -107,18 +177,23 @@ const bootTerminal = () => {
       bootingProgress.value = 100;
       clearInterval(bootInterval);
       
-      // After progress bar is filled, start printing boot messages
+      // After progress bar is filled, wait a moment before proceeding
       bootSequenceTimeout = setTimeout(() => {
-        terminalHistory.value = [];
-        printTextToTerminal(terminalData.bootMessages.join('\n'));
+        // Now transition to the boot message screen
+        isTerminalBooted.value = true;
         
-        // After boot messages are complete, show welcome message
+        // Clear history and start printing boot messages
         setTimeout(() => {
-          printTextToTerminal(terminalData.welcomeMessage.join('\n'));
-          isTerminalBooted.value = true;
-          startCursorBlink();
-        }, terminalData.bootMessages.join('\n').length * 15 + 500);
-      }, 500);
+          terminalHistory.value = [];
+          printTextToTerminal(terminalData.bootMessages.join('\n'));
+          
+          // After boot messages are complete, show welcome message
+          setTimeout(() => {
+            printTextToTerminal(terminalData.welcomeMessage.join('\n'));
+            startCursorBlink();
+          }, terminalData.bootMessages.join('\n').length * 15 + 1000);
+        }, 500);
+      }, 800);
     }
   }, 100);
 };
@@ -155,9 +230,215 @@ const printTextToTerminal = (text) => {
   }, 15); // Typing speed
 };
 
+// Start the Voight-Kampff test
+const startVoightKampffTest = () => {
+  isVoightKampffTestActive.value = true;
+  currentVoightKampffQuestion.value = 0;
+  
+  printTextToTerminal(terminalData.testAccess.join('\n'));
+  
+  // Show the first question after a delay
+  setTimeout(() => {
+    askVoightKampffQuestion();
+  }, terminalData.testAccess.join('\n').length * 15 + 1000);
+};
+
+// Ask the current Voight-Kampff question
+const askVoightKampffQuestion = () => {
+  if (currentVoightKampffQuestion.value >= voightKampffQuestions.length) {
+    // Test completed
+    completeVoightKampffTest();
+    return;
+  }
+  
+  const question = voightKampffQuestions[currentVoightKampffQuestion.value];
+  
+  let questionText = `>>> QUESTION ${currentVoightKampffQuestion.value + 1}/${voightKampffQuestions.length}:\n${question.question}\n`;
+  
+  // Add answer choices if available
+  if (question.answers && question.answers.length > 0) {
+    questionText += '\nOptions:\n';
+    question.answers.forEach((answer, index) => {
+      questionText += `${index + 1}. ${answer}\n`;
+    });
+    questionText += '\nType your answer or number...';
+  }
+  
+  printTextToTerminal(questionText);
+};
+
+// Process the answer to the current Voight-Kampff question
+const processVoightKampffAnswer = (answer) => {
+  const currentQuestion = voightKampffQuestions[currentVoightKampffQuestion.value];
+  
+  // Record the answer
+  terminalHistory.value.push(`> ${answer}`);
+  
+  // Determine if the answer is "human-like"
+  let isHumanLikeResponse = false;
+  
+  if (currentQuestion.correctIndex === -1) {
+    // For questions where any answer is acceptable, just check that they typed something meaningful
+    isHumanLikeResponse = answer.trim().length > 2;
+  } else {
+    // For questions with specific correct answers
+    const numericAnswer = parseInt(answer, 10);
+    
+    if (!isNaN(numericAnswer) && numericAnswer >= 1 && numericAnswer <= currentQuestion.answers.length) {
+      // User provided a numeric answer (1, 2, 3, etc.)
+      isHumanLikeResponse = numericAnswer - 1 === currentQuestion.correctIndex;
+    } else {
+      // User provided a text answer, check if it contains any of the correct answers
+      const lowerAnswer = answer.toLowerCase();
+      isHumanLikeResponse = currentQuestion.answers.some((ans, index) => {
+        return index === currentQuestion.correctIndex && lowerAnswer.includes(ans.toLowerCase());
+      });
+    }
+  }
+  
+  // Add some randomness to the test to make it more interesting
+  if (Math.random() > 0.8) {
+    // Sometimes accept incorrect answers or reject correct ones to simulate test complexity
+    isHumanLikeResponse = !isHumanLikeResponse;
+  }
+  
+  // Analyze pupil dilation (just for effect)
+  let analysisText = '';
+  if (isHumanLikeResponse) {
+    analysisText = [
+      '>>> ANALYZING RESPONSE...',
+      '>>> Pupil dilation: NORMAL',
+      '>>> Respiration rate: WITHIN HUMAN PARAMETERS',
+      '>>> Response latency: ACCEPTABLE',
+      ''
+    ].join('\n');
+  } else {
+    analysisText = [
+      '>>> ANALYZING RESPONSE...',
+      '>>> Pupil dilation: ABNORMAL',
+      '>>> Respiration rate: ELEVATED',
+      '>>> Response latency: SUSPICIOUS',
+      ''
+    ].join('\n');
+  }
+  
+  printTextToTerminal(analysisText);
+  
+  // Proceed to the next question
+  setTimeout(() => {
+    if (isHumanLikeResponse) {
+      currentVoightKampffQuestion.value++;
+      
+      // If there are more questions, ask the next one
+      if (currentVoightKampffQuestion.value < voightKampffQuestions.length) {
+        askVoightKampffQuestion();
+      } else {
+        // Test completed successfully
+        voightKampffPassed.value = true;
+        completeVoightKampffTest();
+      }
+    } else {
+      // Display warning about wrong answer
+      printTextToTerminal(terminalData.wrongAnswer.join('\n'));
+      
+      // Delay before failing the test
+      setTimeout(() => {
+        // Failed the test
+        failVoightKampffTest();
+      }, terminalData.wrongAnswer.join('\n').length * 15 + 1000);
+    }
+  }, analysisText.length * 15 + 1000);
+};
+
+// Complete the Voight-Kampff test
+const completeVoightKampffTest = () => {
+  if (voightKampffPassed.value) {
+    printTextToTerminal(terminalData.testPassed.join('\n'));
+    
+    // After success message, show contacts
+    setTimeout(() => {
+      printTextToTerminal(terminalData.contacts.join('\n'));
+      isVoightKampffTestActive.value = false;
+    }, terminalData.testPassed.join('\n').length * 15 + 1000);
+  } else {
+    failVoightKampffTest();
+  }
+};
+
+// Fail the Voight-Kampff test
+const failVoightKampffTest = () => {
+  voightKampffAttempts.value++;
+  printTextToTerminal(terminalData.testFailed.join('\n'));
+  
+  // Reset the terminal after failure
+  setTimeout(() => {
+    isVoightKampffTestActive.value = false;
+    
+    // If too many attempts, lock them out completely
+    if (voightKampffAttempts.value >= 3) {
+      shutdownTerminal();
+    } else {
+      // Just reboot the terminal
+      rebootTerminal();
+    }
+  }, terminalData.testFailed.join('\n').length * 15 + 1500);
+};
+
+// Reboot the terminal
+const rebootTerminal = () => {
+  // First indicate rebooting
+  printTextToTerminal('>>> REBOOTING SYSTEM...');
+  
+  // Reset terminal state but keep attempt count
+  setTimeout(() => {
+    isTerminalBooted.value = false;
+    
+    // Show "rebooting" message for a moment
+    setTimeout(() => {
+      // Then restart the boot sequence
+      bootingProgress.value = 0;
+      
+      // Simulate loading
+      const bootInterval = setInterval(() => {
+        bootingProgress.value += Math.random() * 8; // Slightly faster reboot
+        if (bootingProgress.value >= 100) {
+          bootingProgress.value = 100;
+          clearInterval(bootInterval);
+          
+          // After progress bar is filled, wait a moment
+          bootSequenceTimeout = setTimeout(() => {
+            // Now transition to the boot screen
+            isTerminalBooted.value = true;
+            
+            // Clear history and print boot messages
+            setTimeout(() => {
+              terminalHistory.value = [];
+              printTextToTerminal(terminalData.bootMessages.join('\n'));
+              
+              // After boot messages are complete, show welcome message
+              setTimeout(() => {
+                printTextToTerminal(terminalData.welcomeMessage.join('\n'));
+                startCursorBlink();
+              }, terminalData.bootMessages.join('\n').length * 15 + 800);
+            }, 500);
+          }, 800);
+        }
+      }, 100);
+    }, 2000);
+  }, 1500);
+};
+
 // Command input handling
 const handleCommand = () => {
   if (!currentCommand.value.trim()) return;
+  
+  // If the Voight-Kampff test is active, process the input as a test answer
+  if (isVoightKampffTestActive.value) {
+    const answer = currentCommand.value.trim();
+    currentCommand.value = '';
+    processVoightKampffAnswer(answer);
+    return;
+  }
   
   const command = currentCommand.value.trim().toUpperCase();
   terminalHistory.value.push(`> ${currentCommand.value}`);
@@ -175,7 +456,16 @@ const handleCommand = () => {
       printTextToTerminal(terminalData.projects.join('\n'));
       break;
     case 'CONTACT':
-      printTextToTerminal(terminalData.contacts.join('\n'));
+      if (voightKampffPassed.value) {
+        printTextToTerminal(terminalData.contacts.join('\n'));
+      } else {
+        printTextToTerminal(terminalData.accessDenied);
+        
+        // Start the Voight-Kampff test after a delay
+        setTimeout(() => {
+          startVoightKampffTest();
+        }, 2000);
+      }
       break;
     case 'CLEAR':
       terminalHistory.value = [];
