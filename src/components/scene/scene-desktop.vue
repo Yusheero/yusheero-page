@@ -408,13 +408,13 @@ const rebootTerminal = () => {
   
   // Reset terminal state but keep attempt count
   setTimeout(() => {
+    // Set boot progress to 0 immediately
+    bootingProgress.value = 0;
+    // Disable terminal booted state BEFORE showing the boot screen
     isTerminalBooted.value = false;
     
-    // Show "rebooting" message for a moment
+    // Show "rebooting" message for a moment before starting the boot sequence
     setTimeout(() => {
-      // Then restart the boot sequence
-      bootingProgress.value = 0;
-      
       // Simulate loading
       const bootInterval = setInterval(() => {
         bootingProgress.value += Math.random() * 8; // Slightly faster reboot
