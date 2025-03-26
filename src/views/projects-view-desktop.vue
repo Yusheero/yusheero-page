@@ -46,23 +46,15 @@ const projectsData = data.data;
   &__content {
     height: 100%;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 4px;
     padding: 4px;
-    background: var(--color-primary);
+    border: 2px solid var(--color-primary);
     color: var(--color-secondary);
     grid-area: content;
-  }
-
-  &__item {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    background: var(--color-secondary);
-    color: var(--color-primary);
   }
 }
 </style>

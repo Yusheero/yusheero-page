@@ -1,22 +1,90 @@
 <script setup>
+import { ref, computed } from 'vue';
 import { useStore } from '@/store/store';
-import { Github, Eye } from 'lucide-vue-next';
-const store = useStore()
+import { Github, ExternalLink, Calendar, Tag, Code, ChevronRight } from 'lucide-vue-next';
 
-defineProps({
-  projectsData: Object,
-})
+// Типизированные пропсы
+const props = defineProps({
+  projectsData: {
+    type: Object,
+    required: true
+  }
+});
+
+const isHovered = ref(false);
+const isFlipped = ref(false);
+
+// Обрезаем длинные названия
+const truncatedTitle = computed(() => {
+  if (!props.projectsData.title) return '';
+  return props.projectsData.title.length > 25 
+    ? props.projectsData.title.slice(0, 25) + '...' 
+    : props.projectsData.title;
+});
+
+// Получаем год из даты
+const getYear = computed(() => {
+  if (!props.projectsData.dateCreated) return '';
+  const dateParts = props.projectsData.dateCreated.split('.');
+  return dateParts.length > 2 ? dateParts[2] : '';
+});
 </script>
 
 <template>
-  <div class="projects-item">
-    <h2 class="projects-item__header">{{ projectsData.title }}</h2>
-    <div class="projects-item__main">
-      <p class="projects-item__text">{{ projectsData.text }}</p>
-    </div>
-    <div class="projects-item__bottom">
-      <a class="projects-item__link" :href="projectsData.link"><Eye color="white" size="20" stroke-width="1.5" /></a>
-      <a class="projects-item__button" :href="projectsData.linkGithub"><Github color="white" size="20" stroke-width="1.5" /></a>
+  <div 
+    class="projects-item"
+    :class="{ 
+      'clickable': projectsData.readMore, 
+      'is-flipped': isFlipped 
+    }"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
+    <!-- Передняя часть карточки -->
+    <div class="projects-item__front">
+      <div v-if="projectsData.category" class="projects-item__badge" :class="`category-${projectsData.category}`">
+        <Tag size="12" />
+        <span>{{ projectsData.category }}</span>
+      </div>
+      
+      <div class="projects-item__content">
+        <h2 class="projects-item__title" :title="projectsData.title">
+          {{ truncatedTitle }}
+        </h2>
+        <p class="projects-item__text">{{ projectsData.text }}</p>
+        
+        <div v-if="projectsData.dateCreated" class="projects-item__date">
+          <Calendar size="14" />
+          <span>{{ projectsData.dateCreated }}</span>
+        </div>
+        
+        <div class="projects-item__links">
+          <a 
+            v-if="projectsData.link" 
+            class="projects-item__link" 
+            :href="projectsData.link" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Посетить сайт проекта"
+            @click.stop
+          >
+            <ExternalLink :class="{ 'icon-animated': isHovered }" size="18" />
+            <span class="tooltip"></span>
+          </a>
+          <a 
+            v-if="projectsData.linkGithub || projectsData.githubLink" 
+            class="projects-item__github" 
+            :href="projectsData.linkGithub || projectsData.githubLink" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub репозиторий"
+            @click.stop
+          >
+            <Github :class="{ 'icon-animated': isHovered }" size="18" />
+            <span class="tooltip"></span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -25,101 +93,135 @@ defineProps({
 @import '@/assets/style/style.scss';
 
 .projects-item {
-  font-family: "Gabarito", serif;
-  font-weight: 600;
   width: 100%;
   height: 100%;
-  background: var(--color-purple);
-  color: var(--color-primary);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 8px;
-
-  &__header {
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+  
+  &__front {
     width: 100%;
-    height: 120px;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--color-primary);
-    background: var(--color-white);
-    border-bottom: 2px solid var(--color-primary);
-    padding: 16px;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  &__main {
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    overflow: hidden;
+    background: var(--color-primary-light);
+    color: var(--color-white);
+    transform: rotateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-
-  &__text {
-    font-size: 20px;
-    font-weight: 500;
-  }
-
-  &__date {
-    background: var(--color-primary);
-    color: var(--color-secondary);
-    padding: 6px;
-    border-radius: 6px;
+  
+  &__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 5;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 16px;
-    font-family: "Poppins", sans-serif;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
     font-weight: 600;
-    height: 100%;
-  }
-
-  &__bottom {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    padding: 16px;
-  }
-
-  &__button {
-    background: var(--color-primary);
-    border-radius: 6px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &:hover {
-      background: var(--color-primary-light);
-      cursor: pointer;
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(4px);
+    
+    &.category-web {
+      background-color: rgba(41, 121, 255, 0.7);
+    }
+    
+    &.category-3D {
+      background-color: rgba(255, 87, 34, 0.7);
+    }
+    
+    &.category-tools {
+      background-color: rgba(76, 175, 80, 0.7);
     }
   }
-
-  &__link {
-    background: var(--color-primary);
-    border-radius: 6px;
-    width: 35px;
-    height: 35px;
+  
+  &__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+  }
+  
+  &__title {
+    font-family: "Gabarito", serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    position: relative;
+  }
+  
+  &__text {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0;
+    opacity: 0.9;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+  
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--color-white);
+    margin-top: 16px;
+    opacity: 0.8;
+  }
+  
+  &__links {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 16px;
+  }
+  
+  &__link,
+  &__github,
+  &__more {
+    position: relative;
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: var(--color-white);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+  
+  &__flip-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    
     &:hover {
-      background: var(--color-primary-light);
-      cursor: pointer;
+      opacity: 1;
     }
   }
 }
