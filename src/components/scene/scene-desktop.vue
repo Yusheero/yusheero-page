@@ -43,6 +43,7 @@ const terminalData = {
     '* Network interface.......... OK',
     '',
     '>>> System ready',
+    ''
   ],
   welcomeMessage: [
     '>>> TERMINAL READY FOR USE',
@@ -72,9 +73,8 @@ const terminalData = {
     ' [BACKEND]',
     ' ■■■■■■■■□□ 85%',
     ' - Node.js, Express',
-    ' - MongoDB, MySQL, PostgreSQL',
+    ' - MongoDB',
     ' - API development',
-    ' - Server architecture',
     '',
   ],
   projects: [
@@ -169,9 +169,27 @@ const bootTerminal = () => {
   isTerminalOn.value = true;
   bootingProgress.value = 0;
   
-  // Simulate loading
+  // Simulate flickering when turning on (old CRT effect)
+  const terminalElement = document.querySelector('.retro-terminal-container');
+  if (terminalElement) {
+    terminalElement.classList.add('power-on');
+    setTimeout(() => {
+      terminalElement.classList.remove('power-on');
+    }, 1000);
+  }
+  
+  // Simulate loading with occasional stutters for authenticity
   const bootInterval = setInterval(() => {
-    bootingProgress.value += Math.random() * 5;
+    // Random progress increments with occasional pauses
+    if (Math.random() > 0.2) { // 80% chance to increment
+      bootingProgress.value += Math.random() * 5;
+    }
+    
+    // Occasionally show a slight stutter in the loading
+    if (Math.random() > 0.95 && bootingProgress.value > 10 && bootingProgress.value < 90) {
+      bootingProgress.value -= Math.random() * 2; // Slight backwards movement
+    }
+    
     if (bootingProgress.value >= 100) {
       bootingProgress.value = 100;
       clearInterval(bootInterval);
@@ -544,7 +562,11 @@ onUnmounted(() => {
       <div class="terminal-off-text">
         CLICK TO POWER ON TERMINAL
       </div>
+      <div class="system-info">
+        YUSHEERO OS v1.0.666 | STANDBY MODE | POWER SAVING ENABLED
+      </div>
       <div class="scanlines"></div>
+      <div class="terminal-glow"></div>
     </div>
     
     <!-- Loading screen -->
@@ -553,7 +575,11 @@ onUnmounted(() => {
         <div class="boot-progress-bar" :style="{ width: bootingProgress + '%' }"></div>
       </div>
       <div class="boot-text">SYSTEM LOADING... {{ Math.floor(bootingProgress) }}%</div>
+      <div class="boot-info">
+        INITIALIZING MEMORY | CONFIGURING INTERFACE | LOADING CORE MODULES
+      </div>
       <div class="scanlines"></div>
+      <div class="terminal-glow"></div>
     </div>
     
     <!-- Working terminal -->
@@ -607,6 +633,11 @@ $terminal-amber: #ffb000;
   justify-content: center;
   align-items: center;
   
+  // Power on effect (CRT monitor turning on)
+  &.power-on {
+    animation: powerOn 1s ease-in-out;
+  }
+  
   &::before {
     content: '';
     position: absolute;
@@ -636,6 +667,7 @@ $terminal-amber: #ffb000;
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #000;
@@ -648,6 +680,16 @@ $terminal-amber: #ffb000;
     letter-spacing: 2px;
     text-transform: uppercase;
     animation: pulse 2s infinite;
+    text-shadow: 0 0 5px rgba($terminal-green, 0.5);
+    margin-bottom: 20px;
+  }
+  
+  .system-info {
+    color: rgba($terminal-green, 0.15);
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: 'VT323', monospace;
   }
 }
 
@@ -659,19 +701,34 @@ $terminal-amber: #ffb000;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background-color: $terminal-dark-green;
+  position: relative;
   
   .boot-progress {
     width: 70%;
-    height: 20px;
-    background-color: $terminal-dark-green;
+    height: 30px;
+    background-color: rgba($terminal-dark-green, 0.7);
     border: 2px solid $terminal-green;
-    margin-bottom: 20px;
+    border-radius: 4px;
+    margin-bottom: 30px;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 0 10px rgba($terminal-green, 0.3);
     
     &-bar {
       height: 100%;
       background-color: $terminal-green;
+      background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 75%,
+        transparent
+      );
+      background-size: 30px 30px;
       transition: width 0.1s ease-out;
     }
   }
@@ -679,6 +736,34 @@ $terminal-amber: #ffb000;
   .boot-text {
     font-size: 24px;
     letter-spacing: 2px;
+    text-shadow: 0 0 5px rgba($terminal-green, 0.7);
+    margin-bottom: 20px;
+    font-family: 'VT323', monospace;
+  }
+  
+  .boot-info {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: rgba($terminal-green, 0.7);
+    margin-top: 30px;
+    text-shadow: 0 0 3px rgba($terminal-green, 0.5);
+    animation: flicker 2s infinite;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
   }
 }
 
@@ -831,5 +916,33 @@ $terminal-amber: #ffb000;
   90% { opacity: 0.95; }
   95% { opacity: 0.94; }
   100% { opacity: 0.95; }
+}
+
+// Power on animation
+@keyframes powerOn {
+  0% { 
+    filter: brightness(5);
+    background-color: #fff;
+  }
+  20% { 
+    filter: brightness(0.2);
+    background-color: #000;
+  }
+  40% { 
+    filter: brightness(2);
+    background-color: #0a0a0a;
+  }
+  60% { 
+    filter: brightness(0.3);
+    background-color: #000;
+  }
+  80% { 
+    filter: brightness(1.5);
+    background-color: #050505;
+  }
+  100% { 
+    filter: brightness(1);
+    background-color: #000;
+  }
 }
 </style>
