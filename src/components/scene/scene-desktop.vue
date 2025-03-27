@@ -54,9 +54,13 @@ const terminalData = {
   helpText: [
     '>>> AVAILABLE COMMANDS:',
     '   HELP     - show command list',
+    '   ABOUT    - show information about me',
     '   SKILLS   - show technical skills',
     '   PROJECTS - show recent projects',
     '   CONTACT  - show contact information (VERIFICATION REQUIRED)',
+    '   BLOG     - show latest blog posts',
+    '   SERVICES - show available services',
+    '   LS       - list available sections',
     '   CLEAR    - clear terminal',
     '   OFF      - shutdown terminal',
     ''
@@ -96,6 +100,78 @@ const terminalData = {
     ' * Telegram: @yusheero_dev',
     '',
     '>>> READY FOR COLLABORATION AND NEW PROJECTS',
+    ''
+  ],
+  aboutMe: [
+    '>>> DEVELOPER PROFILE:',
+    '',
+    ' NAME: YUSHEERO',
+    ' ROLE: FRONTEND DEVELOPER',
+    ' STATUS: AVAILABLE FOR HIRE',
+    '',
+    ' > I am a passionate frontend developer with extensive experience in',
+    ' > creating modern, responsive web applications. My focus is on',
+    ' > delivering clean, optimized code and exceptional user experiences.',
+    '',
+    ' > With a background in both frontend and backend technologies,',
+    ' > I bring a holistic approach to development projects, ensuring',
+    ' > seamless integration across the entire stack.',
+    '',
+    '>>> TYPE "SKILLS" TO SEE TECHNICAL EXPERTISE',
+    '>>> TYPE "PROJECTS" TO VIEW PORTFOLIO',
+    ''
+  ],
+  blog: [
+    '>>> LATEST BLOG POSTS:',
+    '',
+    ' [POST: MASTERING VUE 3 COMPOSITION API]',
+    ' DATE: 15.06.2024',
+    ' TAGS: #vue #javascript #frontend',
+    ' EXCERPT: An in-depth look at the Vue 3 Composition API and how it',
+    ' revolutionizes component logic organization...',
+    '',
+    ' [POST: BUILDING RESPONSIVE UIs WITH SCSS MIXINS]',
+    ' DATE: 03.05.2024',
+    ' TAGS: #css #scss #responsive',
+    ' EXCERPT: Learn how to create powerful, reusable SCSS mixins for',
+    ' effortless responsive design...',
+    '',
+    '>>> TYPE "BLOG -FULL" FOR COMPLETE ARTICLE TEXT',
+    ''
+  ],
+  services: [
+    '>>> AVAILABLE SERVICES:',
+    '',
+    ' [SERVICE: FRONTEND DEVELOPMENT]',
+    ' * Modern web applications using Vue/React',
+    ' * Responsive, mobile-first interfaces',
+    ' * PWA implementation',
+    ' * Performance optimization',
+    '',
+    ' [SERVICE: UI/UX DESIGN]',
+    ' * User-centered interface design',
+    ' * Wireframing and prototyping',
+    ' * Design system creation',
+    '',
+    ' [SERVICE: FULLSTACK DEVELOPMENT]',
+    ' * End-to-end web application development',
+    ' * REST API design and implementation',
+    ' * Database architecture',
+    '',
+    '>>> TYPE "CONTACT" FOR COLLABORATION INQUIRIES',
+    ''
+  ],
+  directory: [
+    '>>> SYSTEM DIRECTORY:',
+    '',
+    ' /about    - Personal information',
+    ' /skills   - Technical expertise',
+    ' /projects - Portfolio',
+    ' /blog     - Articles and thoughts',
+    ' /services - Professional offerings',
+    ' /contact  - Communication channels (RESTRICTED)',
+    '',
+    '>>> TYPE ANY SECTION NAME TO ACCESS',
     ''
   ],
   errorMessage: '>>> ERROR: UNKNOWN COMMAND. TYPE "HELP" FOR COMMAND LIST',
@@ -482,6 +558,18 @@ const handleCommand = () => {
     case 'PROJECTS':
       printTextToTerminal(terminalData.projects.join('\n'));
       break;
+    case 'ABOUT':
+      printTextToTerminal(terminalData.aboutMe.join('\n'));
+      break;
+    case 'BLOG':
+      printTextToTerminal(terminalData.blog.join('\n'));
+      break;
+    case 'SERVICES':
+      printTextToTerminal(terminalData.services.join('\n'));
+      break;
+    case 'LS':
+      printTextToTerminal(terminalData.directory.join('\n'));
+      break;
     case 'CONTACT':
       if (voightKampffPassed.value) {
         printTextToTerminal(terminalData.contacts.join('\n'));
@@ -500,11 +588,132 @@ const handleCommand = () => {
     case 'OFF':
       shutdownTerminal();
       break;
+    case 'SOCIAL':
+      printTextToTerminal(terminalData.contacts.join('\n'));
+      break;
     default:
-      printTextToTerminal(terminalData.errorMessage);
+      // Проверка команд с параметрами
+      if (command.startsWith('BLOG -')) {
+        handleBlogCommand(command);
+      } else if (command.startsWith('CAT ') || command.startsWith('VIEW ')) {
+        const path = command.split(' ')[1];
+        handleViewCommand(path);
+      } else {
+        printTextToTerminal(terminalData.errorMessage);
+      }
   }
   
   scrollToBottom();
+};
+
+// Обработка команд блога с параметрами
+const handleBlogCommand = (command) => {
+  if (command === 'BLOG -FULL') {
+    printTextToTerminal([
+      '>>> BLOG POST: MASTERING VUE 3 COMPOSITION API',
+      '',
+      ' DATE: 15.06.2024',
+      ' AUTHOR: YUSHEERO',
+      ' TAGS: #vue #javascript #frontend',
+      '',
+      ' The Vue 3 Composition API represents a paradigm shift in how we',
+      ' organize component logic. Unlike the Options API that relies on',
+      ' separating code by options like data, methods, and computed,',
+      ' the Composition API allows developers to group code by logical',
+      ' concerns.',
+      '',
+      ' This approach offers several advantages:',
+      '',
+      ' 1. Better type inference with TypeScript',
+      ' 2. More reusable code through composable functions',
+      ' 3. Improved organization in complex components',
+      '',
+      ' Let\'s examine a simple example:',
+      '',
+      ' ```',
+      ' import { ref, computed, onMounted } from \'vue\'',
+      '',
+      ' export default {',
+      '   setup() {',
+      '     const count = ref(0)',
+      '     const doubleCount = computed(() => count.value * 2)',
+      '',
+      '     function increment() {',
+      '       count.value++',
+      '     }',
+      '',
+      '     onMounted(() => {',
+      '       console.log(\'Component mounted!\')',
+      '     })',
+      '',
+      '     return {',
+      '       count,',
+      '       doubleCount,',
+      '       increment',
+      '     }',
+      '   }',
+      ' }',
+      ' ```',
+      '',
+      ' In this example, all logic related to our counter functionality',
+      ' is grouped together, making it easy to understand and maintain.',
+      '',
+      ' Stay tuned for more articles on modern web development techniques!',
+      ''
+    ].join('\n'));
+  } else {
+    printTextToTerminal([
+      '>>> ERROR: UNKNOWN BLOG COMMAND',
+      '>>> AVAILABLE BLOG COMMANDS:',
+      '    BLOG       - list recent posts',
+      '    BLOG -FULL - show full article',
+      ''
+    ].join('\n'));
+  }
+};
+
+// Обработка команд просмотра разделов
+const handleViewCommand = (path) => {
+  if (!path) {
+    printTextToTerminal('>>> ERROR: NO PATH SPECIFIED');
+    return;
+  }
+  
+  const normalizedPath = path.toUpperCase().replace('/', '');
+  
+  switch (normalizedPath) {
+    case 'ABOUT':
+      printTextToTerminal(terminalData.aboutMe.join('\n'));
+      break;
+    case 'SKILLS':
+      printTextToTerminal(terminalData.skills.join('\n'));
+      break;
+    case 'PROJECTS':
+      printTextToTerminal(terminalData.projects.join('\n'));
+      break;
+    case 'BLOG':
+      printTextToTerminal(terminalData.blog.join('\n'));
+      break;
+    case 'SERVICES':
+      printTextToTerminal(terminalData.services.join('\n'));
+      break;
+    case 'CONTACT':
+      if (voightKampffPassed.value) {
+        printTextToTerminal(terminalData.contacts.join('\n'));
+      } else {
+        printTextToTerminal(terminalData.accessDenied);
+        setTimeout(() => {
+          startVoightKampffTest();
+        }, 2000);
+      }
+      break;
+    default:
+      printTextToTerminal([
+        `>>> ERROR: PATH '/${normalizedPath}' NOT FOUND`,
+        '>>> TYPE "LS" TO SEE AVAILABLE DIRECTORIES',
+        ''
+      ].join('\n'));
+  }
 };
 
 // Terminal shutdown
