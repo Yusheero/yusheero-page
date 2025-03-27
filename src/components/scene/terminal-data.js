@@ -34,7 +34,6 @@ export const terminalData = {
     '   GAME     - show available games',
     '   GUESS    - play "Guess the Number" game',
     '   THEME    - change terminal color scheme',
-    '   SOUND    - toggle sound effects (ON/OFF)', 
     '   CLEAR    - clear terminal',
     '   OFF      - shutdown terminal',
     ''
@@ -633,21 +632,6 @@ export const terminalData = {
     '- THEME AMBER  - Switch to amber theme',
     '- THEME BLUE   - Switch to blue theme',
     '- THEME        - Show this help text',
-    '',
-    'SOUND CONTROLS:',
-    '- SOUND ON     - Enable sound effects',
-    '- SOUND OFF    - Disable sound effects',
-    '- SOUND        - Show current sound status',
-    ''
-  ],
-  soundHelp: [
-    '>>> SOUND EFFECTS:',
-    '',
-    'COMMANDS:',
-    '- SOUND ON  - Enable sound effects',
-    '- SOUND OFF - Disable sound effects',
-    '',
-    'Current status: ',
     ''
   ],
   accessDenied: [

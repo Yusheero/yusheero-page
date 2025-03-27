@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
 import { terminalData, voightKampffQuestions } from './terminal-data.js';
-import { TerminalAudio } from './terminal-audio.js';
 import { TerminalGames } from './terminal-game.js';
 import './terminal-styles.scss';
 
@@ -9,7 +8,7 @@ import './terminal-styles.scss';
 const terminalRef = ref(null);
 const cursorRef = ref(null);
 
-// Terminal parameters
+// Параметры терминала
 const isTerminalOn = ref(false);
 const isTerminalBooted = ref(false);
 const terminalText = ref('');
@@ -20,11 +19,10 @@ const cursorVisible = ref(true);
 const currentCommand = ref('');
 const isFullScreen = ref(false);
 
-// Добавим параметры для визуальных и звуковых эффектов
+// Добавим параметры для визуальных эффектов
 const currentColorScheme = ref('green'); // green, amber, blue
 const isGlitchActive = ref(false);
 const isStaticActive = ref(false);
-const isSoundEnabled = ref(true);
 
 // Replicant test flags
 const isVoightKampffTestActive = ref(false);
@@ -37,9 +35,6 @@ let currentTextPosition = 0;
 let typingInterval;
 let cursorBlinkInterval;
 let bootSequenceTimeout;
-
-// Инициализация звуковых эффектов
-const terminalAudio = new TerminalAudio(isSoundEnabled);
 
 // Инициализация игр
 const terminalGames = new TerminalGames();
@@ -55,9 +50,6 @@ const bootTerminal = () => {
   
   // Активируем эффект глитча при загрузке
   triggerGlitchEffect(1500);
-  
-  // Воспроизведем звук загрузки
-  terminalAudio.playSound('boot');
   
   // Simulate flickering when turning on (old CRT effect)
   const terminalElement = document.querySelector('.retro-terminal-container');
@@ -116,11 +108,6 @@ const printTextToTerminal = (text) => {
   
   typingInterval = setInterval(() => {
     if (currentTextPosition < text.length) {
-      // Воспроизводим звук нажатия клавиш случайным образом для более естественного эффекта
-      if (Math.random() > 0.7) {
-        terminalAudio.playSound('keypress');
-      }
-      
       // Simulate random delays for more realistic typing effect
       if (Math.random() > 0.95) {
         setTimeout(() => {
@@ -290,8 +277,8 @@ const rebootTerminal = () => {
   terminalHistory.value = []; // Очистим историю перед сообщением о перезагрузке
   printTextToTerminal('>>> REBOOTING SYSTEM...');
   
-  // Воспроизведем звук глитча
-  terminalAudio.playSound('glitch');
+  // Активируем эффект глитча при перезагрузке
+  triggerGlitchEffect(1500);
   
   // Reset terminal state but keep attempt count
   setTimeout(() => {
@@ -302,8 +289,6 @@ const rebootTerminal = () => {
     
     // Show "rebooting" message for a moment before starting the boot sequence
     setTimeout(() => {
-      terminalAudio.playSound('boot');
-      
       // Simulate loading
       const bootInterval = setInterval(() => {
         bootingProgress.value += Math.random() * 8; // Slightly faster reboot
@@ -337,9 +322,6 @@ const rebootTerminal = () => {
 // Обработка команд
 const handleCommand = () => {
   if (!currentCommand.value.trim()) return;
-  
-  // Воспроизводим звук нажатия клавиш
-  terminalAudio.playSound('keypress');
   
   // Если активна игра
   if (activeGame.value) {
@@ -428,22 +410,6 @@ const handleCommand = () => {
     case 'THEME':
       printTextToTerminal(terminalData.themeHelp.join('\n'));
       break;
-    case 'SOUND ON':
-      isSoundEnabled.value = true;
-      terminalAudio.toggleSound(true);
-      printTextToTerminal('>>> SOUND EFFECTS ENABLED');
-      break;
-    case 'SOUND OFF':
-      isSoundEnabled.value = false;
-      terminalAudio.toggleSound(false);
-      printTextToTerminal('>>> SOUND EFFECTS DISABLED');
-      break;
-    case 'SOUND':
-      printTextToTerminal([
-        ...terminalData.soundHelp,
-        `${isSoundEnabled.value ? 'ENABLED' : 'DISABLED'}`
-      ].join('\n'));
-      break;
     default:
       // Проверка команд с параметрами
       if (command.startsWith('BLOG -')) {
@@ -453,7 +419,6 @@ const handleCommand = () => {
         changeColorScheme(themeName);
       } else {
         printTextToTerminal(terminalData.unknownCommand.join('\n'));
-        terminalAudio.playSound('error'); // Воспроизводим звук ошибки
         triggerGlitchEffect(300); // Небольшой эффект помех при ошибке
       }
   }
@@ -544,7 +509,7 @@ const toggleFullScreen = () => {
   if (isFullScreen.value) {
     setTimeout(() => {
       scrollToBottom();
-    }, 100);
+    }, 300);
   }
 };
 
@@ -559,7 +524,7 @@ const changeColorScheme = (theme) => {
       '>>> AVAILABLE THEMES: GREEN, AMBER, BLUE',
       ''
     ].join('\n'));
-    terminalAudio.playSound('error');
+    triggerGlitchEffect(300);
     return;
   }
   
@@ -575,13 +540,11 @@ const changeColorScheme = (theme) => {
     '>>> DISPLAY RECALIBRATION COMPLETE',
     ''
   ].join('\n'));
-  terminalAudio.playSound('success');
 };
 
 // Функция для создания эффекта глитча/помех
 const triggerGlitchEffect = (duration = 500) => {
   isGlitchActive.value = true;
-  terminalAudio.playSound('glitch');
   
   setTimeout(() => {
     isGlitchActive.value = false;
@@ -609,9 +572,9 @@ onUnmounted(() => {
          'glitch-effect': isGlitchActive
        }">
     <!-- Expand/collapse button -->
-    <div v-if="isTerminalOn && isTerminalBooted" class="expand-button" @click="toggleFullScreen">
+    <button v-if="isTerminalOn && isTerminalBooted" class="expand-button" @click.stop="toggleFullScreen">
       <div class="expand-icon">{{ isFullScreen ? '▼' : '▲' }}</div>
-    </div>
+    </button>
     
     <!-- Turned off terminal screen -->
     <div v-if="!isTerminalOn" class="terminal-off" @click="bootTerminal">
@@ -831,6 +794,17 @@ $terminal-dark-blue: #001825;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
     z-index: 3;
     pointer-events: none;
+  }
+  
+  // Стили для полноэкранного режима
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    z-index: 9999;
   }
 }
 
@@ -1117,14 +1091,14 @@ $terminal-dark-blue: #001825;
   }
 }
 
-// Кнопка полноэкранного режима
+// Стили для кнопки полноэкранного режима
 .expand-button {
   position: absolute;
   top: 10px;
   right: 10px;
   width: 32px;
   height: 32px;
-  background: rgba($terminal-dark-green, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   border: 2px solid $terminal-green;
   border-radius: 4px;
   display: flex;
@@ -1133,9 +1107,10 @@ $terminal-dark-blue: #001825;
   cursor: pointer;
   z-index: 100;
   transition: all 0.2s ease;
+  padding: 0;
   
   &:hover {
-    background: rgba($terminal-dark-green, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 10px rgba($terminal-green, 0.5);
   }
   
