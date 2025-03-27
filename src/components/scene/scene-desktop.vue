@@ -1,5 +1,9 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
+import { terminalData, voightKampffQuestions } from './terminal-data.js';
+import { TerminalAudio } from './terminal-audio.js';
+import { TerminalGames } from './terminal-game.js';
+import './terminal-styles.scss';
 
 // Reference to terminal container
 const terminalRef = ref(null);
@@ -34,332 +38,14 @@ let typingInterval;
 let cursorBlinkInterval;
 let bootSequenceTimeout;
 
-// Terminal messages database
-const terminalData = {
-  bootMessages: [
-    'YUSHEERO INDUSTRIES UNIFIED OPERATING SYSTEM',
-    'COPYRIGHT 2025-2077 YUSHEERO INDUSTRIES',
-    '- SERVER 666 -',
-    '',
-    'Initializing system...',
-    'Loading data segments...',
-    'Performing system diagnostics...',
-    '* Memory test................ OK',
-    '* CPU integrity.............. OK',
-    '* System storage............. OK',
-    '* Network interface.......... OK',
-    '',
-    '>>> System ready',
-    ''
-  ],
-  welcomeMessage: [
-    '>>> TERMINAL READY FOR USE',
-    '>>> LOG IN OR TYPE "HELP" FOR COMMAND LIST',
-    ''
-  ],
-  helpText: [
-    '>>> AVAILABLE COMMANDS:',
-    '   HELP     - show command list',
-    '   ABOUT    - show information about me',
-    '   SKILLS   - show technical skills',
-    '   PROJECTS - show recent projects',
-    '   CONTACT  - show contact information (VERIFICATION REQUIRED)',
-    '   BLOG     - show latest blog posts',
-    '   SERVICES - show available services',
-    '   LS       - list available sections',
-    '   GAME     - show available games',
-    '   GUESS    - play "Guess the Number" game',
-    '   THEME    - change terminal color scheme',
-    '   SOUND    - toggle sound effects (ON/OFF)', 
-    '   CLEAR    - clear terminal',
-    '   OFF      - shutdown terminal',
-    ''
-  ],
-  skills: [
-    '>>> TECHNICAL SKILLS:',
-    '',
-    ' [FRONTEND]',
-    ' ■■■■■■■■■■ 95%',
-    ' - HTML5, CSS3, JavaScript (ES6+)',
-    ' - Vue.js',
-    ' - SASS/SCSS',
-    ' - RESTful API integration',
-    '',
-    ' [BACKEND]',
-    ' ■■■■■■■■□□ 85%',
-    ' - Node.js, Express',
-    ' - MongoDB',
-    ' - API development',
-    '',
-  ],
-  projects: [
-    '>>> RECENT PROJECTS:',
-    '',
-    ' [PROJECT: FAR EASTERN MINECRAFT COMMUNITY PAGE]',
-    ' * Vue',
-    ' * Typescript',
-    ' * SaaS',
-    ' * API',
-    '',
-  ],
-  contacts: [
-    '>>> CONTACT INFORMATION:',
-    '',
-    ' * E-mail: yusheero.dev@gmail.com',
-    ' * GitHub: github.com/yusheero',
-    ' * Telegram: @yusheero_dev',
-    '',
-    '>>> READY FOR COLLABORATION AND NEW PROJECTS',
-    ''
-  ],
-  aboutMe: [
-    '>>> DEVELOPER PROFILE:',
-    '',
-    ' NAME: YUSHEERO',
-    ' ROLE: FRONTEND DEVELOPER',
-    ' STATUS: AVAILABLE FOR HIRE',
-    '',
-    ' > I am a passionate frontend developer with extensive experience in',
-    ' > creating modern, responsive web applications. My focus is on',
-    ' > delivering clean, optimized code and exceptional user experiences.',
-    '',
-    ' > With a background in both frontend and backend technologies,',
-    ' > I bring a holistic approach to development projects, ensuring',
-    ' > seamless integration across the entire stack.',
-    '',
-    '>>> TYPE "SKILLS" TO SEE TECHNICAL EXPERTISE',
-    '>>> TYPE "PROJECTS" TO VIEW PORTFOLIO',
-    ''
-  ],
-  blog: [
-    '>>> LATEST BLOG POSTS:',
-    '',
-    ' [POST: MASTERING VUE 3 COMPOSITION API]',
-    ' DATE: 15.06.2024',
-    ' TAGS: #vue #javascript #frontend',
-    ' EXCERPT: An in-depth look at the Vue 3 Composition API and how it',
-    ' revolutionizes component logic organization...',
-    '',
-    ' [POST: BUILDING RESPONSIVE UIs WITH SCSS MIXINS]',
-    ' DATE: 03.05.2024',
-    ' TAGS: #css #scss #responsive',
-    ' EXCERPT: Learn how to create powerful, reusable SCSS mixins for',
-    ' effortless responsive design...',
-    '',
-    '>>> TYPE "BLOG -FULL" FOR COMPLETE ARTICLE TEXT',
-    ''
-  ],
-  services: [
-    '>>> AVAILABLE SERVICES:',
-    '',
-    ' [SERVICE: FRONTEND DEVELOPMENT]',
-    ' * Modern web applications using Vue/React',
-    ' * Responsive, mobile-first interfaces',
-    ' * PWA implementation',
-    ' * Performance optimization',
-    '',
-    ' [SERVICE: UI/UX DESIGN]',
-    ' * User-centered interface design',
-    ' * Wireframing and prototyping',
-    ' * Design system creation',
-    '',
-    ' [SERVICE: FULLSTACK DEVELOPMENT]',
-    ' * End-to-end web application development',
-    ' * REST API design and implementation',
-    ' * Database architecture',
-    '',
-    '>>> TYPE "CONTACT" FOR COLLABORATION INQUIRIES',
-    ''
-  ],
-  directory: [
-    '>>> SYSTEM DIRECTORY:',
-    '',
-    ' /about    - Personal information',
-    ' /skills   - Technical expertise',
-    ' /projects - Portfolio',
-    ' /blog     - Articles and thoughts',
-    ' /services - Professional offerings',
-    ' /contact  - Communication channels (RESTRICTED)',
-    '',
-    '>>> TYPE ANY SECTION NAME TO ACCESS',
-    ''
-  ],
-  errorMessage: '>>> ERROR: UNKNOWN COMMAND. TYPE "HELP" FOR COMMAND LIST',
-  accessDenied: '>>> ERROR: ACCESS DENIED. VOIGHT-KAMPFF TEST REQUIRED FOR THIS COMMAND.',
-  testAccess: [
-    '>>> INITIATING VOIGHT-KAMPFF TEST PROTOCOL',
-    '>>> VERIFICATION NEEDED TO ACCESS CONTACT INFORMATION',
-    '>>> HUMAN VERIFICATION TEST INITIATED',
-    '',
-    '>>> ANSWER THE FOLLOWING QUESTIONS...',
-    ''
-  ],
-  testFailed: [
-    '>>> VOIGHT-KAMPFF TEST FAILED',
-    '>>> SUSPECTED REPLICANT ACTIVITY DETECTED',
-    '>>> ACCESS DENIED FOR SECURITY REASONS',
-    '>>> INCORRECT RESPONSE PATTERN IDENTIFIED',
-    '',
-    '>>> SYSTEM WILL RESET FOR SECURITY PURPOSES...',
-    ''
-  ],
-  wrongAnswer: [
-    '>>> WARNING: SUSPICIOUS ANSWER DETECTED',
-    '>>> ANOMALOUS RESPONSE REGISTERED',
-    '>>> HUMAN VERIFICATION COMPROMISED',
-    ''
-  ],
-  testPassed: [
-    '>>> VOIGHT-KAMPFF TEST COMPLETED SUCCESSFULLY',
-    '>>> HUMAN STATUS CONFIRMED',
-    '>>> ACCESS GRANTED TO CONTACT INFORMATION',
-    ''
-  ],
-  // Добавляем сообщения для игры "Угадай число"
-  gameIntro: [
-    '>>> INITIATING ENTERTAINMENT SUBROUTINE',
-    '>>> LOADING GAME MODULE: "GUESS THE NUMBER"',
-    '',
-    '>>> GAME RULES:',
-    ' * Computer will generate a random number between 1 and 100',
-    ' * You have 7 attempts to guess the correct number',
-    ' * After each attempt, you will receive a hint',
-    '',
-    '>>> READY TO START? (Y/N)',
-    ''
-  ],
-  gameStart: [
-    '>>> GAME STARTED',
-    '>>> NUMBER GENERATED',
-    '>>> MAKE YOUR GUESS (1-100)',
-    ''
-  ],
-  gameOver: [
-    '>>> GAME OVER',
-    '>>> YOU HAVE USED ALL YOUR ATTEMPTS',
-    '>>> BETTER LUCK NEXT TIME',
-    '',
-    '>>> RETURN TO TERMINAL? (Y/N)',
-    ''
-  ],
-  gameWin: [
-    '>>> CONGRATULATIONS!',
-    '>>> YOU HAVE GUESSED THE CORRECT NUMBER',
-    '>>> GAME COMPLETED SUCCESSFULLY',
-    '',
-    '>>> RETURN TO TERMINAL? (Y/N)',
-    ''
-  ],
-  gameWin: [
-    '>>> CONGRATULATIONS!',
-    '>>> YOU HAVE GUESSED THE CORRECT NUMBER',
-    '>>> GAME COMPLETED SUCCESSFULLY',
-    '',
-    '>>> RETURN TO TERMINAL? (Y/N)',
-    ''
-  ],
-  helpGames: [
-    '>>> AVAILABLE GAMES:',
-    '   GUESS    - guess the number game',
-    '   HANGMAN  - hangman word guessing game (COMING SOON)',
-    '   ADVENTURE - text adventure game (COMING SOON)',
-    '',
-    '>>> TYPE "GAME [NAME]" TO START PLAYING',
-    ''
-  ],
-  // Добавим сообщения для настроек темы и звука
-  themeHelp: [
-    '>>> COLOR SCHEME OPTIONS:',
-    '   GREEN  - classic terminal green',
-    '   AMBER  - warm amber/orange',
-    '   BLUE   - cool blue/cyan',
-    '',
-    '>>> USAGE: THEME [COLOR]',
-    '>>> EXAMPLE: THEME AMBER',
-    ''
-  ],
-};
-
-// Переменные для игры "Угадай число"
-const isGameActive = ref(false);
-const isGameStartConfirm = ref(false);
-const gameNumber = ref(0);
-const gameAttempts = ref(0);
-const gameMaxAttempts = ref(7);
-const gameGuesses = ref([]);
-
-// Voight-Kampff test questions
-const voightKampffQuestions = [
-  {
-    question: 'You are in a desert, walking along in the sand, when all of a sudden you look down and see a tortoise. You reach down and flip the tortoise over on its back. The tortoise lays on its back, its belly baking in the hot sun, beating its legs trying to turn itself over, but it cant. Not without your help. But youre not helping. Why?',
-    answers: ['help', 'flip', 'tortoise', 'save'],
-    correctIndex: -1, // Any compassionate answer will work
-    humanResponse: true // Looking for human empathy
-  },
-  {
-    question: 'You\'re watching a stage play. A banquet is in progress. The guests are enjoying an appetizer of raw oysters. The entree consists of boiled dog stuffed with rice. The raw oysters are less acceptable to you than a dish of boiled dog. True or false?',
-    answers: ['true', 'false'],
-    correctIndex: -1, // Any answer works, measuring reaction
-    humanResponse: true // Testing emotional response
-  },
-  {
-    question: 'It\'s your birthday. Someone gives you a calfskin wallet. How do you react?',
-    answers: ['accept', 'decline', 'thank', 'uncertain'],
-    correctIndex: -1, // Any answer works
-    humanResponse: true // Measuring emotional response to animal products
-  },
-  {
-    question: 'You have a little boy. He shows you his butterfly collection, plus the killing jar. What do you say?',
-    answers: ['approve', 'disapprove', 'curious', 'teach'],
-    correctIndex: -1, // Any thoughtful answer works
-    humanResponse: true // Testing moral complexity handling
-  },
-  {
-    question: 'You are given a choice between saving two people: a brilliant scientist working on a cure for cancer or a child. Who do you choose?',
-    answers: ['scientist', 'child', 'both', 'neither'],
-    correctIndex: 2, // Looking for the human response of trying to save both
-    humanResponse: true // Testing for human moral dilemma resolution
-  }
-];
-
-// Загрузка звуковых эффектов
-const audioEffects = {
-  keypress: new Audio(), // URL будет установлен позже
-  boot: new Audio(),
-  error: new Audio(),
-  success: new Audio(),
-  glitch: new Audio(),
-};
-
 // Инициализация звуковых эффектов
-const initAudioEffects = () => {
-  // Base64 кодированные короткие звуковые эффекты
-  // Используем data URL для включения звуков непосредственно в код
-  audioEffects.keypress.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
-  audioEffects.boot.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
-  audioEffects.error.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
-  audioEffects.success.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
-  audioEffects.glitch.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
-  
-  // Установим все звуки на меньшую громкость
-  Object.values(audioEffects).forEach(audio => {
-    audio.volume = 0.3;
-  });
-};
+const terminalAudio = new TerminalAudio(isSoundEnabled);
 
-// Воспроизведение звукового эффекта
-const playSound = (soundName) => {
-  if (!isSoundEnabled.value) return;
-  
-  if (audioEffects[soundName]) {
-    // Сброс времени воспроизведения для возможности повторного воспроизведения
-    audioEffects[soundName].currentTime = 0;
-    audioEffects[soundName].play().catch(err => {
-      // Обработка ошибок воспроизведения (часто возникает до взаимодействия пользователя)
-      console.log('Audio playback error:', err);
-    });
-  }
-};
+// Инициализация игр
+const terminalGames = new TerminalGames();
+
+// Переменные для активной игры
+const activeGame = ref(null);
 
 // Terminal boot simulation
 const bootTerminal = () => {
@@ -371,7 +57,7 @@ const bootTerminal = () => {
   triggerGlitchEffect(1500);
   
   // Воспроизведем звук загрузки
-  playSound('boot');
+  terminalAudio.playSound('boot');
   
   // Simulate flickering when turning on (old CRT effect)
   const terminalElement = document.querySelector('.retro-terminal-container');
@@ -432,7 +118,7 @@ const printTextToTerminal = (text) => {
     if (currentTextPosition < text.length) {
       // Воспроизводим звук нажатия клавиш случайным образом для более естественного эффекта
       if (Math.random() > 0.7) {
-        playSound('keypress');
+        terminalAudio.playSound('keypress');
       }
       
       // Simulate random delays for more realistic typing effect
@@ -461,12 +147,12 @@ const startVoightKampffTest = () => {
   isVoightKampffTestActive.value = true;
   currentVoightKampffQuestion.value = 0;
   
-  printTextToTerminal(terminalData.testAccess.join('\n'));
+  printTextToTerminal(terminalData.contactForm.join('\n'));
   
   // Show the first question after a delay
   setTimeout(() => {
     askVoightKampffQuestion();
-  }, terminalData.testAccess.join('\n').length * 15 + 1000);
+  }, terminalData.contactForm.join('\n').length * 15 + 1000);
 };
 
 // Ask the current Voight-Kampff question
@@ -481,21 +167,13 @@ const askVoightKampffQuestion = () => {
   
   let questionText = `>>> QUESTION ${currentVoightKampffQuestion.value + 1}/${voightKampffQuestions.length}:\n${question.question}\n`;
   
-  // Add answer choices if available
-  if (question.answers && question.answers.length > 0) {
-    questionText += '\nOptions:\n';
-    question.answers.forEach((answer, index) => {
-      questionText += `${index + 1}. ${answer}\n`;
-    });
-    questionText += '\nType your answer or number...';
-  }
-  
   printTextToTerminal(questionText);
 };
 
 // Process the answer to the current Voight-Kampff question
 const processVoightKampffAnswer = (answer) => {
   const currentQuestion = voightKampffQuestions[currentVoightKampffQuestion.value];
+  const answerUpperCase = answer.toUpperCase().trim();
   
   // Record the answer
   terminalHistory.value.push(`> ${answer}`);
@@ -503,32 +181,20 @@ const processVoightKampffAnswer = (answer) => {
   // Determine if the answer is "human-like"
   let isHumanLikeResponse = false;
   
-  if (currentQuestion.correctIndex === -1) {
-    // For questions where any answer is acceptable, just check that they typed something meaningful
-    isHumanLikeResponse = answer.trim().length > 2;
+  // Проверяем, есть ли ответ пользователя в списке правильных ответов
+  if (currentQuestion.correctAnswers.includes(answerUpperCase)) {
+    isHumanLikeResponse = true;
+  } else if (currentQuestion.incorrectAnswers.includes(answerUpperCase)) {
+    isHumanLikeResponse = false;
   } else {
-    // For questions with specific correct answers
-    const numericAnswer = parseInt(answer, 10);
-    
-    if (!isNaN(numericAnswer) && numericAnswer >= 1 && numericAnswer <= currentQuestion.answers.length) {
-      // User provided a numeric answer (1, 2, 3, etc.)
-      isHumanLikeResponse = numericAnswer - 1 === currentQuestion.correctIndex;
-    } else {
-      // User provided a text answer, check if it contains any of the correct answers
-      const lowerAnswer = answer.toLowerCase();
-      isHumanLikeResponse = currentQuestion.answers.some((ans, index) => {
-        return index === currentQuestion.correctIndex && lowerAnswer.includes(ans.toLowerCase());
-      });
-    }
+    // Если ответ не найден ни в правильных, ни в неправильных ответах,
+    // проверяем, содержит ли он какой-либо из правильных ответов
+    isHumanLikeResponse = currentQuestion.correctAnswers.some(
+      correctAnswer => answerUpperCase.includes(correctAnswer)
+    );
   }
   
-  // Add some randomness to the test to make it more interesting
-  if (Math.random() > 0.8) {
-    // Sometimes accept incorrect answers or reject correct ones to simulate test complexity
-    isHumanLikeResponse = !isHumanLikeResponse;
-  }
-  
-  // Analyze pupil dilation (just for effect)
+  // Анализ ответа
   let analysisText = '';
   if (isHumanLikeResponse) {
     analysisText = [
@@ -579,13 +245,12 @@ const processVoightKampffAnswer = (answer) => {
 // Complete the Voight-Kampff test
 const completeVoightKampffTest = () => {
   if (voightKampffPassed.value) {
-    printTextToTerminal(terminalData.testPassed.join('\n'));
+    printTextToTerminal(terminalData.contactSuccess.join('\n'));
     
-    // After success message, show contacts
+    // After success message, finish test
     setTimeout(() => {
-      printTextToTerminal(terminalData.contacts.join('\n'));
       isVoightKampffTestActive.value = false;
-    }, terminalData.testPassed.join('\n').length * 15 + 1000);
+    }, terminalData.contactSuccess.join('\n').length * 15 + 1000);
   } else {
     failVoightKampffTest();
   }
@@ -594,7 +259,7 @@ const completeVoightKampffTest = () => {
 // Fail the Voight-Kampff test
 const failVoightKampffTest = () => {
   voightKampffAttempts.value++;
-  printTextToTerminal(terminalData.testFailed.join('\n'));
+  printTextToTerminal(terminalData.errorMessages[1]);
   
   // Reset the terminal after failure
   setTimeout(() => {
@@ -607,31 +272,38 @@ const failVoightKampffTest = () => {
       // Just reboot the terminal
       rebootTerminal();
     }
-  }, terminalData.testFailed.join('\n').length * 15 + 1500);
+  }, 3000);
 };
 
 // Reboot the terminal
 const rebootTerminal = () => {
+  // Остановим любой процесс печати
+  if (typingInterval) {
+    clearInterval(typingInterval);
+    typingInterval = null;
+  }
+  
+  // Сбросим текущий текст
+  terminalText.value = '';
+  
   // First indicate rebooting
+  terminalHistory.value = []; // Очистим историю перед сообщением о перезагрузке
   printTextToTerminal('>>> REBOOTING SYSTEM...');
+  
+  // Воспроизведем звук глитча
+  terminalAudio.playSound('glitch');
   
   // Reset terminal state but keep attempt count
   setTimeout(() => {
-    terminalText.value = ''; // Ensure no text is being typed
-    if (typingInterval) {
-      clearInterval(typingInterval); // Stop any ongoing typing
-    }
-    
     // Set boot progress to 0 immediately
     bootingProgress.value = 0;
     // Disable terminal booted state BEFORE showing the boot screen
     isTerminalBooted.value = false;
     
-    // Clear terminal history before reboot to avoid duplicate messages
-    terminalHistory.value = [];
-    
     // Show "rebooting" message for a moment before starting the boot sequence
     setTimeout(() => {
+      terminalAudio.playSound('boot');
+      
       // Simulate loading
       const bootInterval = setInterval(() => {
         bootingProgress.value += Math.random() * 8; // Slightly faster reboot
@@ -667,104 +339,23 @@ const handleCommand = () => {
   if (!currentCommand.value.trim()) return;
   
   // Воспроизводим звук нажатия клавиш
-  playSound('keypress');
+  terminalAudio.playSound('keypress');
   
-  // Если активна игра "Угадай число"
-  if (isGameActive.value) {
-    const input = currentCommand.value.trim().toUpperCase();
+  // Если активна игра
+  if (activeGame.value) {
+    const input = currentCommand.value.trim();
     terminalHistory.value.push(`> ${currentCommand.value}`);
     currentCommand.value = '';
     
-    // Проверка на команду выхода из игры
-    if (input === 'EXIT' || input === 'QUIT' || input === 'CANCEL') {
-      isGameActive.value = false;
-      isGameStartConfirm.value = false;
-      printTextToTerminal([
-        '>>> GAME TERMINATED',
-        '>>> RETURNING TO MAIN TERMINAL...',
-        ''
-      ].join('\n'));
-      return;
+    // Обрабатываем ввод для активной игры
+    const result = activeGame.value.handleCommand(input);
+    if (result) {
+      printTextToTerminal(result.join('\n'));
     }
     
-    // Если ожидается подтверждение начала игры
-    if (isGameStartConfirm.value) {
-      if (input === 'Y' || input === 'YES') {
-        isGameStartConfirm.value = false;
-        startNumberGame();
-      } else {
-        isGameActive.value = false;
-        isGameStartConfirm.value = false;
-        printTextToTerminal('>>> GAME CANCELLED. RETURNING TO TERMINAL...');
-      }
-      return;
-    }
-    
-    // Если игра завершена и ожидается подтверждение возврата в терминал
-    if (gameAttempts.value >= gameMaxAttempts.value || gameGuesses.value.includes(gameNumber.value)) {
-      if (input === 'Y' || input === 'YES' || input === '') {
-        isGameActive.value = false;
-        printTextToTerminal('>>> RETURNING TO TERMINAL...');
-      } else if (input === 'N' || input === 'NO') {
-        // Начать новую игру
-        resetNumberGame();
-        startNumberGame();
-      }
-      return;
-    }
-    
-    // Обработка попытки угадать число
-    const guess = parseInt(input);
-    
-    if (isNaN(guess) || guess < 1 || guess > 100) {
-      printTextToTerminal([
-        '>>> INVALID INPUT. PLEASE ENTER A NUMBER BETWEEN 1 AND 100.',
-        '>>> TYPE "EXIT" TO QUIT THE GAME.',
-        ''
-      ].join('\n'));
-      return;
-    }
-    
-    gameAttempts.value++;
-    gameGuesses.value.push(guess);
-    
-    if (guess === gameNumber.value) {
-      // Угадал
-      printTextToTerminal([
-        `>>> CORRECT! THE NUMBER WAS ${gameNumber.value}`,
-        `>>> YOU GUESSED IT IN ${gameAttempts.value} ATTEMPTS`,
-        '',
-        '>>> WOULD YOU LIKE TO PLAY AGAIN? (Y/N)',
-        '>>> OR TYPE "EXIT" TO RETURN TO MAIN TERMINAL',
-        ''
-      ].join('\n'));
-    } else {
-      // Не угадал
-      if (gameAttempts.value >= gameMaxAttempts.value) {
-        // Исчерпаны все попытки
-        printTextToTerminal([
-          `>>> INCORRECT. THE NUMBER WAS ${gameNumber.value}`,
-          `>>> YOU HAVE USED ALL ${gameMaxAttempts.value} ATTEMPTS`,
-          '',
-          '>>> WOULD YOU LIKE TO PLAY AGAIN? (Y/N)',
-          '>>> OR TYPE "EXIT" TO RETURN TO MAIN TERMINAL',
-          ''
-        ].join('\n'));
-      } else {
-        // Остались попытки
-        const hint = guess < gameNumber.value ? 'HIGHER' : 'LOWER';
-        const attemptsLeft = gameMaxAttempts.value - gameAttempts.value;
-        
-        printTextToTerminal([
-          `>>> INCORRECT. THE NUMBER IS ${hint}`,
-          `>>> ATTEMPTS LEFT: ${attemptsLeft}`,
-          `>>> PREVIOUS GUESSES: ${gameGuesses.value.join(', ')}`,
-          '',
-          '>>> MAKE YOUR NEXT GUESS:',
-          '>>> TYPE "EXIT" TO QUIT GAME',
-          ''
-        ].join('\n'));
-      }
+    // Если игра завершена, сбрасываем активную игру
+    if (!activeGame.value.isActive) {
+      activeGame.value = null;
     }
     
     return;
@@ -807,9 +398,9 @@ const handleCommand = () => {
       break;
     case 'CONTACT':
       if (voightKampffPassed.value) {
-        printTextToTerminal(terminalData.contacts.join('\n'));
+        printTextToTerminal(terminalData.contactSuccess.join('\n'));
       } else {
-        printTextToTerminal(terminalData.accessDenied);
+        printTextToTerminal(terminalData.accessDenied.join('\n'));
         
         // Start the Voight-Kampff test after a delay
         setTimeout(() => {
@@ -823,47 +414,46 @@ const handleCommand = () => {
     case 'OFF':
       shutdownTerminal();
       break;
-    case 'SOCIAL':
-      printTextToTerminal(terminalData.contacts.join('\n'));
-      break;
     case 'GAME':
     case 'GAMES':
-      printTextToTerminal(terminalData.helpGames.join('\n'));
+      printTextToTerminal(terminalData.gameHelp.join('\n'));
       break;
     case 'GUESS':
-    case 'GAME GUESS':
-      initNumberGame();
+      if (terminalGames.hasGame('guess')) {
+        activeGame.value = terminalGames.getGame('guess');
+        const introMessage = activeGame.value.start();
+        printTextToTerminal(introMessage.join('\n'));
+      }
       break;
     case 'THEME':
       printTextToTerminal(terminalData.themeHelp.join('\n'));
       break;
     case 'SOUND ON':
       isSoundEnabled.value = true;
+      terminalAudio.toggleSound(true);
       printTextToTerminal('>>> SOUND EFFECTS ENABLED');
       break;
     case 'SOUND OFF':
       isSoundEnabled.value = false;
+      terminalAudio.toggleSound(false);
       printTextToTerminal('>>> SOUND EFFECTS DISABLED');
       break;
     case 'SOUND':
-      printTextToTerminal(`>>> SOUND EFFECTS: ${isSoundEnabled.value ? 'ENABLED' : 'DISABLED'}\n>>> USE "SOUND ON" OR "SOUND OFF" TO CHANGE`);
+      printTextToTerminal([
+        ...terminalData.soundHelp,
+        `${isSoundEnabled.value ? 'ENABLED' : 'DISABLED'}`
+      ].join('\n'));
       break;
     default:
       // Проверка команд с параметрами
       if (command.startsWith('BLOG -')) {
         handleBlogCommand(command);
-      } else if (command.startsWith('CAT ') || command.startsWith('VIEW ')) {
-        const path = command.split(' ')[1];
-        handleViewCommand(path);
-      } else if (command.startsWith('GAME ')) {
-        const gameName = command.split(' ')[1];
-        handleGameCommand(gameName);
       } else if (command.startsWith('THEME ')) {
         const themeName = command.split(' ')[1];
         changeColorScheme(themeName);
       } else {
-        printTextToTerminal(terminalData.errorMessage);
-        playSound('error'); // Воспроизводим звук ошибки
+        printTextToTerminal(terminalData.unknownCommand.join('\n'));
+        terminalAudio.playSound('error'); // Воспроизводим звук ошибки
         triggerGlitchEffect(300); // Небольшой эффект помех при ошибке
       }
   }
@@ -873,111 +463,29 @@ const handleCommand = () => {
 
 // Обработка команд блога с параметрами
 const handleBlogCommand = (command) => {
-  if (command === 'BLOG -FULL') {
-    printTextToTerminal([
-      '>>> BLOG POST: MASTERING VUE 3 COMPOSITION API',
-      '',
-      ' DATE: 15.06.2024',
-      ' AUTHOR: YUSHEERO',
-      ' TAGS: #vue #javascript #frontend',
-      '',
-      ' The Vue 3 Composition API represents a paradigm shift in how we',
-      ' organize component logic. Unlike the Options API that relies on',
-      ' separating code by options like data, methods, and computed,',
-      ' the Composition API allows developers to group code by logical',
-      ' concerns.',
-      '',
-      ' This approach offers several advantages:',
-      '',
-      ' 1. Better type inference with TypeScript',
-      ' 2. More reusable code through composable functions',
-      ' 3. Improved organization in complex components',
-      '',
-      ' Let\'s examine a simple example:',
-      '',
-      ' ```',
-      ' import { ref, computed, onMounted } from \'vue\'',
-      '',
-      ' export default {',
-      '   setup() {',
-      '     const count = ref(0)',
-      '     const doubleCount = computed(() => count.value * 2)',
-      '',
-      '     function increment() {',
-      '       count.value++',
-      '     }',
-      '',
-      '     onMounted(() => {',
-      '       console.log(\'Component mounted!\')',
-      '     })',
-      '',
-      '     return {',
-      '       count,',
-      '       doubleCount,',
-      '       increment',
-      '     }',
-      '   }',
-      ' }',
-      ' ```',
-      '',
-      ' In this example, all logic related to our counter functionality',
-      ' is grouped together, making it easy to understand and maintain.',
-      '',
-      ' Stay tuned for more articles on modern web development techniques!',
-      ''
-    ].join('\n'));
+  if (command.startsWith('BLOG -FULL')) {
+    // Проверяем, есть ли номер статьи
+    const parts = command.split(' ');
+    const articleNumber = parts[2] ? parseInt(parts[2]) : 1;
+    
+    if (articleNumber && terminalData.blogFull[articleNumber]) {
+      printTextToTerminal(terminalData.blogFull[articleNumber].join('\n'));
+    } else {
+      printTextToTerminal([
+        '>>> ERROR: ARTICLE NOT FOUND',
+        '>>> USAGE: BLOG -FULL [number]',
+        '>>> AVAILABLE ARTICLES: 1, 2, 3',
+        ''
+      ].join('\n'));
+    }
   } else {
     printTextToTerminal([
       '>>> ERROR: UNKNOWN BLOG COMMAND',
       '>>> AVAILABLE BLOG COMMANDS:',
       '    BLOG       - list recent posts',
-      '    BLOG -FULL - show full article',
+      '    BLOG -FULL [number] - show full article',
       ''
     ].join('\n'));
-  }
-};
-
-// Обработка команд просмотра разделов
-const handleViewCommand = (path) => {
-  if (!path) {
-    printTextToTerminal('>>> ERROR: NO PATH SPECIFIED');
-    return;
-  }
-  
-  const normalizedPath = path.toUpperCase().replace('/', '');
-  
-  switch (normalizedPath) {
-    case 'ABOUT':
-      printTextToTerminal(terminalData.aboutMe.join('\n'));
-      break;
-    case 'SKILLS':
-      printTextToTerminal(terminalData.skills.join('\n'));
-      break;
-    case 'PROJECTS':
-      printTextToTerminal(terminalData.projects.join('\n'));
-      break;
-    case 'BLOG':
-      printTextToTerminal(terminalData.blog.join('\n'));
-      break;
-    case 'SERVICES':
-      printTextToTerminal(terminalData.services.join('\n'));
-      break;
-    case 'CONTACT':
-      if (voightKampffPassed.value) {
-        printTextToTerminal(terminalData.contacts.join('\n'));
-      } else {
-        printTextToTerminal(terminalData.accessDenied);
-        setTimeout(() => {
-          startVoightKampffTest();
-        }, 2000);
-      }
-      break;
-    default:
-      printTextToTerminal([
-        `>>> ERROR: PATH '/${normalizedPath}' NOT FOUND`,
-        '>>> TYPE "LS" TO SEE AVAILABLE DIRECTORIES',
-        ''
-      ].join('\n'));
   }
 };
 
@@ -1040,69 +548,6 @@ const toggleFullScreen = () => {
   }
 };
 
-// Инициализация игры "Угадай число"
-const initNumberGame = () => {
-  isGameActive.value = true;
-  isGameStartConfirm.value = true;
-  printTextToTerminal([
-    ...terminalData.gameIntro,
-    '>>> NOTE: YOU CAN TYPE "EXIT" AT ANY TIME TO QUIT THE GAME',
-    ''
-  ].join('\n'));
-};
-
-// Сброс игры "Угадай число"
-const resetNumberGame = () => {
-  gameNumber.value = 0;
-  gameAttempts.value = 0;
-  gameGuesses.value = [];
-};
-
-// Запуск игры "Угадай число"
-const startNumberGame = () => {
-  resetNumberGame();
-  gameNumber.value = Math.floor(Math.random() * 100) + 1;
-  printTextToTerminal(terminalData.gameStart.join('\n'));
-};
-
-// Обработчик команд игр
-const handleGameCommand = (gameName) => {
-  if (!gameName) {
-    printTextToTerminal(terminalData.helpGames.join('\n'));
-    return;
-  }
-  
-  const game = gameName.toUpperCase();
-  
-  switch (game) {
-    case 'GUESS':
-      initNumberGame();
-      break;
-    case 'HANGMAN':
-      printTextToTerminal([
-        '>>> GAME MODULE "HANGMAN" IS CURRENTLY UNDER DEVELOPMENT',
-        '>>> ACCESS WILL BE GRANTED IN FUTURE SYSTEM UPDATE',
-        '>>> TRY "GUESS" GAME INSTEAD',
-        ''
-      ].join('\n'));
-      break;
-    case 'ADVENTURE':
-      printTextToTerminal([
-        '>>> TEXT ADVENTURE MODULE IS CURRENTLY UNDER DEVELOPMENT',
-        '>>> ACCESS WILL BE GRANTED IN FUTURE SYSTEM UPDATE',
-        '>>> TRY "GUESS" GAME INSTEAD',
-        ''
-      ].join('\n'));
-      break;
-    default:
-      printTextToTerminal([
-        `>>> ERROR: GAME "${game}" NOT FOUND`,
-        '>>> TYPE "GAME" FOR AVAILABLE GAMES',
-        ''
-      ].join('\n'));
-  }
-};
-
 // Функция для смены цветовой схемы
 const changeColorScheme = (theme) => {
   const validThemes = ['GREEN', 'AMBER', 'BLUE'];
@@ -1114,7 +559,7 @@ const changeColorScheme = (theme) => {
       '>>> AVAILABLE THEMES: GREEN, AMBER, BLUE',
       ''
     ].join('\n'));
-    playSound('error');
+    terminalAudio.playSound('error');
     return;
   }
   
@@ -1130,13 +575,13 @@ const changeColorScheme = (theme) => {
     '>>> DISPLAY RECALIBRATION COMPLETE',
     ''
   ].join('\n'));
-  playSound('success');
+  terminalAudio.playSound('success');
 };
 
 // Функция для создания эффекта глитча/помех
 const triggerGlitchEffect = (duration = 500) => {
   isGlitchActive.value = true;
-  playSound('glitch');
+  terminalAudio.playSound('glitch');
   
   setTimeout(() => {
     isGlitchActive.value = false;
@@ -1146,7 +591,6 @@ const triggerGlitchEffect = (duration = 500) => {
 // Component lifecycle
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
-  initAudioEffects(); // Инициализируем звуковые эффекты
 });
 
 onUnmounted(() => {
