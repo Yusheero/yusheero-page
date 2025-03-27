@@ -6,7 +6,7 @@
       "link": "https://femc.space",
       "linkGithub": "https://github.com/Yusheero/femc-page",
       "dateCreated": "10.06.2023",
-      "category": "web",
+      "category": "FRONTEND",
       "technologies": ["Vue.js", "TypeScript", "Vite", "SCSS", "REST API"],
       "readMore": "/projects/femc",
       "features": [
@@ -16,12 +16,12 @@
       ]
     },
     {
-      "title": "Vue Portfolio",
+      "title": "Portfolio Page",
       "text": "Modern portfolio site built using Vue 3 and Composition API",
       "link": "https://yusheero.ru",
       "linkGithub": "https://github.com/Yusheero/yusheero-page",
       "dateCreated": "15.04.2023",
-      "category": "web",
+      "category": "FRONTEND",
       "technologies": ["Vue.js", "Composition API", "ThreeJS", "GSAP", "Docker"],
       "features": [
         "3D элементы и визуализация с Three.js",

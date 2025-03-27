@@ -1,7 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue';
-import { useStore } from '@/store/store';
-import { Github, ExternalLink, Calendar, Tag, Code, ChevronRight } from 'lucide-vue-next';
+import { computed } from 'vue';
+import { Calendar, Tag } from 'lucide-vue-next';
 
 // Типизированные пропсы
 const props = defineProps({
@@ -10,9 +9,6 @@ const props = defineProps({
     required: true
   }
 });
-
-const isHovered = ref(false);
-const isFlipped = ref(false);
 
 // Обрезаем длинные названия
 const truncatedTitle = computed(() => {
@@ -33,31 +29,23 @@ const getYear = computed(() => {
 <template>
   <div 
     class="projects-item"
-    :class="{ 
-      'clickable': projectsData.readMore, 
-      'is-flipped': isFlipped 
-    }"
-    @mouseenter="isHovered = true"
-    @mouseleave="isHovered = false"
   >
-    <!-- Передняя часть карточки -->
-    <div class="projects-item__front">
-      <div v-if="projectsData.category" class="projects-item__badge" :class="`category-${projectsData.category}`">
-        <Tag size="12" />
-        <span>{{ projectsData.category }}</span>
-      </div>
+    <div v-if="projectsData.category" class="projects-item__badge" :class="`category-${projectsData.category}`">
+      <span>{{ projectsData.category }}</span>
+    </div>
+    
+    <div class="projects-item__content">
+      <h2 class="projects-item__title" :title="projectsData.title">
+        {{ truncatedTitle }}
+      </h2>
+      <p class="projects-item__text">{{ projectsData.text }}</p>
       
-      <div class="projects-item__content">
-        <h2 class="projects-item__title" :title="projectsData.title">
-          {{ truncatedTitle }}
-        </h2>
-        <p class="projects-item__text">{{ projectsData.text }}</p>
-        
+      <div class="projects-item__footer">
         <div v-if="projectsData.dateCreated" class="projects-item__date">
           <Calendar size="14" />
           <span>{{ projectsData.dateCreated }}</span>
         </div>
-        
+
         <div class="projects-item__links">
           <a 
             v-if="projectsData.link" 
@@ -68,8 +56,7 @@ const getYear = computed(() => {
             aria-label="Посетить сайт проекта"
             @click.stop
           >
-            <ExternalLink :class="{ 'icon-animated': isHovered }" size="18" />
-            <span class="tooltip"></span>
+            page
           </a>
           <a 
             v-if="projectsData.linkGithub || projectsData.githubLink" 
@@ -80,8 +67,7 @@ const getYear = computed(() => {
             aria-label="GitHub репозиторий"
             @click.stop
           >
-            <Github :class="{ 'icon-animated': isHovered }" size="18" />
-            <span class="tooltip"></span>
+            github
           </a>
         </div>
       </div>
@@ -93,27 +79,19 @@ const getYear = computed(() => {
 @import '@/assets/style/style.scss';
 
 .projects-item {
-  width: 100%;
-  height: 100%;
   position: relative;
   perspective: 1000px;
   cursor: pointer;
-  
-  &__front {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    backface-visibility: hidden;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
-    overflow: hidden;
-    background: var(--color-primary-light);
-    color: var(--color-white);
-    transform: rotateY(0);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  overflow: hidden;
+  background: var(--color-primary-light);
+  color: var(--color-white);
+  transform: rotateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px;
   
   &__badge {
     position: absolute;
@@ -125,24 +103,11 @@ const getYear = computed(() => {
     gap: 5px;
     background-color: rgba(0, 0, 0, 0.25);
     color: white;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.5px;
     backdrop-filter: blur(4px);
-    
-    &.category-web {
-      background-color: rgba(41, 121, 255, 0.7);
-    }
-    
-    &.category-3D {
-      background-color: rgba(255, 87, 34, 0.7);
-    }
-    
-    &.category-tools {
-      background-color: rgba(76, 175, 80, 0.7);
-    }
   }
   
   &__content {
@@ -151,18 +116,21 @@ const getYear = computed(() => {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 20px;
+    background: var(--color-secondary);
+    border-radius: 8px;
   }
   
   &__title {
     font-family: "Gabarito", serif;
-    font-size: 22px;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin: 0 0 12px 0;
     position: relative;
+    padding: 1rem;
+    color: var(--color-primary);
   }
   
   &__text {
+    padding: 1rem;
     font-size: 15px;
     line-height: 1.5;
     margin: 0;
@@ -171,6 +139,15 @@ const getYear = computed(() => {
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    color: var(--color-primary);
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 2px solid var(--color-primary);
   }
   
   &__date {
@@ -178,50 +155,34 @@ const getYear = computed(() => {
     align-items: center;
     gap: 6px;
     font-size: 13px;
-    color: var(--color-white);
-    margin-top: 16px;
+    color: var(--color-primary);
     opacity: 0.8;
+    padding: 1rem;
   }
   
   &__links {
-    margin-top: auto;
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
-    padding-top: 16px;
+    height: 100%;
   }
   
   &__link,
-  &__github,
-  &__more {
+  &__github {
+    width: 5rem;
+    height: 100%;
+    font-size: 14px;
     position: relative;
-    width: 36px;
-    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    color: var(--color-white);
+    color: var(--color-primary);
     text-decoration: none;
     transition: all 0.3s ease;
     z-index: 10;
-  }
-  
-  &__flip-hint {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-    
+    border-left: 2px solid var(--color-primary);
+
     &:hover {
-      opacity: 1;
+      background-color: var(--color-sakura);
     }
   }
 }
