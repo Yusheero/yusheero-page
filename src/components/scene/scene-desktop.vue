@@ -16,6 +16,12 @@ const cursorVisible = ref(true);
 const currentCommand = ref('');
 const isFullScreen = ref(false);
 
+// Добавим параметры для визуальных и звуковых эффектов
+const currentColorScheme = ref('green'); // green, amber, blue
+const isGlitchActive = ref(false);
+const isStaticActive = ref(false);
+const isSoundEnabled = ref(true);
+
 // Replicant test flags
 const isVoightKampffTestActive = ref(false);
 const currentVoightKampffQuestion = ref(0);
@@ -61,6 +67,10 @@ const terminalData = {
     '   BLOG     - show latest blog posts',
     '   SERVICES - show available services',
     '   LS       - list available sections',
+    '   GAME     - show available games',
+    '   GUESS    - play "Guess the Number" game',
+    '   THEME    - change terminal color scheme',
+    '   SOUND    - toggle sound effects (ON/OFF)', 
     '   CLEAR    - clear terminal',
     '   OFF      - shutdown terminal',
     ''
@@ -204,8 +214,79 @@ const terminalData = {
     '>>> HUMAN STATUS CONFIRMED',
     '>>> ACCESS GRANTED TO CONTACT INFORMATION',
     ''
-  ]
+  ],
+  // Добавляем сообщения для игры "Угадай число"
+  gameIntro: [
+    '>>> INITIATING ENTERTAINMENT SUBROUTINE',
+    '>>> LOADING GAME MODULE: "GUESS THE NUMBER"',
+    '',
+    '>>> GAME RULES:',
+    ' * Computer will generate a random number between 1 and 100',
+    ' * You have 7 attempts to guess the correct number',
+    ' * After each attempt, you will receive a hint',
+    '',
+    '>>> READY TO START? (Y/N)',
+    ''
+  ],
+  gameStart: [
+    '>>> GAME STARTED',
+    '>>> NUMBER GENERATED',
+    '>>> MAKE YOUR GUESS (1-100)',
+    ''
+  ],
+  gameOver: [
+    '>>> GAME OVER',
+    '>>> YOU HAVE USED ALL YOUR ATTEMPTS',
+    '>>> BETTER LUCK NEXT TIME',
+    '',
+    '>>> RETURN TO TERMINAL? (Y/N)',
+    ''
+  ],
+  gameWin: [
+    '>>> CONGRATULATIONS!',
+    '>>> YOU HAVE GUESSED THE CORRECT NUMBER',
+    '>>> GAME COMPLETED SUCCESSFULLY',
+    '',
+    '>>> RETURN TO TERMINAL? (Y/N)',
+    ''
+  ],
+  gameWin: [
+    '>>> CONGRATULATIONS!',
+    '>>> YOU HAVE GUESSED THE CORRECT NUMBER',
+    '>>> GAME COMPLETED SUCCESSFULLY',
+    '',
+    '>>> RETURN TO TERMINAL? (Y/N)',
+    ''
+  ],
+  helpGames: [
+    '>>> AVAILABLE GAMES:',
+    '   GUESS    - guess the number game',
+    '   HANGMAN  - hangman word guessing game (COMING SOON)',
+    '   ADVENTURE - text adventure game (COMING SOON)',
+    '',
+    '>>> TYPE "GAME [NAME]" TO START PLAYING',
+    ''
+  ],
+  // Добавим сообщения для настроек темы и звука
+  themeHelp: [
+    '>>> COLOR SCHEME OPTIONS:',
+    '   GREEN  - classic terminal green',
+    '   AMBER  - warm amber/orange',
+    '   BLUE   - cool blue/cyan',
+    '',
+    '>>> USAGE: THEME [COLOR]',
+    '>>> EXAMPLE: THEME AMBER',
+    ''
+  ],
 };
+
+// Переменные для игры "Угадай число"
+const isGameActive = ref(false);
+const isGameStartConfirm = ref(false);
+const gameNumber = ref(0);
+const gameAttempts = ref(0);
+const gameMaxAttempts = ref(7);
+const gameGuesses = ref([]);
 
 // Voight-Kampff test questions
 const voightKampffQuestions = [
@@ -241,11 +322,56 @@ const voightKampffQuestions = [
   }
 ];
 
+// Загрузка звуковых эффектов
+const audioEffects = {
+  keypress: new Audio(), // URL будет установлен позже
+  boot: new Audio(),
+  error: new Audio(),
+  success: new Audio(),
+  glitch: new Audio(),
+};
+
+// Инициализация звуковых эффектов
+const initAudioEffects = () => {
+  // Base64 кодированные короткие звуковые эффекты
+  // Используем data URL для включения звуков непосредственно в код
+  audioEffects.keypress.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
+  audioEffects.boot.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
+  audioEffects.error.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
+  audioEffects.success.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
+  audioEffects.glitch.src = 'data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gQ29uZWZhY3QgTGFiAAAAQ29weXJpZ2h0AEE=';
+  
+  // Установим все звуки на меньшую громкость
+  Object.values(audioEffects).forEach(audio => {
+    audio.volume = 0.3;
+  });
+};
+
+// Воспроизведение звукового эффекта
+const playSound = (soundName) => {
+  if (!isSoundEnabled.value) return;
+  
+  if (audioEffects[soundName]) {
+    // Сброс времени воспроизведения для возможности повторного воспроизведения
+    audioEffects[soundName].currentTime = 0;
+    audioEffects[soundName].play().catch(err => {
+      // Обработка ошибок воспроизведения (часто возникает до взаимодействия пользователя)
+      console.log('Audio playback error:', err);
+    });
+  }
+};
+
 // Terminal boot simulation
 const bootTerminal = () => {
   isTerminalOn.value = true;
   bootingProgress.value = 0;
   terminalHistory.value = []; // Clear history
+  
+  // Активируем эффект глитча при загрузке
+  triggerGlitchEffect(1500);
+  
+  // Воспроизведем звук загрузки
+  playSound('boot');
   
   // Simulate flickering when turning on (old CRT effect)
   const terminalElement = document.querySelector('.retro-terminal-container');
@@ -304,6 +430,11 @@ const printTextToTerminal = (text) => {
   
   typingInterval = setInterval(() => {
     if (currentTextPosition < text.length) {
+      // Воспроизводим звук нажатия клавиш случайным образом для более естественного эффекта
+      if (Math.random() > 0.7) {
+        playSound('keypress');
+      }
+      
       // Simulate random delays for more realistic typing effect
       if (Math.random() > 0.95) {
         setTimeout(() => {
@@ -531,11 +662,115 @@ const rebootTerminal = () => {
   }, 1500);
 };
 
-// Command input handling
+// Обработка команд
 const handleCommand = () => {
   if (!currentCommand.value.trim()) return;
   
-  // If the Voight-Kampff test is active, process the input as a test answer
+  // Воспроизводим звук нажатия клавиш
+  playSound('keypress');
+  
+  // Если активна игра "Угадай число"
+  if (isGameActive.value) {
+    const input = currentCommand.value.trim().toUpperCase();
+    terminalHistory.value.push(`> ${currentCommand.value}`);
+    currentCommand.value = '';
+    
+    // Проверка на команду выхода из игры
+    if (input === 'EXIT' || input === 'QUIT' || input === 'CANCEL') {
+      isGameActive.value = false;
+      isGameStartConfirm.value = false;
+      printTextToTerminal([
+        '>>> GAME TERMINATED',
+        '>>> RETURNING TO MAIN TERMINAL...',
+        ''
+      ].join('\n'));
+      return;
+    }
+    
+    // Если ожидается подтверждение начала игры
+    if (isGameStartConfirm.value) {
+      if (input === 'Y' || input === 'YES') {
+        isGameStartConfirm.value = false;
+        startNumberGame();
+      } else {
+        isGameActive.value = false;
+        isGameStartConfirm.value = false;
+        printTextToTerminal('>>> GAME CANCELLED. RETURNING TO TERMINAL...');
+      }
+      return;
+    }
+    
+    // Если игра завершена и ожидается подтверждение возврата в терминал
+    if (gameAttempts.value >= gameMaxAttempts.value || gameGuesses.value.includes(gameNumber.value)) {
+      if (input === 'Y' || input === 'YES' || input === '') {
+        isGameActive.value = false;
+        printTextToTerminal('>>> RETURNING TO TERMINAL...');
+      } else if (input === 'N' || input === 'NO') {
+        // Начать новую игру
+        resetNumberGame();
+        startNumberGame();
+      }
+      return;
+    }
+    
+    // Обработка попытки угадать число
+    const guess = parseInt(input);
+    
+    if (isNaN(guess) || guess < 1 || guess > 100) {
+      printTextToTerminal([
+        '>>> INVALID INPUT. PLEASE ENTER A NUMBER BETWEEN 1 AND 100.',
+        '>>> TYPE "EXIT" TO QUIT THE GAME.',
+        ''
+      ].join('\n'));
+      return;
+    }
+    
+    gameAttempts.value++;
+    gameGuesses.value.push(guess);
+    
+    if (guess === gameNumber.value) {
+      // Угадал
+      printTextToTerminal([
+        `>>> CORRECT! THE NUMBER WAS ${gameNumber.value}`,
+        `>>> YOU GUESSED IT IN ${gameAttempts.value} ATTEMPTS`,
+        '',
+        '>>> WOULD YOU LIKE TO PLAY AGAIN? (Y/N)',
+        '>>> OR TYPE "EXIT" TO RETURN TO MAIN TERMINAL',
+        ''
+      ].join('\n'));
+    } else {
+      // Не угадал
+      if (gameAttempts.value >= gameMaxAttempts.value) {
+        // Исчерпаны все попытки
+        printTextToTerminal([
+          `>>> INCORRECT. THE NUMBER WAS ${gameNumber.value}`,
+          `>>> YOU HAVE USED ALL ${gameMaxAttempts.value} ATTEMPTS`,
+          '',
+          '>>> WOULD YOU LIKE TO PLAY AGAIN? (Y/N)',
+          '>>> OR TYPE "EXIT" TO RETURN TO MAIN TERMINAL',
+          ''
+        ].join('\n'));
+      } else {
+        // Остались попытки
+        const hint = guess < gameNumber.value ? 'HIGHER' : 'LOWER';
+        const attemptsLeft = gameMaxAttempts.value - gameAttempts.value;
+        
+        printTextToTerminal([
+          `>>> INCORRECT. THE NUMBER IS ${hint}`,
+          `>>> ATTEMPTS LEFT: ${attemptsLeft}`,
+          `>>> PREVIOUS GUESSES: ${gameGuesses.value.join(', ')}`,
+          '',
+          '>>> MAKE YOUR NEXT GUESS:',
+          '>>> TYPE "EXIT" TO QUIT GAME',
+          ''
+        ].join('\n'));
+      }
+    }
+    
+    return;
+  }
+  
+  // Если Voight-Kampff тест активен, обрабатываем ответ как ответ на тест
   if (isVoightKampffTestActive.value) {
     const answer = currentCommand.value.trim();
     currentCommand.value = '';
@@ -547,7 +782,7 @@ const handleCommand = () => {
   terminalHistory.value.push(`> ${currentCommand.value}`);
   currentCommand.value = '';
   
-  // Handle different commands
+  // Обработка команд
   switch (command) {
     case 'HELP':
       printTextToTerminal(terminalData.helpText.join('\n'));
@@ -591,6 +826,28 @@ const handleCommand = () => {
     case 'SOCIAL':
       printTextToTerminal(terminalData.contacts.join('\n'));
       break;
+    case 'GAME':
+    case 'GAMES':
+      printTextToTerminal(terminalData.helpGames.join('\n'));
+      break;
+    case 'GUESS':
+    case 'GAME GUESS':
+      initNumberGame();
+      break;
+    case 'THEME':
+      printTextToTerminal(terminalData.themeHelp.join('\n'));
+      break;
+    case 'SOUND ON':
+      isSoundEnabled.value = true;
+      printTextToTerminal('>>> SOUND EFFECTS ENABLED');
+      break;
+    case 'SOUND OFF':
+      isSoundEnabled.value = false;
+      printTextToTerminal('>>> SOUND EFFECTS DISABLED');
+      break;
+    case 'SOUND':
+      printTextToTerminal(`>>> SOUND EFFECTS: ${isSoundEnabled.value ? 'ENABLED' : 'DISABLED'}\n>>> USE "SOUND ON" OR "SOUND OFF" TO CHANGE`);
+      break;
     default:
       // Проверка команд с параметрами
       if (command.startsWith('BLOG -')) {
@@ -598,8 +855,16 @@ const handleCommand = () => {
       } else if (command.startsWith('CAT ') || command.startsWith('VIEW ')) {
         const path = command.split(' ')[1];
         handleViewCommand(path);
+      } else if (command.startsWith('GAME ')) {
+        const gameName = command.split(' ')[1];
+        handleGameCommand(gameName);
+      } else if (command.startsWith('THEME ')) {
+        const themeName = command.split(' ')[1];
+        changeColorScheme(themeName);
       } else {
         printTextToTerminal(terminalData.errorMessage);
+        playSound('error'); // Воспроизводим звук ошибки
+        triggerGlitchEffect(300); // Небольшой эффект помех при ошибке
       }
   }
   
@@ -775,9 +1040,113 @@ const toggleFullScreen = () => {
   }
 };
 
+// Инициализация игры "Угадай число"
+const initNumberGame = () => {
+  isGameActive.value = true;
+  isGameStartConfirm.value = true;
+  printTextToTerminal([
+    ...terminalData.gameIntro,
+    '>>> NOTE: YOU CAN TYPE "EXIT" AT ANY TIME TO QUIT THE GAME',
+    ''
+  ].join('\n'));
+};
+
+// Сброс игры "Угадай число"
+const resetNumberGame = () => {
+  gameNumber.value = 0;
+  gameAttempts.value = 0;
+  gameGuesses.value = [];
+};
+
+// Запуск игры "Угадай число"
+const startNumberGame = () => {
+  resetNumberGame();
+  gameNumber.value = Math.floor(Math.random() * 100) + 1;
+  printTextToTerminal(terminalData.gameStart.join('\n'));
+};
+
+// Обработчик команд игр
+const handleGameCommand = (gameName) => {
+  if (!gameName) {
+    printTextToTerminal(terminalData.helpGames.join('\n'));
+    return;
+  }
+  
+  const game = gameName.toUpperCase();
+  
+  switch (game) {
+    case 'GUESS':
+      initNumberGame();
+      break;
+    case 'HANGMAN':
+      printTextToTerminal([
+        '>>> GAME MODULE "HANGMAN" IS CURRENTLY UNDER DEVELOPMENT',
+        '>>> ACCESS WILL BE GRANTED IN FUTURE SYSTEM UPDATE',
+        '>>> TRY "GUESS" GAME INSTEAD',
+        ''
+      ].join('\n'));
+      break;
+    case 'ADVENTURE':
+      printTextToTerminal([
+        '>>> TEXT ADVENTURE MODULE IS CURRENTLY UNDER DEVELOPMENT',
+        '>>> ACCESS WILL BE GRANTED IN FUTURE SYSTEM UPDATE',
+        '>>> TRY "GUESS" GAME INSTEAD',
+        ''
+      ].join('\n'));
+      break;
+    default:
+      printTextToTerminal([
+        `>>> ERROR: GAME "${game}" NOT FOUND`,
+        '>>> TYPE "GAME" FOR AVAILABLE GAMES',
+        ''
+      ].join('\n'));
+  }
+};
+
+// Функция для смены цветовой схемы
+const changeColorScheme = (theme) => {
+  const validThemes = ['GREEN', 'AMBER', 'BLUE'];
+  const themeName = theme.toUpperCase();
+  
+  if (!validThemes.includes(themeName)) {
+    printTextToTerminal([
+      `>>> ERROR: INVALID THEME "${theme}"`,
+      '>>> AVAILABLE THEMES: GREEN, AMBER, BLUE',
+      ''
+    ].join('\n'));
+    playSound('error');
+    return;
+  }
+  
+  // Активируем эффект глитча при смене темы
+  triggerGlitchEffect(1000);
+  
+  // Устанавливаем новую тему
+  currentColorScheme.value = themeName.toLowerCase();
+  
+  printTextToTerminal([
+    `>>> TERMINAL COLOR SCHEME CHANGED TO: ${themeName}`,
+    '>>> SYSTEM RECALIBRATING DISPLAY PARAMETERS...',
+    '>>> DISPLAY RECALIBRATION COMPLETE',
+    ''
+  ].join('\n'));
+  playSound('success');
+};
+
+// Функция для создания эффекта глитча/помех
+const triggerGlitchEffect = (duration = 500) => {
+  isGlitchActive.value = true;
+  playSound('glitch');
+  
+  setTimeout(() => {
+    isGlitchActive.value = false;
+  }, duration);
+};
+
 // Component lifecycle
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
+  initAudioEffects(); // Инициализируем звуковые эффекты
 });
 
 onUnmounted(() => {
@@ -787,7 +1156,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="retro-terminal-container" :class="{'fullscreen': isFullScreen}">
+  <div class="retro-terminal-container" 
+       :class="{
+         'fullscreen': isFullScreen, 
+         'theme-green': currentColorScheme === 'green',
+         'theme-amber': currentColorScheme === 'amber',
+         'theme-blue': currentColorScheme === 'blue',
+         'glitch-effect': isGlitchActive
+       }">
     <!-- Expand/collapse button -->
     <div v-if="isTerminalOn && isTerminalBooted" class="expand-button" @click="toggleFullScreen">
       <div class="expand-icon">{{ isFullScreen ? '▼' : '▲' }}</div>
@@ -854,6 +1230,9 @@ onUnmounted(() => {
 $terminal-green: #4afa9a;
 $terminal-dark-green: #052505;
 $terminal-amber: #ffb000;
+$terminal-dark-amber: #251500;
+$terminal-blue: #00ccff;
+$terminal-dark-blue: #001825;
 
 .retro-terminal-container {
   width: 100%;
@@ -871,19 +1250,119 @@ $terminal-amber: #ffb000;
   transition: all 0.3s ease;
   z-index: 1;
   
-  &.fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    z-index: 9999; // Установим очень высокий z-index, чтобы терминал был поверх всего
+  // Зеленая тема (по умолчанию)
+  &.theme-green {
+    color: $terminal-green;
+    background-color: $terminal-dark-green;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    
+    .terminal-command-input {
+      color: $terminal-green;
+    }
+    
+    .terminal-screen {
+      background-color: $terminal-dark-green;
+    }
+    
+    .boot-progress-bar {
+      background-color: $terminal-green;
+    }
+    
+    .terminal-glow {
+      box-shadow: inset 0 0 150px rgba($terminal-green, 0.1);
+    }
+    
+    .expand-button {
+      border-color: $terminal-green;
+      .expand-icon {
+        color: $terminal-green;
+      }
+    }
   }
   
-  // Power on effect (CRT monitor turning on)
-  &.power-on {
-    animation: powerOn 1s ease-in-out;
+  // Янтарная тема
+  &.theme-amber {
+    color: $terminal-amber;
+    background-color: $terminal-dark-amber;
+    box-shadow: 0 0 20px rgba(255, 176, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    
+    .terminal-command-input {
+      color: $terminal-amber;
+    }
+    
+    .terminal-screen {
+      background-color: $terminal-dark-amber;
+    }
+    
+    .boot-progress-bar {
+      background-color: $terminal-amber;
+    }
+    
+    .terminal-glow {
+      box-shadow: inset 0 0 150px rgba($terminal-amber, 0.1);
+    }
+    
+    .expand-button {
+      border-color: $terminal-amber;
+      .expand-icon {
+        color: $terminal-amber;
+      }
+    }
+  }
+  
+  // Синяя тема
+  &.theme-blue {
+    color: $terminal-blue;
+    background-color: $terminal-dark-blue;
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    
+    .terminal-command-input {
+      color: $terminal-blue;
+    }
+    
+    .terminal-screen {
+      background-color: $terminal-dark-blue;
+    }
+    
+    .boot-progress-bar {
+      background-color: $terminal-blue;
+    }
+    
+    .terminal-glow {
+      box-shadow: inset 0 0 150px rgba($terminal-blue, 0.1);
+    }
+    
+    .expand-button {
+      border-color: $terminal-blue;
+      .expand-icon {
+        color: $terminal-blue;
+      }
+    }
+  }
+  
+  // Эффект глитча
+  &.glitch-effect {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -10%;
+      width: 120%;
+      height: 100%;
+      background: linear-gradient(
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 100%
+      );
+      transform: skewX(-20deg);
+      animation: glitch-scan 0.5s linear infinite;
+      z-index: 10;
+      pointer-events: none;
+    }
+    
+    .terminal-line, .terminal-current-line, .terminal-prompt, .terminal-command-input, .boot-text, .boot-info {
+      animation: glitch-text 0.2s ease-in-out infinite;
+    }
   }
   
   &::before {
@@ -1221,5 +1700,20 @@ $terminal-amber: #ffb000;
     font-size: 14px;
     text-shadow: 0 0 5px rgba($terminal-green, 0.7);
   }
+}
+
+// Анимация сканирования глитча
+@keyframes glitch-scan {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+// Анимация дрожания текста при глитче
+@keyframes glitch-text {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
 }
 </style>
