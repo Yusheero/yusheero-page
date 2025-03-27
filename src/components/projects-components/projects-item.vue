@@ -89,7 +89,6 @@ const getYear = computed(() => {
   overflow: hidden;
   background: var(--color-primary-light);
   color: var(--color-white);
-  transform: rotateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 5px;
   
@@ -101,13 +100,12 @@ const getYear = computed(() => {
     display: flex;
     align-items: center;
     gap: 5px;
-    background-color: rgba(0, 0, 0, 0.25);
+    background: var(--color-primary-light);
     color: white;
     padding: 6px 14px;
     border-radius: 6px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    backdrop-filter: blur(4px);
   }
   
   &__content {

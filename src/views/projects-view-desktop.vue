@@ -52,7 +52,7 @@ const projectsData = data.data;
     grid-template-rows: repeat(3, 1fr);
     gap: 4px;
     padding: 4px;
-    background-color: #858585;
+    background-color: var(--color-gray);
     color: var(--color-secondary);
     grid-area: content;
   }

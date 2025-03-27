@@ -101,7 +101,7 @@ const socialLinks = [
       }
       
       .contacts-block__icon {
-        transform: scale(1.3);
+        transform: scale(1.15);
       }
     }
     

@@ -2,12 +2,12 @@
   "data": [
     {
       "title": "FEMC",
-      "text": "Far Eastern Minecraft Community page, making with Vue, TypeScript and Vite",
+      "text": "Far Eastern Minecraft Community page, making with Vue, TypeScript and Vite. Design and development by me.",
       "link": "https://femc.space",
       "linkGithub": "https://github.com/Yusheero/femc-page",
-      "dateCreated": "10.06.2023",
+      "dateCreated": "10.08.2023",
       "category": "FRONTEND",
-      "technologies": ["Vue.js", "TypeScript", "Vite", "SCSS", "REST API"],
+      "technologies": ["Vue.js", "TypeScript", "Vite", "SASS"],
       "readMore": "/projects/femc",
       "features": [
         "Адаптивный дизайн для всех устройств",
@@ -17,12 +17,26 @@
     },
     {
       "title": "Portfolio Page",
-      "text": "Modern portfolio site built using Vue 3 and Composition API",
+      "text": "Modern portfolio site built using Vue 3 and Composition API. Design and development by me.",
       "link": "https://yusheero.github.io/yusheero-page/",
       "linkGithub": "https://github.com/Yusheero/yusheero-page",
-      "dateCreated": "15.04.2023",
+      "dateCreated": "18.12.2024",
       "category": "FRONTEND",
-      "technologies": ["Vue.js", "Composition API", "ThreeJS", "GSAP", "Docker"],
+      "technologies": ["Vue.js", "Composition API"],
+      "features": [
+        "3D элементы и визуализация с Three.js",
+        "Анимации с GSAP",
+        "Оптимизированная производительность"
+      ]
+    },
+    {
+      "title": "Unititled Goose Manager",
+      "text": "Unititled Goose Manager is a web application for task control. Design and development by me.",
+      "link": "https://yusheero.github.io/untitled-goose-manager/",
+      "linkGithub": "https://github.com/Yusheero/untitled-goose-manager",
+      "dateCreated": "12.03.2025",
+      "category": "FRONTEND",
+      "technologies": ["Vue.js", "Composition API", "SASS"],
       "features": [
         "3D элементы и визуализация с Three.js",
         "Анимации с GSAP",
