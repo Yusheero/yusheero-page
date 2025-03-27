@@ -14,6 +14,7 @@ const inputText = ref('');
 const terminalHistory = ref([]);
 const cursorVisible = ref(true);
 const currentCommand = ref('');
+const isFullScreen = ref(false);
 
 // Replicant test flags
 const isVoightKampffTestActive = ref(false);
@@ -553,6 +554,18 @@ const clearAllIntervals = () => {
   if (bootSequenceTimeout) clearTimeout(bootSequenceTimeout);
 };
 
+// Функция для переключения полноэкранного режима
+const toggleFullScreen = () => {
+  isFullScreen.value = !isFullScreen.value;
+  
+  // После переключения в полноэкранный режим перематываем терминал вниз
+  if (isFullScreen.value) {
+    setTimeout(() => {
+      scrollToBottom();
+    }, 100);
+  }
+};
+
 // Component lifecycle
 onMounted(() => {
   window.addEventListener('keydown', handleKeyDown);
@@ -565,7 +578,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="retro-terminal-container">
+  <div class="retro-terminal-container" :class="{'fullscreen': isFullScreen}">
+    <!-- Expand/collapse button -->
+    <div v-if="isTerminalOn && isTerminalBooted" class="expand-button" @click="toggleFullScreen">
+      <div class="expand-icon">{{ isFullScreen ? '▼' : '▲' }}</div>
+    </div>
+    
     <!-- Turned off terminal screen -->
     <div v-if="!isTerminalOn" class="terminal-off" @click="bootTerminal">
       <div class="terminal-off-text">
@@ -641,6 +659,18 @@ $terminal-amber: #ffb000;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+  z-index: 1;
+  
+  &.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    z-index: 9999; // Установим очень высокий z-index, чтобы терминал был поверх всего
+  }
   
   // Power on effect (CRT monitor turning on)
   &.power-on {
@@ -952,6 +982,35 @@ $terminal-amber: #ffb000;
   100% { 
     filter: brightness(1);
     background-color: #000;
+  }
+}
+
+// Кнопка полноэкранного режима
+.expand-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba($terminal-dark-green, 0.7);
+  border: 2px solid $terminal-green;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: rgba($terminal-dark-green, 0.9);
+    box-shadow: 0 0 10px rgba($terminal-green, 0.5);
+  }
+  
+  .expand-icon {
+    color: $terminal-green;
+    font-size: 14px;
+    text-shadow: 0 0 5px rgba($terminal-green, 0.7);
   }
 }
 </style>
