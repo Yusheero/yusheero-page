@@ -6,8 +6,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   <div class="page-container">
     <div class="experience-view-desktop">
       <Navigation class="experience-view-desktop__navigation" />
-      <div class="experience-view-desktop__title">Experience Page</div>
-      <div class="experience-view-desktop__content">Content</div>
+      <div class="experience-view-desktop__content"></div>
     </div>
   </div>
 </template>
@@ -25,7 +24,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   grid-template-rows: 10rem 20rem 7rem 16rem;
   gap: 8px;
   grid-template-areas:
-    "title title title title title title"
+    "content content content content content content"
     "content content content content content content"
     "content content content content content content"
     "content content content content content content";
