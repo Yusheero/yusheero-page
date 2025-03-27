@@ -648,7 +648,6 @@ $terminal-dark-blue: #001825;
   border-radius: 12px;
   overflow: hidden;
   background-color: #000;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
   font-family: 'VT323', monospace;
   color: $terminal-green;
   display: flex;
@@ -661,7 +660,6 @@ $terminal-dark-blue: #001825;
   &.theme-green {
     color: $terminal-green;
     background-color: $terminal-dark-green;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
     
     .terminal-command-input {
       color: $terminal-green;
