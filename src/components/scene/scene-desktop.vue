@@ -49,7 +49,7 @@ const bootTerminal = () => {
   terminalHistory.value = []; // Clear history
   
   // Активируем эффект глитча при загрузке
-  triggerGlitchEffect(1500);
+  triggerGlitchEffect(1000);
   
   // Simulate flickering when turning on (old CRT effect)
   const terminalElement = document.querySelector('.retro-terminal-container');

@@ -101,10 +101,8 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.3rem;
   gap: 0.5rem;
   color: var(--color-secondary);
-  background: var(--color-primary);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
 
@@ -117,8 +115,9 @@ onMounted(() => {
     justify-content: space-between;
     align-items: flex-start;
     background: var(--color-secondary);
-    border-radius: 8px;
+    border-radius: 9px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 3px solid var(--color-primary);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
   }

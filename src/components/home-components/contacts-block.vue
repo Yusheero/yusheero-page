@@ -59,11 +59,11 @@ const socialLinks = [
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 5px;
+  gap: 3px;
   grid-template-areas:
     "telegram discord github inst"
     "steam gmail linkedin youtube";
-  padding: 5px;
+  padding: 3px;
   color: var(--color-secondary);
   background: var(--color-primary);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);

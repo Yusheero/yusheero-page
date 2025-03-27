@@ -84,13 +84,12 @@ const getYear = computed(() => {
   cursor: pointer;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border-radius: 9px;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
   overflow: hidden;
   background: var(--color-primary-light);
   color: var(--color-white);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 5px;
   
   &__badge {
     position: absolute;
@@ -116,6 +115,7 @@ const getYear = computed(() => {
     height: 100%;
     background: var(--color-secondary);
     border-radius: 8px;
+    border: 3px solid var(--color-primary);
   }
   
   &__title {
