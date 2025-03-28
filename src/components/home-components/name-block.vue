@@ -71,8 +71,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <NameBlockMobile v-if="store.isMobile" />
-  <div v-else class="name-block">
+  <div class="name-block">
     <div class="name-block__content">
       <div class="name-block__body">
         <div class="name-block__titles">
@@ -167,6 +166,10 @@ onMounted(() => {
     
     .name-block__city {
       font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 16px;
     }
   }
 }

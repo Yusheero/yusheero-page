@@ -122,12 +122,12 @@ $terminal-card-bg: rgba(10, 26, 18, 0.7);
 
 .terminal-top-gradient {
   top: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
 }
 
 .terminal-bottom-gradient {
   bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
 }
 
 .plans-container {

@@ -1,20 +1,20 @@
 <script setup>
-import { useKeenSlider } from 'keen-slider/vue'
-import TechBlockMobile from '@/components/home-components/tech-block-mobile.vue';
 import { useStore } from '@/store/store';
+import { useKeenSlider } from 'keen-slider/vue'
 import { ref, onMounted } from 'vue';
 
 const store = useStore()
 const glitchEffect = ref(false);
 
 const animation = { duration: 4000, easing: (t) => t }
+const elementsPerView = store.isMobile ? 4 : 10;
 
 const [container, slider] = useKeenSlider({ 
   loop: true,
   initial: 0,
-  drag: false, // Отключаем перетаскивание, так как карусель будет автоматически крутиться
+  drag: false,
   slides: {
-    perView: 10,
+    perView: elementsPerView,
     spacing: 10
   },
   created(s) {
@@ -30,8 +30,7 @@ const [container, slider] = useKeenSlider({
 </script>
 
 <template>
-  <TechBlockMobile v-if="store.isMobile" />
-  <div v-else class="tech-block">
+  <div class="tech-block">
     <div class="tech-block__content">
       <!-- Эффекты терминального дисплея -->
       <div class="scanline-effect"></div>

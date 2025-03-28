@@ -1,10 +1,6 @@
 <script setup>
-import ContactsBlockMobile from '@/components/home-components/contacts-block-mobile.vue';
-import { useStore } from '@/store/store';
 import { TelegramIcon, DiscordIcon, GitHubIcon, InstagramIcon, SteamIcon, GmailIcon, LinkedInIcon, YouTubeIcon } from 'vue3-simple-icons';
 import { ref } from 'vue';
-
-const store = useStore();
 const activeTooltip = ref(null);
 
 const showTooltip = (name) => {
@@ -28,8 +24,7 @@ const socialLinks = [
 </script>
 
 <template>
-  <ContactsBlockMobile v-if="store.isMobile" />
-  <div v-else class="contacts-block">
+  <div class="contacts-block">
     <div class="contacts-block__content">
       <div class="contacts-block__grid">
         <a 
@@ -107,6 +102,10 @@ const socialLinks = [
       .contacts-block__icon {
         filter: drop-shadow(0 0 5px rgba(79, 250, 154, 0.7));
       }
+    }
+
+    @media (max-width: 768px) {
+      height: 90px;
     }
   }
   

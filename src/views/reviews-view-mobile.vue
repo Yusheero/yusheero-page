@@ -1,5 +1,5 @@
 <script setup>
-import Navigation from '@/components/navigation/navigation.vue';
+import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
 import WatchStream from '@/components/watch-stream/watch-stream.vue';
 import ViewsTemplateMobile from '@/components/views-template/views-template-mobile.vue';
 import ReviewsItem from '@/components/reviews-components/reviews-item.vue';

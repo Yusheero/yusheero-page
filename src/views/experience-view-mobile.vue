@@ -1,10 +1,12 @@
 <script setup>
-import Header from '@/components/header/header.vue';
+import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
 </script>
 
 <template>
   <div class="experience-view-mobile">
-    <Header />
+    <header class="experience-view__header">
+      <NavigationMobile />
+    </header>
     <div class="experience-view-mobile__title">Experience Page</div>
     <div class="experience-view-mobile__content">Content</div>
   </div>
