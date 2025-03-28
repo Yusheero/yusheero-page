@@ -39,10 +39,6 @@ watch(isMenuOpen, (newValue) => {
     <div class="menu-overlay" v-if="isMenuOpen" @click="closeMenu">
       <!-- Контейнер меню с ссылками -->
       <div class="menu-container" @click.stop>  
-        <div class="menu-header">
-          <span class="menu-title">НАВИГАЦИЯ</span>
-          <button class="close-button" @click="closeMenu">×</button>
-        </div>
         <div class="menu-links">
           <router-link 
             title="Home" 

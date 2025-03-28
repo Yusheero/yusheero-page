@@ -176,7 +176,7 @@ onMounted(() => {
     align-items: center;
     margin-top: auto;
     border-top: 1px solid rgba(79, 250, 154, 0.3);
-    min-height: 40px;
+    height: 40px;
   }
   
   &__date {
