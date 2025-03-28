@@ -8,11 +8,9 @@ const projectsData = data.data;
 
 <template>
   <div class="projects-view-mobile">
-    <header class="projects-view__header">
       <NavigationMobile />
-    </header>
       <!-- Контент обернут в терминальный контейнер -->
-      <div class="projects-view-desktop__content">
+      <div class="projects-view-mobile__content">
         <div class="terminal-container">
           <!-- Эффекты терминала -->
           <div class="crt-effect"></div>
@@ -25,7 +23,7 @@ const projectsData = data.data;
               v-for="data in projectsData" 
               :key="data.id" 
               :projectsData="data" 
-              class="projects-view-desktop__item" 
+              class="projects-view-mobile__item" 
             />
           </div>
           
@@ -40,16 +38,32 @@ const projectsData = data.data;
 <style lang="scss">
 @import '@/assets/style/style.scss';
 
+// Переменные терминального стиля
+$terminal-green: #4afa9a;
+$terminal-dark-green: #052505;
+$terminal-frame: rgba(79, 250, 154, 0.1);
+$terminal-text: #4afa9a;
+$terminal-background: rgba(10, 26, 18, 0.95);
+
 .projects-view-mobile {
   width: 100%;
-  padding: 56px 8px 8px 8px;
   height: 98.5vh;
   display: flex;
   flex-direction: column;
+  padding: 64px 8px 8px 8px;
+
+  &__content {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0;
+    grid-area: content;
+    overflow: hidden;
+    position: relative;
+  }
 }
 
 .projects-container {
-  padding-top: 10px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -77,6 +91,36 @@ const projectsData = data.data;
       background: rgba(79, 250, 154, 0.7);
     }
   }
+}
+
+.terminal-container {
+  padding: 8px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: $terminal-background;
+  border: 1px solid $terminal-frame;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.terminal-top-gradient, .terminal-bottom-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.terminal-top-gradient {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.terminal-bottom-gradient {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
 }
 
 // Эффекты терминала
