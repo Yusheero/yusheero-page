@@ -5,8 +5,6 @@ import ProjectsItem from '@/components/projects-components/projects-item.vue';
 import data from '@/data/projects.json';
 
 const projectsData = data.data;
-
-// Убираем переменные для эффектов, так как глич эффект больше не нужен
 </script>
 
 <template>
