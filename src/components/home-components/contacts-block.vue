@@ -30,91 +30,92 @@ const socialLinks = [
 <template>
   <ContactsBlockMobile v-if="store.isMobile" />
   <div v-else class="contacts-block">
-    <a 
-      v-for="social in socialLinks" 
-      :key="social.name"
-      :class="['contacts-block__item', `contacts-block__${social.name}`]"
-      :href="social.url"
-      target="_blank"
-      rel="noopener noreferrer"
-      @mouseenter="showTooltip(social.name)"
-      @mouseleave="hideTooltip()"
-    >
-      <component :is="social.icon" style="fill: white" size="30px" class="contacts-block__icon" />
-      <span 
-        class="contacts-block__tooltip" 
-        :class="{ 'active': activeTooltip === social.name }"
-      >
-        {{ social.label }}
-      </span>
-    </a>
+    <div class="contacts-block__content">
+      <div class="contacts-block__grid">
+        <a 
+          v-for="social in socialLinks" 
+          :key="social.name"
+          :class="['contacts-block__item']"
+          :href="social.url"
+          target="_blank"
+          rel="noopener noreferrer"
+          @mouseenter="showTooltip(social.name)"
+          @mouseleave="hideTooltip()"
+        >
+          <component :is="social.icon" class="contacts-block__icon" />
+          <span 
+            class="contacts-block__tooltip" 
+            :class="{ 'active': activeTooltip === social.name }"
+          >
+            {{ social.label }}
+          </span>
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .contacts-block {
-  border-radius: 12px;
-  height: 100%;
+  position: relative;
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 3px;
-  grid-template-areas:
-    "telegram discord github inst"
-    "steam gmail linkedin youtube";
-  padding: 3px;
-  color: var(--color-secondary);
-  background: var(--color-primary);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(10, 26, 18, 0.95);
+    border: 1px solid #4FFA9A;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+    color: #E0E0E0;
+    overflow: hidden;
+    padding: 10px;
+  }
+  
+  &__grid {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+  }
 
   &__item {
     position: relative;
     overflow: hidden;
     text-decoration: none;
-    color: var(--color-primary);
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-size: 18px;
-    border-radius: 8px;
-    padding: 8px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0);
-      transition: all 0.3s ease;
-      z-index: 0;
-    }
+    border-radius: 4px;
+    background-color: rgba(10, 26, 18, 0.7);
+    border: 1px solid rgba(79, 250, 154, 0.3);
+    transition: all 0.2s ease;
     
     &:hover {
-      &::before {
-        background: rgba(255, 255, 255, 0.1);
-      }
+      background-color: rgba(79, 250, 154, 0.15);
+      border-color: rgba(79, 250, 154, 0.6);
+      box-shadow: 0 0 10px rgba(79, 250, 154, 0.3);
       
       .contacts-block__icon {
-        transform: scale(1.15);
+        filter: drop-shadow(0 0 5px rgba(79, 250, 154, 0.7));
       }
-    }
-    
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
   }
   
   &__icon {
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease;
+    width: 24px;
+    height: 24px;
+    fill: #4FFA9A !important;
+    filter: drop-shadow(0 0 3px rgba(79, 250, 154, 0.4));
+    transition: filter 0.2s ease;
   }
   
   &__tooltip {
@@ -122,16 +123,18 @@ const socialLinks = [
     bottom: -25px;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
+    background-color: rgba(10, 26, 18, 0.9);
+    color: #4FFA9A;
     padding: 4px 8px;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 11px;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 10;
+    border: 1px solid rgba(79, 250, 154, 0.4);
+    text-shadow: 0 0 3px rgba(79, 250, 154, 0.4);
     
     &.active {
       opacity: 1;
@@ -147,49 +150,8 @@ const socialLinks = [
       transform: translateX(-50%);
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
-      border-bottom: 5px solid rgba(0, 0, 0, 0.8);
+      border-bottom: 5px solid rgba(79, 250, 154, 0.4);
     }
-  }
-
-  &__telegram {
-    grid-area: telegram;
-    background: #229ED9;
-  }
-
-  &__discord {
-    grid-area: discord;
-    background: #5865F2;
-  }
-
-  &__github {
-    grid-area: github;
-    background: #000000;
-  }
-
-  &__inst {
-    grid-area: inst;
-    background: rgb(64,93,230);
-    background: linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%);
-  }
-
-  &__steam {
-    grid-area: steam;
-    background: #000000;
-  }
-
-  &__gmail {
-    grid-area: gmail;
-    background: #c01818;
-  }
-
-  &__linkedin {
-    grid-area: linkedin;
-    background: #15468b;
-  }
-
-  &__youtube {
-    grid-area: youtube;
-    background: #c01818;
   }
 }
 </style>

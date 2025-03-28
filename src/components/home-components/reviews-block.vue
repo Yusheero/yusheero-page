@@ -71,22 +71,32 @@ onMounted(() => {
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
-    <div class="reviews-block__item">
-      <div class="reviews-block__item-badge">Latest Review</div>
-      
-      <div class="reviews-block__item-header">
-        <div class="reviews-block__item-author">{{ reviewsLastPost.name }}</div>
+    <div class="reviews-block__content">
+      <div class="reviews-block__header">
+        <h2 class="reviews-block__title">{{ reviewsLastPost.name }}</h2>
+        <div class="reviews-block__badge">
+          <span>Review</span>
+        </div>
       </div>
       
-      <div class="reviews-block__item-text">{{ truncatedText }}</div>
+      <div class="reviews-block__body">
+        <p class="reviews-block__text">{{ truncatedText }}</p>
+      </div>
       
-      <div class="reviews-block__item-footer">
-        <div class="reviews-block__item-date">
-          <Calendar size="14" strokeWidth="2" class="reviews-block__icon" />
+      <div class="reviews-block__footer">
+        <div class="reviews-block__date">
+          <Calendar size="14" class="reviews-block__icon" />
           <span>{{ formattedDate }}</span>
         </div>
         
-        <router-link class="reviews-block__read-more" :to="{name: 'Reviews'}">Check more</router-link>
+        <div class="reviews-block__links">
+          <router-link 
+            class="reviews-block__link" 
+            :to="{name: 'Reviews'}"
+          >
+            more
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -94,119 +104,117 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .reviews-block {
-  border-radius: 12px;
-  height: 100%;
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-secondary);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-  &__item {
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  
+  &__content {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: var(--color-secondary);
-    border-radius: 9px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 3px solid var(--color-primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(10, 26, 18, 0.95);
+    border: 1px solid #4FFA9A;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+    color: #E0E0E0;
     overflow: hidden;
   }
   
-  &__item-badge {
-    position: absolute;
-    top: 0;
-    right: 2rem;
-    background: var(--color-primary);
-    color: white;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: 0 0 8px 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  &__item-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 1rem;
-  }
-
-  &__item-author {
-    color: var(--color-sakura);
-    font-weight: 800;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    position: relative;
-    display: inline-block;
-  }
-  
-  &__rating {
-    display: flex;
-    gap: 3px;
-    margin-top: 0.2rem;
-  }
-
-  &__item-text {
-    color: var(--color-primary);
-    font-weight: 400;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    opacity: 0.8;
-    position: relative;
-    height: 100%;
-    padding: 0 1rem;
-  }
-  
-  &__item-footer {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    border-top: 2px solid var(--color-primary);
+    padding: 12px;
+    border-bottom: 1px solid rgba(79, 250, 154, 0.3);
   }
-
-  &__item-date {
-    font-size: 0.85rem;
-    color: var(--color-primary);
-    opacity: 0.7;
+  
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    color: #4FFA9A;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
+    font-family: inherit;
+    font-weight: 600;
+  }
+  
+  &__badge {
+    display: flex;
+    align-items: center;
+    background: rgba(10, 26, 18, 0.8);
+    color: #4FFA9A;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(79, 250, 154, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  &__body {
+    flex-grow: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+    color: #CCCCCC;
+    overflow: hidden;
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(79, 250, 154, 0.3);
+    min-height: 40px;
+  }
+  
+  &__date {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4FFA9A;
+    padding: 0 12px;
+    opacity: 0.8;
+    min-width: 110px;
+  }
+  
+  &__icon {
+    color: #4FFA9A;
+  }
+  
+  &__links {
+    height: 100%;
+    display: flex;
+  }
+  
+  &__link {
+    min-width: 80px;
+    height: 100%;
+    font-size: 14px;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.3rem;
-    padding: 1rem;
-  }
-  
-  &__read-more {
-    padding: 1rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    background-color: var(--color-sakura);
+    color: #4FFA9A;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    border-left: 2px solid var(--color-primary);
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
+    border-left: 1px solid rgba(79, 250, 154, 0.3);
     
     &:hover {
-      color: var(--color-secondary);
-      background-color: var(--color-primary);
+      background-color: rgba(79, 250, 154, 0.2);
     }
   }
 }
