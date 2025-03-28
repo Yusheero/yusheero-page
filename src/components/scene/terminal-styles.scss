@@ -15,7 +15,8 @@ $terminal-dark-blue: #001825;
   border-radius: 12px;
   overflow: hidden;
   background-color: #000;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 1px rgba(79, 250, 154, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(79, 250, 154, 0.1);
   font-family: 'VT323', monospace;
   color: $terminal-green;
   display: flex;
@@ -39,7 +40,8 @@ $terminal-dark-blue: #001825;
   &.theme-green {
     color: $terminal-green;
     background-color: $terminal-dark-green;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 1px rgba(79, 250, 154, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(79, 250, 154, 0.1);
     
     .terminal-command-input {
       color: $terminal-green;
@@ -69,7 +71,8 @@ $terminal-dark-blue: #001825;
   &.theme-amber {
     color: $terminal-amber;
     background-color: $terminal-dark-amber;
-    box-shadow: 0 0 20px rgba(255, 176, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 1px rgba(255, 176, 0, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 176, 0, 0.1);
     
     .terminal-command-input {
       color: $terminal-amber;
@@ -99,7 +102,8 @@ $terminal-dark-blue: #001825;
   &.theme-blue {
     color: $terminal-blue;
     background-color: $terminal-dark-blue;
-    box-shadow: 0 0 20px rgba(0, 204, 255, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 1px rgba(0, 204, 255, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 204, 255, 0.1);
     
     .terminal-command-input {
       color: $terminal-blue;
