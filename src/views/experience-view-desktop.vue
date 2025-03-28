@@ -71,14 +71,12 @@ const closePointInfo = () => {
                 <p>2022 - present</p>
                 <div class="point-info-tags">
                   <span class="tag">Vue.js</span>
-                  <span class="tag">React</span>
                   <span class="tag">Node.js</span>
                   <span class="tag">TypeScript</span>
                 </div>
                 <p class="point-info-description">
                   Development and maintenance of enterprise web applications.
-                  Performance optimization, implementation of new technologies 
-                  and team training.
+                  Performance optimization, implementation of new technologies.
                 </p>
               </div>
             </div>
