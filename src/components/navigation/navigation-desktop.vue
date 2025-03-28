@@ -60,58 +60,45 @@
 .navigation {
   height: 100%;
   width: 140px;
-  border-radius: 8px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  color: var(--color-primary);
+  gap: 8px;
+  color: #4FFA9A;
 
   &__button {
     position: relative;
     overflow: hidden;
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    border-radius: 6px;
+    border: 1px solid rgba(79, 250, 154, 0.5);
+    color: #4FFA9A;
+    border-radius: 4px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.8rem 1rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px;
+    transition: all 0.2s ease;
+    background-color: rgba(10, 26, 18, 0.95);
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.3);
+    letter-spacing: 0.5px;
   
-
     &:hover {
-      transform: translateX(-6px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      color: var(--color-sakura);
-      border-color: var(--color-sakura);
-      
-      &::after {
-        width: 80%;
-      }
-      
-      &::before {
-        width: 300px;
-        height: 300px;
-      }
-    }
-    
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background-color: rgba(79, 250, 154, 0.15);
+      text-shadow: 0 0 8px rgba(79, 250, 154, 0.6);
     }
   }
   
   /* Анимация для активной ссылки */
   .router-link-active {
-    background: var(--color-primary);
-    color: var(--color-secondary);
-    border-color: var(--color-primary);
+    background-color: rgba(79, 250, 154, 0.2);
+    border-color: rgba(79, 250, 154, 0.8);
+    box-shadow: 0 0 10px rgba(79, 250, 154, 0.3);
+    font-weight: 600;
     
     &:hover {
-      color: var(--color-secondary);
+      background-color: rgba(79, 250, 154, 0.25);
     }
   }
 }

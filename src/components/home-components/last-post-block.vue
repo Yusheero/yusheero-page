@@ -152,13 +152,7 @@ onMounted(() => {
   height: 100%;
   cursor: pointer;
   border-radius: 5px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
-  }
   
   &__content {
     position: relative;
