@@ -86,8 +86,8 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     
     &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(79, 250, 154, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 20px rgba(79, 250, 154, 0.2);
     }
   }
 }

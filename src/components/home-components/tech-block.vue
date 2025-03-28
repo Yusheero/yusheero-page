@@ -7,10 +7,8 @@ import { ref, onMounted } from 'vue';
 const store = useStore()
 const glitchEffect = ref(false);
 
-// Параметры автоматической прокрутки
 const animation = { duration: 4000, easing: (t) => t }
 
-// Инициализация slider с эффектом исчезновения на краях
 const [container, slider] = useKeenSlider({ 
   loop: true,
   initial: 0,
@@ -29,16 +27,6 @@ const [container, slider] = useKeenSlider({
     s.moveToIdx(s.track.details.abs + 1, true, animation)
   },
 })
-
-// Периодический эффект глюка для терминального стиля
-onMounted(() => {
-  setInterval(() => {
-    glitchEffect.value = true;
-    setTimeout(() => {
-      glitchEffect.value = false;
-    }, 200);
-  }, 7000);
-});
 </script>
 
 <template>
@@ -184,16 +172,6 @@ onMounted(() => {
   align-items: center;
   padding: 10px;
   z-index: 1;
-  
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 80px;
-    pointer-events: none;
-    z-index: 5;
-  }
   
   &::before {
     left: 0;

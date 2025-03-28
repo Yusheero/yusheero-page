@@ -6,52 +6,10 @@ import { ref, onMounted } from 'vue';
 const plansData = [
   {
     id: 1,
-    title: 'Design Update',
-    description: 'Redesign all components in a unified terminal style with green accents.',
-    date: '2023-12-15'
+    title: 'Experience View update',
+    description: 'More tips and tricks for experience view',
+    date: '2025-03-28'
   },
-  {
-    id: 2,
-    title: 'Library Section',
-    description: 'Create a new section to display thematic collections of materials and resources.',
-    date: '2024-02-10'
-  },
-  {
-    id: 3,
-    title: 'Mobile Version',
-    description: 'Develop an adaptive mobile version of the site for perfect display on any device.',
-    date: '2024-01-20'
-  },
-  {
-    id: 4,
-    title: 'API Integration',
-    description: 'Add external APIs to expand functionality and automate data updates.',
-    date: '2024-03-05'
-  },
-  {
-    id: 5,
-    title: 'Performance Optimization',
-    description: 'Improve load speed and overall site performance for better user experience.',
-    date: '2024-01-10'
-  },
-  {
-    id: 6,
-    title: 'Blog 2.0',
-    description: 'Expand blog functionality: categories, tags, improved comments, and article search.',
-    date: '2024-04-15'
-  },
-  {
-    id: 7,
-    title: 'Notification System',
-    description: 'Add personalized notifications about new posts, updates, and events.',
-    date: '2024-03-20'
-  },
-  {
-    id: 8,
-    title: 'Interactive Animation',
-    description: 'Create new animations and effects to increase user engagement.',
-    date: '2024-02-25'
-  }
 ];
 
 // Форматирование даты на английском

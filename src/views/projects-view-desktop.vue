@@ -82,16 +82,6 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     overflow: hidden;
     position: relative;
   }
-  
-  &__item {
-    z-index: 20;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    &:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(79, 250, 154, 0.2);
-    }
-  }
 }
 
 .terminal-container {

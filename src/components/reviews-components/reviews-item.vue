@@ -29,31 +29,16 @@ const defaultTags = computed(() => {
         <h2 class="reviews-item__title" :title="reviewData.name">
           {{ truncatedName }}
         </h2>
-        <div class="reviews-item__badge">
-          <span>Review</span>
-        </div>
       </div>
       
       <div class="reviews-item__body">
         <p class="reviews-item__text">{{ reviewData.text }}</p>
       </div>
       
-      <div class="reviews-item__tags">
-        <span class="tag" v-for="(tag, index) in defaultTags" :key="index">
-          {{ tag }}
-        </span>
-      </div>
-      
       <div class="reviews-item__footer">
         <div class="reviews-item__date">
           <Calendar size="14" />
           <span>{{ reviewData.date }}</span>
-        </div>
-        
-        <div class="reviews-item__links">
-          <a class="reviews-item__link" href="#" @click.prevent>
-            read more
-          </a>
         </div>
       </div>
     </div>
@@ -81,8 +66,8 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   font-family: 'GABARITO', serif;
   
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(79, 250, 154, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 20px rgba(79, 250, 154, 0.3);
     
     .reviews-item__title {
       color: white;
@@ -113,7 +98,7 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   
   &__title {
     margin: 0;
-    font-size: 16px;
+    font-size: 20px;
     color: #4FFA9A;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
     font-family: 'GABARITO', serif;

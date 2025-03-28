@@ -32,9 +32,6 @@ const defaultTags = computed(() => {
         <h2 class="blog-item__title" :title="blogData.title">
           {{ truncatedTitle }}
         </h2>
-        <div class="blog-item__badge">
-          <span>Blog</span>
-        </div>
       </div>
       <div class="blog-item__body">
         <p class="blog-item__text">{{ blogData.text }}</p>
