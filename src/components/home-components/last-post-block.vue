@@ -107,23 +107,39 @@ onMounted(() => {
     @mouseenter="isHovered = true"
     @mouseleave="isHovered = false"
   >
-    <div class="last-post-block__item">
-      <div class="last-post-block__item-badge">Blog</div>
-      
-      <div class="last-post-block__item-header">
-        <div class="last-post-block__item-title">{{ blogLastPost.title }}</div>
-        <div class="last-post-block__item-text">{{ truncatedText }}</div> 
+    <div class="last-post-block__content">
+      <div class="last-post-block__header">
+        <h2 class="last-post-block__title" :title="blogLastPost.title">
+          {{ blogLastPost.title }}
+        </h2>
+        <div class="last-post-block__badge">
+          <span>Blog</span>
+        </div>
+      </div>
+      <div class="last-post-block__body">
+        <p class="last-post-block__text">{{ truncatedText }}</p>
       </div>
       
-      <div class="last-post-block__item-footer">
-        <div class="last-post-block__item-date">
-          <Calendar size="14" strokeWidth="2" class="last-post-block__icon" />
+      <div class="last-post-block__tags">
+        <span class="tag" v-for="(tag, index) in postTags" :key="index">
+          {{ tag }}
+        </span>
+      </div>
+      
+      <div class="last-post-block__footer">
+        <div class="last-post-block__date">
+          <Calendar size="14" />
           <span>{{ formattedDate }}</span>
         </div>
         
-        <router-link class="last-post-block__read-more" :to="{name: 'Blog'}">
-          Read more
-        </router-link>
+        <div class="last-post-block__links">
+          <router-link 
+            class="last-post-block__link" 
+            :to="{name: 'Blog'}"
+          >
+            read
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -131,113 +147,139 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .last-post-block {
-  border-radius: 12px;
-  height: 100%;
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--color-secondary);
-  background: var(--color-primary);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-
-  &__item {
+  height: 100%;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+  }
+  
+  &__content {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    background: var(--color-secondary);
-    border-radius: 9px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border: 3px solid var(--color-primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(10, 26, 18, 0.95);
+    border: 1px solid #4FFA9A;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+    color: #E0E0E0;
     overflow: hidden;
   }
   
-  &__item-badge {
-    position: absolute;
-    top: 0;
-    right: 1.5rem;
-    background: var(--color-primary);
-    color: white;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: 0 0 8px 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  &__item-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
-    padding: 1.5rem;
-  }
-
-  &__item-title {
-    color: var(--color-primary);
-    font-weight: 800;
-    font-size: 1.5rem;
-    line-height: 1.2;
-    transition: color 0.3s ease;
-  }
-
-  &__item-text {
-    color: var(--color-primary);
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    opacity: 0.8;
-  }
-  
-  &__item-footer {
+  &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    border-top: 2px solid var(--color-primary);
-  }
-
-  &__item-date {
-    font-size: 0.85rem;
-    color: var(--color-primary);
-    opacity: 0.7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3rem;
-    padding: 1.5rem;
-    width: 10rem;
+    padding: 12px;
+    border-bottom: 1px solid rgba(79, 250, 154, 0.3);
   }
   
-  &__read-more {
-    font-size: 0.9rem;
+  &__title {
+    margin: 0;
+    font-size: 16px;
+    color: #4FFA9A;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
+    font-family: inherit;
     font-weight: 600;
-    color: var(--color-primary);
-    background-color: var(--color-sakura);
-    text-decoration: none;
+  }
+  
+  &__badge {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    transition: all 0.5s ease;
+    background: rgba(10, 26, 18, 0.8);
+    color: #4FFA9A;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    border: 1px solid rgba(79, 250, 154, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  &__body {
+    flex-grow: 1;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__text {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 10px;
+    color: #CCCCCC;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+  }
+  
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 12px;
+    
+    .tag {
+      background-color: rgba(79, 250, 154, 0.15);
+      border: 1px solid rgba(79, 250, 154, 0.4);
+      border-radius: 12px;
+      padding: 3px 8px;
+      font-size: 12px;
+      color: #4FFA9A;
+    }
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    border-top: 1px solid rgba(79, 250, 154, 0.3);
+    min-height: 40px;
+  }
+  
+  &__date {
     height: 100%;
-    width: 8rem;
-    border-left: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4FFA9A;
+    padding: 0 12px;
+    opacity: 0.8;
+    min-width: 110px;
+  }
+  
+  &__links {
+    height: 100%;
+    display: flex;
+  }
+  
+  &__link {
+    min-width: 80px;
+    height: 100%;
+    font-size: 14px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4FFA9A;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 1px solid rgba(79, 250, 154, 0.3);
+    
     &:hover {
-      background-color: var(--color-primary);
-      color: var(--color-secondary);
+      background-color: rgba(79, 250, 154, 0.2);
     }
   }
 }

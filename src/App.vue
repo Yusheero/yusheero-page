@@ -40,7 +40,7 @@ onBeforeMount(() => {
   font-family: "Gabarito", serif;
   font-weight: 600;
   font-size: 22px;
-  background: var(--color-white);
+  background: var(--color-primary);
 }
 
 @media (max-width: 768px) {
