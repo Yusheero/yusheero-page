@@ -60,42 +60,44 @@ const defaultTags = computed(() => {
       </div>
       <div class="projects-item__body">
         <p class="projects-item__text">{{ projectsData.text }}</p>
-        
+      </div>
+      
+      <div class="projects-item__tags">
+        <span class="tag" v-for="(tag, index) in defaultTags" :key="index">
+          {{ tag }}
+        </span>
+      </div>
+      
+      <div class="projects-item__footer">
         <div v-if="projectsData.dateCreated" class="projects-item__date">
           <Calendar size="14" />
           <span>{{ projectsData.dateCreated }}</span>
         </div>
         
-        <div class="projects-item__tags">
-          <span class="tag" v-for="(tag, index) in defaultTags" :key="index">
-            {{ tag }}
-          </span>
+        <div class="projects-item__links">
+          <a 
+            v-if="projectsData.link" 
+            class="projects-item__link" 
+            :href="projectsData.link" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Посетить сайт проекта"
+            @click.stop
+          >
+            page
+          </a>
+          <a 
+            v-if="projectsData.linkGithub || projectsData.githubLink" 
+            class="projects-item__github" 
+            :href="projectsData.linkGithub || projectsData.githubLink" 
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub репозиторий"
+            @click.stop
+          >
+            github
+          </a>
         </div>
-      </div>
-      
-      <div class="projects-item__footer">
-        <a 
-          v-if="projectsData.link" 
-          class="projects-item__link" 
-          :href="projectsData.link" 
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Посетить сайт проекта"
-          @click.stop
-        >
-          page
-        </a>
-        <a 
-          v-if="projectsData.linkGithub || projectsData.githubLink" 
-          class="projects-item__github" 
-          :href="projectsData.linkGithub || projectsData.githubLink" 
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub репозиторий"
-          @click.stop
-        >
-          github
-        </a>
       </div>
     </div>
   </div>
@@ -181,21 +183,11 @@ const defaultTags = computed(() => {
     -webkit-box-orient: vertical;
   }
   
-  &__date {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: #4FFA9A;
-    opacity: 0.8;
-    margin-bottom: 10px;
-  }
-  
   &__tags {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin: 10px 0;
+    margin: 10px 12px;
     
     .tag {
       background-color: rgba(79, 250, 154, 0.15);
@@ -209,10 +201,28 @@ const defaultTags = computed(() => {
   
   &__footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     margin-top: auto;
     border-top: 1px solid rgba(79, 250, 154, 0.3);
     min-height: 40px;
+  }
+  
+  &__date {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #4FFA9A;
+    padding: 0 12px;
+    opacity: 0.8;
+    min-width: 110px;
+  }
+  
+  &__links {
+    height: 100%;
+    display: flex;
   }
   
   &__link,
