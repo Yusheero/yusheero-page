@@ -1,6 +1,64 @@
 <script setup>
 import Navigation from '@/components/navigation/navigation.vue';
 import { ref, onMounted } from 'vue';
+
+// Данные о планах на английском
+const plansData = [
+  {
+    id: 1,
+    title: 'Design Update',
+    description: 'Redesign all components in a unified terminal style with green accents.',
+    date: '2023-12-15'
+  },
+  {
+    id: 2,
+    title: 'Library Section',
+    description: 'Create a new section to display thematic collections of materials and resources.',
+    date: '2024-02-10'
+  },
+  {
+    id: 3,
+    title: 'Mobile Version',
+    description: 'Develop an adaptive mobile version of the site for perfect display on any device.',
+    date: '2024-01-20'
+  },
+  {
+    id: 4,
+    title: 'API Integration',
+    description: 'Add external APIs to expand functionality and automate data updates.',
+    date: '2024-03-05'
+  },
+  {
+    id: 5,
+    title: 'Performance Optimization',
+    description: 'Improve load speed and overall site performance for better user experience.',
+    date: '2024-01-10'
+  },
+  {
+    id: 6,
+    title: 'Blog 2.0',
+    description: 'Expand blog functionality: categories, tags, improved comments, and article search.',
+    date: '2024-04-15'
+  },
+  {
+    id: 7,
+    title: 'Notification System',
+    description: 'Add personalized notifications about new posts, updates, and events.',
+    date: '2024-03-20'
+  },
+  {
+    id: 8,
+    title: 'Interactive Animation',
+    description: 'Create new animations and effects to increase user engagement.',
+    date: '2024-02-25'
+  }
+];
+
+// Форматирование даты на английском
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('en-US', options);
+};
 </script>
 
 <template>
@@ -18,9 +76,16 @@ import { ref, onMounted } from 'vue';
           
           <!-- Контейнер с планами -->
           <div class="plans-container">
-            <div class="plans-view-desktop__item">
-              <h2>В разработке</h2>
-              <p>Раздел планов находится в разработке. Скоро здесь появится информация о предстоящих проектах и задачах.</p>
+            <div v-for="plan in plansData" :key="plan.id" class="plan-item">
+              <div class="plan-item__header">
+                <h3 class="plan-item__title">{{ plan.title }}</h3>
+              </div>
+              <div class="plan-item__body">
+                <p class="plan-item__description">{{ plan.description }}</p>
+              </div>
+              <div class="plan-item__footer">
+                <span class="plan-item__date">{{ formatDate(plan.date) }}</span>
+              </div>
             </div>
           </div>
           
@@ -42,6 +107,7 @@ $terminal-dark-green: #052505;
 $terminal-frame: rgba(79, 250, 154, 0.1);
 $terminal-text: #4afa9a;
 $terminal-background: rgba(10, 26, 18, 0.95);
+$terminal-card-bg: rgba(10, 26, 18, 0.7);
 
 .plans-view-desktop {
   position: relative;
@@ -73,30 +139,6 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     grid-area: content;
     overflow: hidden;
     position: relative;
-  }
-  
-  &__item {
-    position: relative;
-    background-color: rgba(10, 26, 18, 0.7);
-    border: 1px solid rgba(79, 250, 154, 0.3);
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(79, 250, 154, 0.2);
-    
-    h2 {
-      color: $terminal-green;
-      margin-bottom: 20px;
-      font-size: 24px;
-      text-shadow: 0 0 10px rgba(79, 250, 154, 0.5);
-      letter-spacing: 1px;
-    }
-    
-    p {
-      color: #cccccc;
-      line-height: 1.6;
-      font-size: 16px;
-    }
   }
 }
 
@@ -134,9 +176,10 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
   padding: 25px;
   overflow: auto;
   z-index: 1;
@@ -158,6 +201,80 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     &:hover {
       background: rgba(79, 250, 154, 0.7);
     }
+  }
+}
+
+// Стили для карточки плана
+.plan-item {
+  position: relative;
+  background-color: $terminal-card-bg;
+  border: 1px solid rgba(79, 250, 154, 0.3);
+  border-radius: 5px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 250, 154, 0.2);
+    border: 1px solid rgba(79, 250, 154, 0.6);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, transparent, $terminal-green, transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+  
+  &__header {
+    margin-bottom: 12px;
+  }
+  
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    color: $terminal-green;
+    margin: 0;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
+    letter-spacing: 0.5px;
+  }
+  
+  &__body {
+    flex: 1;
+    margin-bottom: 12px;
+  }
+  
+  &__description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #cccccc;
+    margin: 0;
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px dashed rgba(79, 250, 154, 0.2);
+    padding-top: 8px;
+  }
+  
+  &__date {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
   }
 }
 
