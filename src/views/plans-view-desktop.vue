@@ -1,6 +1,4 @@
 <script setup>
-import { ArrowLeft } from 'lucide-vue-next';
-import plans from '@/data/plans.json';
 import Navigation from '@/components/navigation/navigation.vue';
 </script>
 
@@ -8,11 +6,8 @@ import Navigation from '@/components/navigation/navigation.vue';
   <div class="page-container">
     <div class="plans-view-desktop">
       <Navigation class="plans-view-desktop__navigation" />
-      <div class="plans-view-desktop__title">Plans Page</div>
       <div class="plans-view-desktop__content">
-        <div class="plans-view-desktop__content-item" v-for="plan in plans.data" :key="plan.id">
-          <div class="plans-view-desktop__content-item-title">{{ plan.title }}</div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -31,7 +26,7 @@ import Navigation from '@/components/navigation/navigation.vue';
   grid-template-rows: 10rem 20rem 7rem 16rem;
   gap: 8px;
   grid-template-areas:
-    "title title title title title title"
+    "content content content content content content"
     "content content content content content content"
     "content content content content content content"
     "content content content content content content";

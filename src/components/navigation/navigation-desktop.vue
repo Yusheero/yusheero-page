@@ -39,13 +39,13 @@
     >
       reviews
     </router-link>
-    <router-link 
-      title="Library" 
-      class="navigation__button" 
-      :to="{name: 'Library'}"
+    <a
+      class="navigation__button navigation__button--disabled"
+      @click.prevent 
+      href="#"
     >
       library
-    </router-link>
+    </a>
     <router-link 
       title="Plans" 
       class="navigation__button" 
@@ -87,6 +87,18 @@
     &:hover {
       background-color: rgba(79, 250, 154, 0.15);
       text-shadow: 0 0 8px rgba(79, 250, 154, 0.6);
+    }
+    
+    /* Стили для отключенной кнопки library */
+    &--disabled {
+      color: #FF5555;
+      border-color: rgba(255, 85, 85, 0.5);
+      text-shadow: 0 0 5px rgba(255, 85, 85, 0.3);
+      
+      &:hover {
+        background-color: rgba(255, 85, 85, 0.15);
+        text-shadow: 0 0 8px rgba(255, 85, 85, 0.6);
+      }
     }
   }
   
