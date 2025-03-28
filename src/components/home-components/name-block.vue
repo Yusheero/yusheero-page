@@ -73,74 +73,100 @@ onMounted(() => {
 <template>
   <NameBlockMobile v-if="store.isMobile" />
   <div v-else class="name-block">
-    <div class="name-block__titles">
-      <h1 class="name-block__title">
-        <span class="typed-text">{{ nameText }}</span>
-        <span class="cursor" :class="{ 'hide': !showCursor }">|</span>
-      </h1>
-      <h2 class="name-block__subtitle">
-        Frontend Developer
-      </h2>
-    </div>
-    <div class="name-block__location">
-      <LocateFixed color="black" size="24" stroke-width="2" class="name-block__icon" />
-      <span class="name-block__city">Vladivostok, Russia</span>
+    <div class="name-block__content">
+      <div class="name-block__body">
+        <div class="name-block__titles">
+          <h1 class="name-block__title">
+            <span class="typed-text">{{ nameText }}</span>
+            <span class="cursor" :class="{ 'hide': !showCursor }">|</span>
+          </h1>
+          <h2 class="name-block__subtitle">
+            Frontend Developer
+          </h2>
+        </div>
+        
+        <div class="name-block__location">
+          <LocateFixed size="16" class="name-block__icon" />
+          <span class="name-block__city">Vladivostok, Russia</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .name-block {
-  border-radius: 12px;
-  height: 100%;
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem;
-  color: var(--color-black);
-  background: var(--color-secondary);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(10, 26, 18, 0.95);
+    border: 1px solid #4FFA9A;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+    color: #E0E0E0;
+    overflow: hidden;
+  }
+  
+  &__body {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
   &__titles {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: 12px;
   }
 
   &__title {
     height: 35px;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 700;
     margin: 0;
     line-height: 1.5;
+    color: #4FFA9A;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
   }
 
   &__subtitle {
-    font-size: 1.2rem;
+    font-size: 18px;
     font-weight: 500;
     margin: 0;
+    color: #CCCCCC;
   }
 
   &__location {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
-    font-size: 1rem;
-    gap: 0.5rem;
-    padding: 0.5rem 0.8rem;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 6px;
-    transition: all 0.3s ease;
+    gap: 8px;
+    font-size: 14px;
+    padding: 8px 12px;
+    background-color: rgba(79, 250, 154, 0.1);
+    border: 1px solid rgba(79, 250, 154, 0.3);
+    border-radius: 4px;
+    width: fit-content;
+    color: #4FFA9A;
     
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.7);
-      cursor: pointer;
+    .name-block__icon {
+      color: #4FFA9A;
+    }
+    
+    .name-block__city {
+      font-weight: 500;
     }
   }
 }
@@ -149,14 +175,7 @@ onMounted(() => {
   display: inline-block;
   width: 2px;
   margin-left: 2px;
-  
-  &.typing {
-    animation: typing 0.5s infinite;
-  }
-  
-  &.blinking {
-    animation: blink 1s infinite;
-  }
+  color: #4FFA9A;
   
   &.hide {
     opacity: 0;

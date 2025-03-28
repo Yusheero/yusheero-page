@@ -7,12 +7,16 @@ import { TwitchIcon } from 'vue3-simple-icons'
     <div class="flipper">
       <div class="front">
         <a class="twitch-block" href="https://www.twitch.tv/yusheero">
-          <TwitchIcon style="fill: white" size="64px" />
+          <div class="twitch-block__content">
+            <TwitchIcon class="twitch-block__icon" />
+          </div>
         </a>
       </div>
       <div class="back">
-        <a class="twitch-block twitch-block--back" href="https://www.twitch.tv/yusheero">
-          <div class="twitch-block__text">Watch streams on Twitch</div>
+        <a class="twitch-block" href="https://www.twitch.tv/yusheero">
+          <div class="twitch-block__content">
+            <div class="twitch-block__text">Watch streams on Twitch</div>
+          </div>
         </a>
       </div>
     </div>
@@ -75,34 +79,44 @@ import { TwitchIcon } from 'vue3-simple-icons'
 }
 
 .twitch-block {
-  border-radius: 12px;
-  height: 100%;
+  position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  background: #8956FB;
-  color: var(--color-primary);
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
   text-decoration: none;
-
-  &--back {
-    background: #6633C0;
+  
+  &__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(10, 26, 18, 0.95);
+    border: 1px solid #4FFA9A;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+    color: #4FFA9A;
+    overflow: hidden;
+  }
+  
+  &__icon {
+    width: 64px;
+    height: 64px;
+    fill: #4FFA9A !important;
+    filter: drop-shadow(0 0 5px rgba(79, 250, 154, 0.5));
   }
 
   &__text {
-    color: white;
-    font-size: 1rem;
+    color: #4FFA9A;
+    font-size: 16px;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0 15px;
     text-decoration: none;
-    font-family: "Gabarito", serif;
     font-weight: 600;
-  }
-
-  &:hover {
-    cursor: pointer;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
   }
 }
 </style>
