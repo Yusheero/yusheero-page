@@ -216,24 +216,7 @@ $terminal-card-bg: rgba(10, 26, 18, 0.7);
   height: 100%;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(79, 250, 154, 0.2);
-    border: 1px solid rgba(79, 250, 154, 0.6);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(to right, transparent, $terminal-green, transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
+
   
   &:hover::before {
     opacity: 1;
