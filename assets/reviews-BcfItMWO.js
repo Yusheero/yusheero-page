@@ -1,0 +1,1 @@
+const e=[{name:"Alesha",title:"Frontender, serious?",text:"AI replace you in 2026, think about it. I'm not kidding. U must learn something new, like a new language or something else. Frontend is dead, Backend is the future.",date:"13.01.2025"}],t={data:e};export{t as d};
