@@ -1,7 +1,7 @@
 <script setup>
 import { useStore } from '@/store/store';
 import { useKeenSlider } from 'keen-slider/vue'
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 
 const store = useStore()
 const glitchEffect = ref(false);

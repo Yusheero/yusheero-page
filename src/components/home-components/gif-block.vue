@@ -22,9 +22,9 @@ const store = useStore()
   gap: 8px;
   background: #1f1f23;
   color: var(--color-primary);
-  background-image: url('@/assets/images/huh-cat.gif');
+  background-image: url('@/assets/images/guts.gif');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: -80px;
+  filter: hue-rotate(125deg);
 }
 </style>
