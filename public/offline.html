@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Yusheero</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a1a12;
+            color: #4FFA9A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 500px;
+            padding: 30px;
+            border: 1px solid #4FFA9A;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
+            background-color: rgba(10, 26, 18, 0.95);
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
+        }
+        
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .crt-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(10, 26, 18, 0) 0%,
+                rgba(10, 26, 18, 0.2) 80%, 
+                rgba(10, 26, 18, 0.4) 100%
+            );
+        }
+        
+        .scanline-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                rgba(0, 0, 0, 0.05) 51%,
+                transparent 51%
+            );
+            background-size: 100% 4px;
+            animation: scanlines 6s linear infinite;
+        }
+        
+        @keyframes scanlines {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
+        }
+        
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgba(79, 250, 154, 0.15);
+            border: 1px solid rgba(79, 250, 154, 0.5);
+            color: #4FFA9A;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            background-color: rgba(79, 250, 154, 0.3);
+            box-shadow: 0 0 10px rgba(79, 250, 154, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="crt-effect"></div>
+    <div class="scanline-effect"></div>
+    
+    <div class="container">
+        <h1>Нет соединения с сетью</h1>
+        <p>К сожалению, вы сейчас находитесь оффлайн и не можете просматривать новый контент.</p>
+        <p>Однако, благодаря технологии Service Worker, вы все равно можете просматривать страницы, которые были загружены ранее.</p>
+        <a href="/" class="button">Вернуться на главную</a>
+    </div>
+    
+    <script>
+        // Проверяем соединение каждые 5 секунд
+        setInterval(() => {
+            fetch('/').then(() => {
+                // Если соединение восстановлено, показываем уведомление
+                if (!document.querySelector('.online-notice')) {
+                    const notice = document.createElement('div');
+                    notice.className = 'online-notice';
+                    notice.style.padding = '10px';
+                    notice.style.marginTop = '20px';
+                    notice.style.backgroundColor = 'rgba(79, 250, 154, 0.2)';
+                    notice.style.borderRadius = '4px';
+                    notice.innerHTML = 'Соединение восстановлено! <a href="javascript:location.reload()" style="color: #4FFA9A;">Обновить страницу</a>';
+                    document.querySelector('.container').appendChild(notice);
+                }
+            }).catch(() => console.log('Все еще оффлайн'));
+        }, 5000);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150">
+  <style>
+    .outline { 
+      fill: none; 
+      stroke: #4FFA9A; 
+      stroke-width: 2;
+    }
+    .icon { 
+      fill: #4FFA9A;
+    }
+    .text {
+      font-family: monospace;
+      font-size: 14px;
+      fill: #4FFA9A;
+    }
+  </style>
+  
+  <!-- Рамка -->
+  <rect class="outline" x="10" y="10" width="180" height="130" rx="5" ry="5" />
+  
+  <!-- Иконка -->
+  <g transform="translate(85, 50)">
+    <path class="icon" d="M15,0 L30,20 L20,20 L20,30 L10,30 L10,20 L0,20 Z" />
+    <path class="icon" d="M7,35 Q15,45 23,35" stroke="#4FFA9A" stroke-width="2" fill="none" />
+  </g>
+  
+  <!-- Текст -->
+  <text class="text" x="100" y="105" text-anchor="middle">Изображение недоступно</text>
+  <text class="text" x="100" y="125" text-anchor="middle">оффлайн-режим</text>
+</svg> 
