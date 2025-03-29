@@ -31,6 +31,7 @@ import TwitchBlock from '@/components/home-components/twitch-block.vue';
 
 .home-view-mobile {
   width: 100%;
+  height: 100%;
   padding: 64px 8px 8px 8px;
   color: var(--color-secondary);
   display: flex;

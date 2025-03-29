@@ -1,5 +1,23 @@
 <script setup>
 import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
+import { ref } from 'vue';
+
+// Состояние для отслеживания активной точки
+const activePointId = ref(null);
+
+// Функция для открытия информации о точке
+const togglePointInfo = (pointId) => {
+  if (activePointId.value === pointId) {
+    activePointId.value = null;
+  } else {
+    activePointId.value = pointId;
+  }
+};
+
+// Функция для закрытия информации
+const closePointInfo = () => {
+  activePointId.value = null;
+};
 </script>
 
 <template>
@@ -7,7 +25,7 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
     <NavigationMobile class="experience-view-mobile__navigation" />
 
     <div class="experience-view-mobile__content">
-        <div class="grid-container" :class="{ 'glitch': glitchEffect }">
+        <div class="grid-container" :class="{ 'glitch': false }">
           <!-- Сетка на весь контент -->
           <div class="grid-overlay"></div>
           
@@ -21,20 +39,22 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
           <div class="terminal-vignette"></div>
           
           <!-- Точка - DNS Tech -->
-          <div class="map-point" @click.stop="togglePointInfo('dns')">
+          <div class="map-point" @click="togglePointInfo('dns')">
             <div class="point-pulse"></div>
             <div class="point-dot"></div>
             <div class="point-label">DNS Tech</div>
+          </div>
             
-            <!-- Информационное окно -->
-            <div class="point-info" v-if="activePointId === 'dns'">
+          <!-- Информационное окно - полноэкранное на мобильных устройствах -->
+          <div class="point-info-fullscreen" v-if="activePointId === 'dns'">
+            <div class="point-info-fullscreen-content">
               <div class="point-info-header">
                 <h3>DNS Tech</h3>
-                <button class="point-info-close" @click.stop="closePointInfo">×</button>
+                <button class="point-info-close" @click="closePointInfo">×</button>
               </div>
               <div class="point-info-content">
-                <p>Frontend Developer</p>
-                <p>2022 - present</p>
+                <p class="job-title">Frontend Developer</p>
+                <p class="job-period">2022 - present</p>
                 <div class="point-info-tags">
                   <span class="tag">Vue.js</span>
                   <span class="tag">Node.js</span>
@@ -57,7 +77,7 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
 
 .experience-view-mobile {
   width: 100%;
-  height: 98.5vh;
+  height: 100vh;
   display: flex;
   gap: 8px;
   flex-direction: column;
@@ -252,45 +272,44 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
   pointer-events: none;
 }
 
-/* Стили для информационного окна */
-.point-info {
-  position: absolute;
-  top: 30px;
+/* Полноэкранное информационное окно для мобильных устройств */
+.point-info-fullscreen {
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 300px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.point-info-fullscreen-content {
+  width: 90%;
+  max-width: 500px;
   background-color: rgba(10, 26, 18, 0.95);
   border: 1px solid #4FFA9A;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 0 0 20px rgba(79, 250, 154, 0.3);
-  padding: 12px;
+  padding: 20px;
   color: #E0E0E0;
-  z-index: 100;
-  
-  /* Соединительная линия от точки к окну */
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 10px solid #4FFA9A;
-  }
+  animation: slideUp 0.3s ease;
 }
 
 .point-info-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   border-bottom: 1px solid rgba(79, 250, 154, 0.3);
-  padding-bottom: 8px;
+  padding-bottom: 12px;
   
   h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 22px;
     color: #4FFA9A;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
   }
@@ -300,7 +319,7 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
   background: none;
   border: none;
   color: #4FFA9A;
-  font-size: 20px;
+  font-size: 28px;
   cursor: pointer;
   padding: 0;
   line-height: 1;
@@ -312,35 +331,43 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
 }
 
 .point-info-content {
-  font-size: 14px;
+  font-size: 16px;
   
-  p {
+  .job-title {
     margin: 0 0 8px;
-    line-height: 1.4;
+    font-weight: 600;
+    color: #E0E0E0;
+    font-size: 18px;
+  }
+  
+  .job-period {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: #BBBBBB;
   }
 }
 
 .point-info-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin: 10px 0;
+  gap: 8px;
+  margin: 16px 0;
   
   .tag {
     background-color: rgba(79, 250, 154, 0.15);
     border: 1px solid rgba(79, 250, 154, 0.4);
     border-radius: 12px;
-    padding: 3px 8px;
-    font-size: 12px;
+    padding: 4px 10px;
+    font-size: 14px;
     color: #4FFA9A;
   }
 }
 
 .point-info-description {
-  font-size: 13px;
+  font-size: 15px;
   color: #CCCCCC;
-  line-height: 1.5;
-  margin-top: 10px;
+  line-height: 1.6;
+  margin-top: 16px;
 }
 
 @keyframes pulse {
@@ -391,17 +418,19 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
   }
 }
 
-@keyframes glitch-animation {
-  0% { transform: translate(0); filter: hue-rotate(0deg); }
-  10% { transform: translate(-2px, 2px); filter: hue-rotate(20deg); }
-  20% { transform: translate(2px, -2px); filter: hue-rotate(-20deg); }
-  30% { transform: translate(-1px, 1px); filter: hue-rotate(0deg); }
-  40% { transform: translate(1px, -1px); filter: hue-rotate(10deg); }
-  50% { transform: translate(-2px, 2px); filter: hue-rotate(-10deg); }
-  60% { transform: translate(2px, -2px); filter: hue-rotate(0deg); }
-  70% { transform: translate(-2px, 2px); filter: hue-rotate(20deg); }
-  80% { transform: translate(2px, -2px); filter: hue-rotate(-20deg); }
-  90% { transform: translate(-1px, 1px); filter: hue-rotate(0deg); }
-  100% { transform: translate(0); filter: hue-rotate(0deg); }
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    transform: translateY(20px);
+    opacity: 0; 
+  }
+  100% { 
+    transform: translateY(0);
+    opacity: 1; 
+  }
 }
 </style>
