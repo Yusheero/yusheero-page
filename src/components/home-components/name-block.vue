@@ -287,6 +287,5 @@ onMounted(() => {
 
 .typed-text {
   display: inline-block;
-  min-height: 1.8rem;
 }
 </style>
