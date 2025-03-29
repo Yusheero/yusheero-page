@@ -130,7 +130,7 @@ onMounted(() => {
   }
 
   &__title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0;
     line-height: 1.5;

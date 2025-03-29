@@ -1,5 +1,28 @@
 <script setup>
 import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
+import { ref } from 'vue';
+
+// Переменная для отслеживания какая точка активна (открыто её инфо-окно)
+const activePointId = ref(null);
+
+// Переменная для эффекта глитча (если нужно)
+const glitchEffect = ref(false);
+
+// Функция для переключения видимости информационного окна
+const togglePointInfo = (pointId) => {
+  if (activePointId.value === pointId) {
+    // Если уже открыта эта точка - закрываем её
+    activePointId.value = null;
+  } else {
+    // Иначе активируем новую точку
+    activePointId.value = pointId;
+  }
+};
+
+// Функция для закрытия информационного окна
+const closePointInfo = () => {
+  activePointId.value = null;
+};
 </script>
 
 <template>
@@ -255,9 +278,12 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
 /* Стили для информационного окна */
 .point-info {
   position: absolute;
-  top: 30px;
-  left: 0;
-  width: 300px;
+  top: auto;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 300px;
   background-color: rgba(10, 26, 18, 0.95);
   border: 1px solid #4FFA9A;
   border-radius: 5px;
@@ -271,7 +297,8 @@ import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
     content: '';
     position: absolute;
     top: -10px;
-    left: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 10px solid transparent;
