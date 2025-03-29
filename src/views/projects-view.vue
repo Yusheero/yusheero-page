@@ -1,7 +1,16 @@
 <script setup>
-import ProjectsViewMobile from '@/views/projects-view-mobile.vue';
-import ProjectsViewDesktop from '@/views/projects-view-desktop.vue';
+import { defineAsyncComponent } from 'vue';
 import { useStore } from '@/store/store';
+import { createAsyncComponent } from '@/components/AsyncComponentLoaders';
+
+// Ленивая загрузка компонентов для мобильной и десктопной версий
+const ProjectsViewMobile = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/projects-view-mobile.vue'))
+);
+
+const ProjectsViewDesktop = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/projects-view-desktop.vue'))
+);
 
 const store = useStore()
 </script>

@@ -1,7 +1,16 @@
 <script setup>
-import BlogViewMobile from '@/views/blog-view-mobile.vue';
-import BlogViewDesktop from '@/views/blog-view-desktop.vue';
+import { defineAsyncComponent } from 'vue';
 import { useStore } from '@/store/store';
+import { createAsyncComponent } from '@/components/AsyncComponentLoaders';
+
+// Ленивая загрузка компонентов для мобильной и десктопной версий
+const BlogViewMobile = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/blog-view-mobile.vue'))
+);
+
+const BlogViewDesktop = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/blog-view-desktop.vue'))
+);
 
 const store = useStore()
 </script>

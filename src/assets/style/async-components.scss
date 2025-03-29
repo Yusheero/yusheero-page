@@ -1,0 +1,65 @@
+// Стили для асинхронных компонентов (загрузка и ошибка)
+
+.async-loading, .async-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: #4FFA9A;
+  background-color: rgba(10, 26, 18, 0.95);
+  border-radius: 8px;
+  padding: 20px;
+  
+  p {
+    margin: 10px 0;
+    font-size: 16px;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
+  }
+}
+
+.loading-spinner {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(79, 250, 154, 0.3);
+  border-radius: 50%;
+  border-top-color: #4FFA9A;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 10px rgba(79, 250, 154, 0.3);
+}
+
+.async-error {
+  button {
+    margin-top: 10px;
+    background-color: rgba(79, 250, 154, 0.15);
+    border: 1px solid rgba(79, 250, 154, 0.5);
+    color: #4FFA9A;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
+    
+    &:hover {
+      background-color: rgba(79, 250, 154, 0.3);
+      box-shadow: 0 0 8px rgba(79, 250, 154, 0.5);
+    }
+  }
+}
+
+// Анимация вращения для спиннера загрузки
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Анимация появления компонентов
+.async-component-enter-active,
+.async-component-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.async-component-enter-from,
+.async-component-leave-to {
+  opacity: 0;
+} 

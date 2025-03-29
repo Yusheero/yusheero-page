@@ -1,7 +1,16 @@
 <script setup>
+import { defineAsyncComponent } from 'vue';
 import { useStore } from '@/store/store';
-import LibraryViewDesktop from '@/views/library-view-desktop.vue';
-import LibraryViewMobile from '@/views/library-view-mobile.vue';
+import { createAsyncComponent } from '@/components/AsyncComponentLoaders';
+
+// Ленивая загрузка компонентов для мобильной и десктопной версий
+const LibraryViewMobile = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/library-view-mobile.vue'))
+);
+
+const LibraryViewDesktop = defineAsyncComponent(
+  createAsyncComponent(() => import('@/views/library-view-desktop.vue'))
+);
 
 const store = useStore()
 </script>
