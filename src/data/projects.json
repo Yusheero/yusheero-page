@@ -36,7 +36,7 @@
       "linkGithub": "https://github.com/Yusheero/untitled-goose-manager",
       "dateCreated": "12.03.2025",
       "category": "FRONTEND",
-      "technologies": ["Vue.js", "Composition API", "SASS"],
+      "technologies": ["Vue.js", "Composition API", "SASS", "Prompt", "AI"],
       "features": [
         "3D элементы и визуализация с Three.js",
         "Анимации с GSAP",

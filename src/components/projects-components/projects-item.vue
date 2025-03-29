@@ -27,8 +27,8 @@ const getYear = computed(() => {
 
 // Добавляем некоторые теги по умолчанию, если их нет в данных
 const defaultTags = computed(() => {
-  if (props.projectsData.tags && props.projectsData.tags.length > 0) {
-    return props.projectsData.tags;
+  if (props.projectsData.technologies && props.projectsData.technologies.length > 0) {
+    return props.projectsData.technologies;
   }
   
   // Добавляем дефолтные теги в зависимости от категории
