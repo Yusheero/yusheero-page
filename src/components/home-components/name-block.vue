@@ -1,10 +1,8 @@
 <script setup>
 import { LocateFixed } from 'lucide-vue-next';
-import NameBlockMobile from '@/components/home-components/name-block-mobile.vue';
 import { useStore } from '@/store/store';
 import { ref, onMounted } from 'vue';
 
-const store = useStore();
 const nameText = ref('');
 const isDeleting = ref(false);
 const loopNum = ref(0);
@@ -132,7 +130,6 @@ onMounted(() => {
   }
 
   &__title {
-    height: 35px;
     font-size: 24px;
     font-weight: 700;
     margin: 0;

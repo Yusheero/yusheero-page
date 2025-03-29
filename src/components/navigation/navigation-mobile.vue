@@ -64,22 +64,20 @@ watch(isMenuOpen, (newValue) => {
           >
             experience
           </router-link>
-          <router-link 
-            title="Blog" 
-            class="menu-link" 
-            :to="{name: 'Blog'}"
-            @click="closeMenu"
+          <a
+            class="menu-link menu-link--disabled"
+            @click.prevent 
+            href="#"
           >
             blog
-          </router-link>
-          <router-link 
-            title="Reviews" 
-            class="menu-link" 
-            :to="{name: 'Reviews'}"
-            @click="closeMenu"
+          </a>
+          <a
+            class="menu-link menu-link--disabled"
+            @click.prevent 
+            href="#"
           >
             reviews
-          </router-link>
+          </a>
           <a
             class="menu-link menu-link--disabled"
             @click.prevent 
@@ -87,14 +85,13 @@ watch(isMenuOpen, (newValue) => {
           >
             library
           </a>
-          <router-link 
-            title="Plans" 
-            class="menu-link" 
-            :to="{name: 'Plans'}"
-            @click="closeMenu"
+          <a
+            class="menu-link menu-link--disabled"
+            @click.prevent 
+            href="#"
           >
             plans
-          </router-link>
+          </a>
         </div>
       </div>
     </div>
