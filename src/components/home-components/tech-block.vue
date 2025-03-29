@@ -1,32 +1,18 @@
 <script setup>
 import { useStore } from '@/store/store';
-import { useKeenSlider } from 'keen-slider/vue'
 import { ref } from 'vue';
 
 const store = useStore()
 const glitchEffect = ref(false);
 
-const animation = { duration: 4000, easing: (t) => t }
-const elementsPerView = store.isMobile ? 4 : 10;
+// Технологии для отображения
+const techItems = [
+  'JS', 'TS', 'VITE', 'VUE', 'SASS', 'NUXT', 
+  'ROUTE', 'PINIA', 'NPM', 'GIT', 'NODE', 'THREE', 'HTML'
+];
 
-const [container, slider] = useKeenSlider({ 
-  loop: true,
-  initial: 0,
-  drag: false,
-  slides: {
-    perView: elementsPerView,
-    spacing: 10
-  },
-  created(s) {
-    s.moveToIdx(1, true, animation)
-  },
-  updated(s) {
-    s.moveToIdx(s.track.details.abs + 1, true, animation)
-  },
-  animationEnded(s) {
-    s.moveToIdx(s.track.details.abs + 1, true, animation)
-  },
-})
+// Создаем дублированный массив для бесшовной анимации
+const techList = [...techItems, ...techItems];
 </script>
 
 <template>
@@ -37,46 +23,17 @@ const [container, slider] = useKeenSlider({
       <div class="crt-effect"></div>
       <div class="noise-effect" :class="{ 'glitch': glitchEffect }"></div>
       
-      <!-- Карусель технологий -->
-      <div ref="container" class="keen-slider">
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">JS</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">TS</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">VITE</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">VUE</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">SASS</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">NUXT</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">ROUTE</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">PINIA</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">NPM</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">GIT</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">NODE</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">THREE</div>
-        </div>
-        <div class="keen-slider__slide tech-item">
-          <div class="tech-icon">HTML</div>
+      <!-- Контейнер слайдера с CSS-анимацией -->
+      <div class="tech-slider-container">
+        <!-- Оверлеи для плавного перехода -->
+        <div class="tech-slider-overlay tech-slider-overlay--left"></div>
+        <div class="tech-slider-overlay tech-slider-overlay--right"></div>
+        
+        <!-- Слайдер с CSS-анимацией -->
+        <div class="tech-slider">
+          <div v-for="(tech, index) in techList" :key="`tech-${index}`" class="tech-item">
+            <div class="tech-icon">{{ tech }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -84,8 +41,6 @@ const [container, slider] = useKeenSlider({
 </template>
 
 <style lang="scss" scoped>
-@import url('keen-slider/keen-slider.css');
-
 .tech-block {
   position: relative;
   height: 100%;
@@ -161,35 +116,56 @@ const [container, slider] = useKeenSlider({
   }
 }
 
-// Стили для карусели
-.keen-slider {
+// Контейнер для слайдера с CSS-анимацией
+.tech-slider-container {
   position: relative;
-  margin: 0 auto;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   padding: 10px;
-  z-index: 1;
+  overflow: hidden;
+}
+
+// Оверлеи для плавного перехода
+.tech-slider-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 15%;
+  z-index: 4;
+  pointer-events: none;
   
-  &::before {
+  &--left {
     left: 0;
     background: linear-gradient(to right, rgba(10, 26, 18, 0.95) 0%, rgba(10, 26, 18, 0) 100%);
   }
   
-  &::after {
+  &--right {
     right: 0;
     background: linear-gradient(to left, rgba(10, 26, 18, 0.95) 0%, rgba(10, 26, 18, 0) 100%);
   }
 }
 
+// Слайдер с CSS-анимацией
+.tech-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideLeft 60s linear infinite;
+  will-change: transform;
+}
+
+// Стили для элементов технологий
 .tech-item {
   position: relative;
+  flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  width: 120px;
   height: 6rem;
+  border-radius: 4px;
   border: 1px solid rgba(79, 250, 154, 0.3);
   box-shadow: 0 0 10px rgba(79, 250, 154, 0.1);
   transition: all 0.3s ease;
@@ -223,6 +199,17 @@ const [container, slider] = useKeenSlider({
   }
   100% {
     transform: translateY(100%);
+  }
+}
+
+// Анимация для горизонтального движения слайдера
+@keyframes slideLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    // Смещение на ширину половины списка для бесшовной анимации
+    transform: translateX(calc(-50% - 5px));
   }
 }
 </style>
