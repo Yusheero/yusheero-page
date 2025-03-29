@@ -1,13 +1,11 @@
 <script setup>
-import GifBlockMobile from '@/components/home-components/gif-block-mobile.vue';
 import { useStore } from '@/store/store';
 
 const store = useStore()
 </script>
 
 <template>
-  <GifBlockMobile v-if="store.isMobile" />
-  <div v-else class="gif-block"></div>
+  <div class="gif-block"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -26,5 +24,9 @@ const store = useStore()
   background-size: cover;
   background-repeat: no-repeat;
   filter: hue-rotate(125deg);
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 }
 </style>

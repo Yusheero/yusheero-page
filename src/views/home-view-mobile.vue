@@ -21,6 +21,7 @@ import TwitchBlock from '@/components/home-components/twitch-block.vue';
   <LastPostBlock />
   <TechBlock />
   <ReviewsBlock />
+  <GifBlock />
   <ContactsBlock />
 </div>
 </template>

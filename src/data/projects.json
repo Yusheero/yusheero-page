@@ -8,12 +8,7 @@
       "dateCreated": "10.08.2023",
       "category": "FRONTEND",
       "technologies": ["Vue.js", "TypeScript", "Vite", "SASS"],
-      "readMore": "/projects/femc",
-      "features": [
-        "Адаптивный дизайн для всех устройств",
-        "Интеграция с Minecraft API",
-        "Анимированные переходы между страницами"
-      ]
+      "readMore": "/projects/femc"
     },
     {
       "title": "Portfolio Page",
@@ -22,12 +17,7 @@
       "linkGithub": "https://github.com/Yusheero/yusheero-page",
       "dateCreated": "18.12.2024",
       "category": "FRONTEND",
-      "technologies": ["Vue.js", "Composition API"],
-      "features": [
-        "3D элементы и визуализация с Three.js",
-        "Анимации с GSAP",
-        "Оптимизированная производительность"
-      ]
+      "technologies": ["Vue.js", "Composition API"]
     },
     {
       "title": "Unititled Goose Manager",
@@ -36,12 +26,16 @@
       "linkGithub": "https://github.com/Yusheero/untitled-goose-manager",
       "dateCreated": "12.03.2025",
       "category": "FRONTEND",
-      "technologies": ["Vue.js", "Composition API", "SASS", "Prompt", "AI"],
-      "features": [
-        "3D элементы и визуализация с Three.js",
-        "Анимации с GSAP",
-        "Оптимизированная производительность"
-      ]
+      "technologies": ["Vue.js", "Composition API", "SASS", "Prompt", "AI"]
+    },
+    {
+      "title": "Devpath",
+      "text": "Training platform for developers. Design and development by me.",
+      "link": "",
+      "linkGithub": "",
+      "dateCreated": "20.03.2025",
+      "category": "FRONTEND",
+      "technologies": ["Vue.js", "Composition API", "SASS", "Prompt", "AI"]
     }
   ]
 }

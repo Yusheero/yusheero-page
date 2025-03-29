@@ -47,7 +47,7 @@ $terminal-background: rgba(10, 26, 18, 0.95);
 
 .projects-view-mobile {
   width: 100%;
-  height: 98.5vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 64px 8px 8px 8px;
@@ -102,6 +102,10 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   border: 1px solid $terminal-frame;
   border-radius: 10px;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    overflow: unset;
+  }
 }
 
 .terminal-top-gradient, .terminal-bottom-gradient {
