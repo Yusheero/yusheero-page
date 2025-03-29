@@ -1,13 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yusheero</title>
-    <script type="module" crossorigin src="./assets/index-C1vhfVnD.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Юшээро</title>
+    <meta name="description" content="Портфолио и блог Юшээро - разработчика и писателя" />
+    <meta name="keywords" content="разработка, дизайн, блог, портфолио, проекты" />
+    <meta name="author" content="Юшээро" />
+    
+    <!-- PWA поддержка -->
+    <link rel="manifest" href="./manifest.json" />
+    <meta name="theme-color" content="#4FFA9A" />
+    
+    <!-- iOS PWA поддержка -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Юшээро" />
+    <link rel="apple-touch-icon" href="/assets/images/icon-192x192.png" />
+    
+    <!-- Фавиконы -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+    
+    <!-- Предварительная загрузка шрифтов -->
+    <link rel="preload" href="/assets/fonts/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/Raleway-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Оптимизация SEO -->
+    <meta property="og:title" content="Юшээро - Портфолио" />
+    <meta property="og:description" content="Портфолио и блог Юшээро - разработчика и писателя" />
+    <meta property="og:image" content="/assets/images/og-image.jpg" />
+    <meta property="og:url" content="https://yusheero.com" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Скрипт установки PWA -->
+    <script src="./pwa-install.js" defer></script>
+    <script type="module" crossorigin src="./assets/index-BtNzB4EC.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BVL68TzD.css">
   </head>
   <body>
     <div id="app"></div>
+    <!-- Noscript уведомление для пользователей с отключенным JavaScript -->
+    <noscript>
+      <div style="text-align: center; padding: 2rem; font-family: sans-serif;">
+        <p>Для корректной работы этого сайта необходимо включить JavaScript.</p>
+      </div>
+    </noscript>
   </body>
 </html>
