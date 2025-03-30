@@ -106,24 +106,24 @@ const closePointInfo = () => {
     "content content content content content content"
     "content content content content content content";
 
-  &__navigation {
+    &__navigation {
     position: absolute;
     top: 0;
     left: -148px;
     z-index: 100;
-  }
+    }
 
-  &__content {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: var(--color-primary);
-    color: var(--color-secondary);
-    grid-area: content;
+    &__content {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: var(--color-primary);
+      color: var(--color-secondary);
+      grid-area: content;
     overflow: hidden;
   }
 }
