@@ -16,7 +16,7 @@ const socialLinks = [
   { name: 'discord', icon: DiscordIcon, url: 'https://discord.gg/Zv2h3TAACx', label: 'Discord', color: '#5865F2' },
   { name: 'github', icon: GitHubIcon, url: 'https://github.com/Yusheero', label: 'GitHub', color: '#000000' },
   { name: 'inst', icon: InstagramIcon, url: 'https://www.instagram.com/yusheero_dev/', label: 'Instagram', color: 'linear-gradient(145deg, rgba(64,93,230,1) 0%, rgba(131,58,180,1) 50%, rgba(225,48,108,1) 100%)' },
-  { name: 'steam', icon: SteamIcon, url: '#', label: 'Steam', color: '#000000' },
+  { name: 'steam', icon: SteamIcon, url: 'https://steamcommunity.com/id/yusheero', label: 'Steam', color: '#000000' },
   { name: 'gmail', icon: GmailIcon, url: '#', label: 'Gmail', color: '#c01818' },
   { name: 'linkedin', icon: LinkedInIcon, url: '#', label: 'LinkedIn', color: '#15468b' },
   { name: 'youtube', icon: YouTubeIcon, url: 'https://www.youtube.com/@yusheero', label: 'YouTube', color: '#c01818' }

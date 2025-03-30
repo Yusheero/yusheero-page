@@ -1,5 +1,10 @@
 <script setup>
+import LanguageSwitcher from '@/components/language-switcher.vue';
 
+const handleLanguageToggle = () => {
+  // Здесь позже добавим логику переключения языка
+  console.log('Language toggle clicked');
+};
 </script>
 
 <template>
@@ -53,6 +58,7 @@
     >
       plans
     </router-link>
+    <LanguageSwitcher @toggle="handleLanguageToggle" />
   </div>
 </template>
 
@@ -113,5 +119,11 @@
       background-color: rgba(79, 250, 154, 0.25);
     }
   }
+}
+
+.navigation__language {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

@@ -190,7 +190,7 @@ onMounted(() => {
     align-items: center;
     background: rgba(10, 26, 18, 0.8);
     color: #4FFA9A;
-    padding: 3px 8px;
+    padding: 6px 8px;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 600;

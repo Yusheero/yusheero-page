@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
+import LanguageSwitcher from '@/components/language-switcher.vue';
 
 // Состояние открытия/закрытия меню
 const isMenuOpen = ref(false);
@@ -24,6 +25,11 @@ watch(isMenuOpen, (newValue) => {
     document.body.style.overflow = '';
   }
 });
+
+const handleLanguageToggle = () => {
+  // Здесь позже добавим логику переключения языка
+  console.log('Language toggle clicked');
+};
 </script>
 
 <template>
@@ -92,6 +98,9 @@ watch(isMenuOpen, (newValue) => {
           >
             plans
           </a>
+          <div class="menu-language">
+            <LanguageSwitcher @toggle="handleLanguageToggle" />
+          </div>
         </div>
       </div>
     </div>
@@ -321,5 +330,13 @@ watch(isMenuOpen, (newValue) => {
     transform: translate(-50%, -50%);
     opacity: 1; 
   }
+}
+
+.menu-language {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(79, 250, 154, 0.3);
+  display: flex;
+  justify-content: center;
 }
 </style>
