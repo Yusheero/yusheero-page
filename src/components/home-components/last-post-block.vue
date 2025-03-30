@@ -172,13 +172,13 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px;
+    padding: 16px;
     border-bottom: 1px solid rgba(79, 250, 154, 0.3);
   }
   
   &__title {
     margin: 0;
-    font-size: 16px;
+    font-size: 20px;
     color: #4FFA9A;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
     font-family: inherit;
@@ -192,7 +192,7 @@ onMounted(() => {
     color: #4FFA9A;
     padding: 3px 8px;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 600;
     border: 1px solid rgba(79, 250, 154, 0.5);
     text-transform: uppercase;
