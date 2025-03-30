@@ -1,5 +1,5 @@
 // Название кэша и версия - будем использовать для обновления кэша при выпуске новых версий
-const CACHE_NAME = 'yusheero-cache-v1.0.0'; // Обновим версию на семантическую
+const CACHE_NAME = 'yusheero-cache-v1';
 const OFFLINE_CACHE = 'yusheero-offline-cache';
 
 // Ресурсы, которые кэшируем при установке Service Worker
@@ -7,23 +7,10 @@ const CACHE_URLS = [
   '/',
   '/index.html',
   '/offline.html',
+  '/offline-image.svg',
+  '/manifest.json',
   '/favicon.ico',
-  '/assets/styles.css',
-  '/assets/main.js',
-  '/assets/fonts/Poppins-Regular.woff2',
-  '/assets/fonts/Raleway-Regular.woff2',
-  '/assets/fonts/Gabarito-Regular.woff2',
-  // Иконки и изображения
-  '/assets/images/logo.png',
-  '/assets/images/favicon.png',
-  '/assets/images/offline-image.svg', // Добавляем офлайн-изображение
-  // Кэшируем маршруты для возможности оффлайн-навигации
-  '/experience',
-  '/projects',
-  '/blog',
-  '/reviews',
-  '/library',
-  '/plans'
+  '/sw-update.js'
 ];
 
 // Функция для проверки является ли запрос навигационным
@@ -55,7 +42,14 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Service Worker: Кэширование файлов');
-        return cache.addAll(CACHE_URLS);
+        // Кэшируем каждый URL отдельно
+        return Promise.all(
+          CACHE_URLS.map(url => 
+            cache.add(url).catch(err => {
+              console.warn(`Failed to cache ${url}:`, err);
+            })
+          )
+        );
       })
       .then(() => {
         // Создаем отдельный кэш для офлайн-ресурсов
@@ -109,7 +103,7 @@ self.addEventListener('fetch', (event) => {
         }
         
         // Если ответа нет в кэше, делаем сетевой запрос
-        return fetch(event.request.clone())
+        return fetch(event.request)
           .then((networkResponse) => {
             // Проверяем валидность ответа
             if (!networkResponse || networkResponse.status !== 200 || 
