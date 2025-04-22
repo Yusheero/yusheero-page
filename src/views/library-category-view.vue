@@ -85,7 +85,7 @@ const goBackToLibrary = () => {
                   target="_blank" 
                   class="category-item__link"
                 >
-                  Открыть ссылку
+                  open link
                 </a>
               </div>
             </div>
@@ -226,6 +226,11 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
 }
 
 .category-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
   width: 100%;
   margin-bottom: 20px;
   padding: 20px;
@@ -238,7 +243,6 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
   &:hover {
     background-color: rgba(79, 250, 154, 0.1);
     box-shadow: 0 0 12px rgba(79, 250, 154, 0.2);
-    transform: translateY(-2px);
   }
   
   &:last-child {
@@ -246,21 +250,15 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
   }
   
   &__title {
-    font-size: 18px;
+    font-size: 22px;
     color: $terminal-green;
     text-shadow: 0 0 8px rgba(79, 250, 154, 0.3);
     letter-spacing: 1px;
   }
   
   &__genre {
-    font-size: 16px;
+    font-size: 18px;
     color: rgba(79, 250, 154, 0.7);
-    margin-bottom: 10px;
-    
-    &::before {
-      content: 'жанр: ';
-      opacity: 0.7;
-    }
   }
   
   &__link {

@@ -58,7 +58,7 @@ const handleLanguageToggle = () => {
     >
       plans
     </router-link>
-    <LanguageSwitcher @toggle="handleLanguageToggle" />
+    <!-- <LanguageSwitcher @toggle="handleLanguageToggle" /> -->
   </div>
 </template>
 

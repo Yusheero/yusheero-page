@@ -99,9 +99,9 @@ const handleLanguageToggle = () => {
           >
             plans
           </a>
-          <div class="menu-language">
+          <!-- <div class="menu-language">
             <LanguageSwitcher @toggle="handleLanguageToggle" />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
