@@ -44,13 +44,13 @@ const handleLanguageToggle = () => {
     >
       reviews
     </router-link>
-    <a
-      class="navigation__button navigation__button--disabled"
-      @click.prevent 
-      href="#"
+    <router-link 
+      title="Library" 
+      class="navigation__button" 
+      :to="{name: 'Library'}"
     >
       library
-    </a>
+    </router-link>
     <router-link 
       title="Plans" 
       class="navigation__button" 

@@ -1,57 +1,97 @@
 <script setup>
-import { onMounted } from 'vue';
-import Navigation from '@/components/navigation/navigation.vue';
+import { computed, onMounted, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import data from '@/data/library.json';
-import LibraryItem from '../components/library-components/library-item.vue';
+import Navigation from '@/components/navigation/navigation.vue';
 
-// Используем новую структуру данных напрямую, она уже содержит нужные поля
-const libraryData = data;
+const route = useRoute();
+const router = useRouter();
+
+// Получаем категорию из параметра маршрута
+const categoryParam = computed(() => route.params.category);
 
 // Добавляем логирование для отладки
 onMounted(() => {
-  console.log('Library data loaded:', data);
-  
-  // Проверяем структуру данных
-  const categories = data.map(cat => ({
-    id: cat.id,
-    name: cat.name,
-    route: `/library/${cat.id}`
-  }));
-  
-  console.log('Available categories:', categories);
+  console.log('Category View Mounted, route params:', route.params);
+  console.log('Available categories:', data.map(cat => cat.id));
 });
+
+// Следим за изменениями параметра маршрута
+watch(
+  () => route.params,
+  (newParams) => {
+    console.log('Route params changed:', newParams);
+  }
+);
+
+// Получаем данные для выбранной категории из новой структуры данных
+const categoryData = computed(() => {
+  const categoryId = categoryParam.value;
+  console.log('Looking for category with id:', categoryId);
+  
+  const category = data.find(cat => cat.id === categoryId);
+  console.log('Found category:', category);
+  
+  if (category) {
+    return {
+      title: category.name,
+      items: category.items
+    };
+  }
+  
+  return { title: 'Категория не найдена', items: [] };
+});
+
+// Функция для возврата к списку категорий
+const goBackToLibrary = () => {
+  router.push('/library');
+};
 </script>
 
 <template>
   <div class="page-container">
-    <div class="library-view-desktop">
-      <Navigation class="library-view-desktop__navigation" />
+    <div class="category-view">
+      <Navigation class="category-view__navigation" />
       
       <!-- Контент обернут в терминальный контейнер -->
-      <div class="library-view-desktop__content">
+      <div class="category-view__content">
         <div class="terminal-container">
           <!-- Эффекты терминала -->
           <div class="crt-effect"></div>
           <div class="scanline-effect"></div>
           <div class="noise-effect"></div>
           
-          <!-- Вертикальный контейнер с библиотекой -->
-          <div class="library-container">
-            <div v-for="item in libraryData" :key="item.id" class="debug-info">
-
-              
-              <LibraryItem 
-                :data="item.items" 
-                :index="item.name" 
-                :route="`/library/${item.id}`"
-                class="library-view-desktop__item" 
-              />
-            </div>
+          <!-- Верхняя панель с кнопкой назад -->
+          <div class="terminal-header">
+            <button class="back-button" @click="goBackToLibrary">
+              back
+            </button>  
           </div>
           
-          <!-- Верхний и нижний градиентные эффекты -->
-          <div class="terminal-top-gradient"></div>
-          <div class="terminal-bottom-gradient"></div>
+          <!-- Вертикальный контейнер с элементами категории -->
+          <div class="category-container">
+            <div v-if="categoryData.items.length > 0">
+              <div 
+                v-for="(item, index) in categoryData.items" 
+                :key="index" 
+                class="category-item"
+              >
+                <div class="category-item__title">{{ item.title }}</div>
+                <div v-if="item.genre" class="category-item__genre">{{ item.genre }}</div>
+                <a 
+                  v-if="item.link" 
+                  :href="item.link" 
+                  target="_blank" 
+                  class="category-item__link"
+                >
+                  Открыть ссылку
+                </a>
+              </div>
+            </div>
+            <div v-else class="category-empty">
+              Категория не найдена или пуста
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -67,23 +107,17 @@ $terminal-dark-green: #052505;
 $terminal-frame: rgba(79, 250, 154, 0.1);
 $terminal-text: #4afa9a;
 $terminal-background: rgba(10, 26, 18, 0.95);
+$terminal-highlight: rgba(79, 250, 154, 0.15);
+$terminal-button: rgba(79, 250, 154, 0.2);
+$terminal-button-hover: rgba(79, 250, 154, 0.4);
 
-.debug-info {
-  position: relative;
-  width: 100%;
-  margin-bottom: 20px;
+.category-not-found {
+  font-size: 16px;
+  opacity: 0.7;
+  margin-left: 10px;
 }
 
-.debug-route {
-  font-size: 12px;
-  color: rgba(79, 250, 154, 0.5);
-  margin-bottom: 5px;
-  padding: 4px;
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-}
-
-.library-view-desktop {
+.category-view {
   position: relative;
   height: 100%;
   width: 100%;
@@ -114,26 +148,6 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     overflow: hidden;
     position: relative;
   }
-  
-  &__item {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(79, 250, 154, 0.05);
-    border: 1px solid $terminal-frame;
-    border-radius: 6px;
-    box-shadow: 0 0 8px rgba(79, 250, 154, 0.1);
-    transition: all 0.3s ease;
-    
-    &:hover {
-      background-color: rgba(79, 250, 154, 0.1);
-      box-shadow: 0 0 12px rgba(79, 250, 154, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
 }
 
 .terminal-container {
@@ -147,33 +161,47 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   overflow: hidden;
 }
 
-.terminal-top-gradient, .terminal-bottom-gradient {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 30px;
+.terminal-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $terminal-frame;
+  position: relative;
   z-index: 2;
-  pointer-events: none;
 }
 
-.terminal-top-gradient {
-  top: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+.back-button {
+  background: $terminal-button;
+  color: $terminal-green;
+  border: 1px solid $terminal-frame;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: $terminal-button-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(79, 250, 154, 0.2);
+  }
 }
 
-.terminal-bottom-gradient {
-  bottom: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+.terminal-title {
+  font-size: 28px;
+  margin-left: 20px;
+  color: $terminal-green;
+  text-shadow: 0 0 8px rgba(79, 250, 154, 0.5);
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.library-container {
+.category-container {
   position: relative;
   width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 16px;
+  height: calc(100% - 65px);
+  display: flex;
+  flex-direction: column;
   padding: 25px;
   overflow-y: auto;
   z-index: 1;
@@ -198,7 +226,93 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   }
 }
 
-// Эффекты терминала
+.category-item {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgba(79, 250, 154, 0.05);
+  border: 1px solid $terminal-frame;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(79, 250, 154, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(79, 250, 154, 0.1);
+    box-shadow: 0 0 12px rgba(79, 250, 154, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+  
+  &__title {
+    font-size: 18px;
+    color: $terminal-green;
+    text-shadow: 0 0 8px rgba(79, 250, 154, 0.3);
+    letter-spacing: 1px;
+  }
+  
+  &__genre {
+    font-size: 16px;
+    color: rgba(79, 250, 154, 0.7);
+    margin-bottom: 10px;
+    
+    &::before {
+      content: 'жанр: ';
+      opacity: 0.7;
+    }
+  }
+  
+  &__link {
+    display: inline-block;
+    background: $terminal-button;
+    color: $terminal-green;
+    border: 1px solid $terminal-frame;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
+    text-decoration: none;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: $terminal-button-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(79, 250, 154, 0.2);
+    }
+  }
+}
+
+.category-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: rgba(79, 250, 154, 0.7);
+  font-size: 20px;
+  text-align: center;
+}
+
+.terminal-top-gradient, .terminal-bottom-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 30px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.terminal-top-gradient {
+  top: 65px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.terminal-bottom-gradient {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
 .crt-effect {
   position: absolute;
   top: 0;
@@ -247,4 +361,4 @@ $terminal-background: rgba(10, 26, 18, 0.95);
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-</style>
+</style> 

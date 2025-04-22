@@ -8,6 +8,8 @@ const BlogView = () => import('@/views/blog-view.vue')
 const ReviewsView = () => import('@/views/reviews-view.vue')
 const LibraryView = () => import('@/views/library-view.vue')
 const PlansView = () => import('@/views/plans-view.vue')
+// Импортируем компоненты для подстраниц библиотеки
+const CategoryView = () => import('@/views/library-category-view.vue')
 
 const routes = [
   { 
@@ -65,6 +67,16 @@ const routes = [
       title: 'Библиотека',
       prefetch: false
     }
+  },
+  { 
+    path: '/library/:category', 
+    component: CategoryView, 
+    name: 'LibraryCategory',
+    meta: { 
+      title: 'Категория библиотеки',
+      prefetch: false
+    },
+    props: true
   },
   { 
     path: '/plans', 

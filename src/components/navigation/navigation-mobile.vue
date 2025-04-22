@@ -84,13 +84,14 @@ const handleLanguageToggle = () => {
           >
             reviews
           </a>
-          <a
-            class="menu-link menu-link--disabled"
-            @click.prevent 
-            href="#"
+          <router-link 
+            title="Library" 
+            class="menu-link" 
+            :to="{name: 'Library'}"
+            @click="closeMenu"
           >
             library
-          </a>
+          </router-link>
           <a
             class="menu-link menu-link--disabled"
             @click.prevent 

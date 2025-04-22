@@ -1,99 +1,98 @@
 <script setup>
 import { ArrowRight } from 'lucide-vue-next';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const props = defineProps({
   data: Array,
   index: String,
-})
+  route: {
+    type: String,
+    default: ''
+  }
+});
+
+// Функция для перехода на страницу категории
+const navigateToCategory = () => {
+  if (props.route) {
+    router.push(props.route);
+  } else {
+    // Если маршрут не указан, создаем маршрут на основе категории
+    router.push(`/library/${props.index.toLowerCase()}`);
+  }
+};
 </script>
 
 <template>
   <div class="library-item">
-    <div class="library-item__item">
-      <div class="library-item__title">{{ props.index }}</div>
-      <div class="library-item__names">
-        <p v-for="data in data" class="library-item__name">{{ data.title }}</p>
-      </div>
+    <div class="library-item__button" @click="navigateToCategory">
+      <span>{{ route }}</span>
     </div>
-    <div class="library-item__button"><ArrowRight color="black" size="30" stroke-width="1.5" /></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import '@/assets/style/style.scss';
 
+// Переменные терминального стиля
+$terminal-green: #4afa9a;
+$terminal-dark-green: #052505;
+$terminal-bright-green: #6dffc2;
+$terminal-frame: rgba(79, 250, 154, 0.3);
+$terminal-text: #4afa9a;
+$terminal-background: rgba(10, 26, 18, 0.95);
+$terminal-highlight: rgba(79, 250, 154, 0.15);
+$terminal-button: rgba(79, 250, 154, 0.2);
+$terminal-button-hover: rgba(79, 250, 154, 0.4);
+
 .library-item {
   width: 100%;
-  background: var(--color-secondary);
+  background: $terminal-background;
+  border: 1px solid $terminal-frame;
+  box-shadow: 0 0 8px rgba(79, 250, 154, 0.2);
   border-radius: 6px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-
-  &__item {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    font-size: 16px;
-    color: var(--color-secondary);
-    border-radius: 6px;
-    text-align: center;
-  }
-
-  &__title {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px;
-    color: var(--color-primary);
-  }
-
-  &__names {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 4px;
-  }
-
-  &__name {
-    color: var(--color-secondary);
-    background: var(--color-primary);
-    padding: 4px 14px;
-    border-radius: 4px;
-    font-size: 14px;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    box-shadow: 0 0 12px rgba(79, 250, 154, 0.3);
   }
 
   &__button {
-    width: 7rem;
+    width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-left: 2px solid var(--color-primary);
-    background: var(--color-sakura);
+    background: $terminal-button;
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
+    transition: background 0.3s ease;
+    cursor: pointer;
 
     &:hover {
-      background: var(--color-primary-light);
-      cursor: pointer;
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 6px;
+      background: $terminal-button-hover;
+      
+      .arrow-icon {
+        transform: translateX(3px);
+      }
+    }
+    
+    .arrow-icon {
+      stroke: $terminal-green;
+      transition: transform 0.3s ease;
     }
   }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
 </style>
