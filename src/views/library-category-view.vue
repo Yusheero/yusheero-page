@@ -3,6 +3,7 @@ import { computed, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import data from '@/data/library.json';
 import Navigation from '@/components/navigation/navigation.vue';
+import { ArrowLeft } from 'lucide-vue-next';
 
 const route = useRoute();
 const router = useRouter();
@@ -64,7 +65,7 @@ const goBackToLibrary = () => {
           <!-- Верхняя панель с кнопкой назад -->
           <div class="terminal-header">
             <button class="back-button" @click="goBackToLibrary">
-              back
+              <ArrowLeft color="#4afa9a" size="24px" />
             </button>  
           </div>
           
@@ -87,9 +88,6 @@ const goBackToLibrary = () => {
                   Открыть ссылку
                 </a>
               </div>
-            </div>
-            <div v-else class="category-empty">
-              Категория не найдена или пуста
             </div>
           </div>
         </div>
@@ -170,19 +168,20 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
 }
 
 .back-button {
-  background: $terminal-button;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
   color: $terminal-green;
-  border: 1px solid $terminal-frame;
-  border-radius: 4px;
-  padding: 8px 16px;
+  border: unset;
+  border-right: 1px solid $terminal-frame;
+  padding: 20px;
   font-size: 18px;
   cursor: pointer;
   transition: all 0.2s ease;
   
   &:hover {
     background: $terminal-button-hover;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(79, 250, 154, 0.2);
   }
 }
 
