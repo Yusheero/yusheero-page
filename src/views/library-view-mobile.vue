@@ -1,59 +1,78 @@
 <script setup>
-import Navigation from '@/components/navigation/navigation.vue';
-import WatchStream from '@/components/watch-stream/watch-stream.vue';
-import ViewsTemplateMobile from '@/components/views-template/views-template-mobile.vue';
+import NavigationMobile from '@/components/navigation/navigation-mobile.vue';
+import LibraryItemMobile from '@/components/library-components/library-item-mobile.vue';
+import data from '@/data/library.json';
+
+// Получаем данные библиотеки
+const libraryData = data;
 </script>
 
 <template>
-  <ViewsTemplateMobile>
-    <div class="game-view-mobile">
-      <div class="game-view-mobile__header">
-        <Navigation />
-        <WatchStream />
-      </div>
-      <div class="game-view-mobile__title">Blog Page</div>
-      <div class="game-view-mobile__content">
-        BLOG
+  <div class="library-view-mobile">
+    <NavigationMobile class="library-view-mobile__navigation" />
+    <div class="library-view-mobile__content">
+      <div v-for="item in libraryData" :key="item.id" class="library-view-mobile__item-wrapper">
+        <LibraryItemMobile 
+          :data="item.items" 
+          :index="item.name" 
+          :route="`/library/${item.id}`"
+          class="library-view-mobile__item" 
+        />
       </div>
     </div>
-  </ViewsTemplateMobile>
+  </div>
 </template>
 
 <style lang="scss">
 @import '@/assets/style/style.scss';
 
-.game-view-mobile {
+// Переменные терминального стиля
+$terminal-green: #4afa9a;
+$terminal-dark-green: #052505;
+$terminal-frame: rgba(79, 250, 154, 0.3);
+$terminal-text: #4afa9a;
+$terminal-background: rgba(10, 26, 18, 0.95);
+
+.library-view-mobile {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   gap: 8px;
   flex-direction: column;
-
-  &__title {
-    height: 100%;
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-    background: var(--color-secondary);
-    color: var(--color-primary);
-  }
+  padding: 64px 8px 8px 8px;
 
   &__content {
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    padding: 4px;
-    background: rgb(255, 255, 255, 0.25);
-    color: var(--color-secondary);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    padding: 12px;
+    background: $terminal-background;
+    border: 1px solid $terminal-frame;
+    box-shadow: 0 0 8px rgba(79, 250, 154, 0.2);
+    color: $terminal-text;
+    overflow-y: auto;
+    
+    /* Стилизация скроллбара */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(79, 250, 154, 0.1);
+      border-radius: 4px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(79, 250, 154, 0.5);
+      border-radius: 4px;
+      
+      &:hover {
+        background: rgba(79, 250, 154, 0.7);
+      }
+    }
   }
 
   &__header {
@@ -63,12 +82,17 @@ import ViewsTemplateMobile from '@/components/views-template/views-template-mobi
     align-items: center;
     gap: 8px;
   }
-
-  &__image {
-    // background-image: url('@/components/navigation/images/haha3.gif');
-    background-size: cover;
-    background-position: 100% 30%;
-    border-radius: 8px;
+  
+  &__item-wrapper {
+    width: 100%;
+    margin-bottom: 8px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__item {
     width: 100%;
     height: 100%;
   }
