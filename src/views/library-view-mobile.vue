@@ -48,7 +48,7 @@ $terminal-background: rgba(10, 26, 18, 0.95);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    padding: 12px;
+    padding: 8px;
     background: $terminal-background;
     border: 1px solid $terminal-frame;
     box-shadow: 0 0 8px rgba(79, 250, 154, 0.2);

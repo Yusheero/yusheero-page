@@ -71,7 +71,6 @@ $terminal-background: rgba(10, 26, 18, 0.95);
 .debug-info {
   position: relative;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .debug-route {

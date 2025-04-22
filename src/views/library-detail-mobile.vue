@@ -36,7 +36,6 @@ onMounted(() => {
       <div class="library-detail-mobile__header">
         <button class="back-button" @click="goBack">
           <ChevronLeft size="24" />
-          <span>Back</span>
         </button>
         <NavigationMobile class="navigation" />
       </div>
@@ -90,7 +89,6 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
     
     .back-button {
       display: flex;
@@ -100,7 +98,7 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
       border: 1px solid $terminal-frame;
       color: $terminal-text;
       border-radius: 6px;
-      padding: 8px 12px;
+      padding: 8px;
       font-size: 14px;
       cursor: pointer;
       transition: all 0.2s ease;
