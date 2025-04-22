@@ -16,11 +16,11 @@ const routes = [
     path: '/', 
     component: HomeView, 
     name: 'Home',
-    // Добавляем метаданные для предзагрузки связанных страниц
+    // Добавляем метаданные без prefetch
     meta: { 
       title: 'Главная страница',
-      // Предзагрузка наиболее важных компонентов
-      prefetch: true 
+      // prefetch отключен
+      prefetch: false 
     }
   },
   { 
@@ -29,7 +29,7 @@ const routes = [
     name: 'Experience',
     meta: { 
       title: 'Опыт работы',
-      prefetch: true  // Предзагрузка важных страниц
+      prefetch: false
     }
   },
   { 
@@ -38,7 +38,7 @@ const routes = [
     name: 'Projects',
     meta: { 
       title: 'Проекты',
-      prefetch: true
+      prefetch: false
     }
   },
   { 
@@ -47,7 +47,7 @@ const routes = [
     name: 'Blog',
     meta: { 
       title: 'Блог',
-      prefetch: false  // Менее важные страницы не предзагружаем
+      prefetch: false
     }
   },
   { 
@@ -103,19 +103,18 @@ router.beforeEach((to, from, next) => {
   next();
 })
 
-// Добавляем предзагрузку для компонентов с prefetch: true
-// Это происходит после полной загрузки основного компонента
-router.afterEach((to) => {
-  // Находим все маршруты с prefetch: true
-  const routesToPrefetch = routes
-    .filter(route => route.meta && route.meta.prefetch && route.path !== to.path);
-  
-  // Предзагружаем компоненты после небольшой задержки
-  setTimeout(() => {
-    routesToPrefetch.forEach(route => {
-      if (typeof route.component === 'function') {
-        route.component();
-      }
-    });
-  }, 2000); // Задержка в 2 секунды
-})
+// Механизм prefetch отключен
+// router.afterEach((to) => {
+//   // Находим все маршруты с prefetch: true
+//   const routesToPrefetch = routes
+//     .filter(route => route.meta && route.meta.prefetch && route.path !== to.path);
+//   
+//   // Предзагружаем компоненты после небольшой задержки
+//   setTimeout(() => {
+//     routesToPrefetch.forEach(route => {
+//       if (typeof route.component === 'function') {
+//         route.component();
+//       }
+//     });
+//   }, 2000); // Задержка в 2 секунды
+// })

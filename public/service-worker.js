@@ -1,3 +1,6 @@
+// This service worker is now disabled
+// Этот service worker отключен для предотвращения кэширования
+
 // Название кэша и версия - будем использовать для обновления кэша при выпуске новых версий
 const CACHE_NAME = 'yusheero-cache-v1';
 const OFFLINE_CACHE = 'yusheero-offline-cache';
@@ -73,91 +76,18 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
-          // Удаляем старые кэши, оставляя только текущие
-          if (cacheName !== CACHE_NAME && cacheName !== OFFLINE_CACHE) {
-            console.log('Service Worker: Удаление старого кэша', cacheName);
-            return caches.delete(cacheName);
-          }
+          console.log('Deleting cache:', cacheName);
+          return caches.delete(cacheName);
         })
       );
     }).then(() => self.clients.claim()) // Заставляем Service Worker "взять на себя" открытые страницы
   );
 });
 
-// Стратегия кэширования "Cache First, Network Fallback"
-self.addEventListener('fetch', (event) => {
-  // Игнорируем запросы для API, аналитики и других внешних запросов
-  if (event.request.url.includes('/api/') || 
-      event.request.url.includes('analytics') ||
-      event.request.url.includes('socket') ||
-      !event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
-  
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Возвращаем кэшированный ответ, если он есть
-        if (response) {
-          return response;
-        }
-        
-        // Если ответа нет в кэше, делаем сетевой запрос
-        return fetch(event.request)
-          .then((networkResponse) => {
-            // Проверяем валидность ответа
-            if (!networkResponse || networkResponse.status !== 200 || 
-                networkResponse.type !== 'basic') {
-              return networkResponse;
-            }
-            
-            // Кэшируем новый ресурс (клонируем, т.к. ответ можно прочитать только один раз)
-            const responseToCache = networkResponse.clone();
-            
-            caches.open(CACHE_NAME)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-            
-            return networkResponse;
-          })
-          .catch((error) => {
-            console.log('Ошибка при выполнении fetch:', error);
-            
-            // Для навигационных запросов (HTML страниц) в случае ошибки
-            // показываем оффлайн-страницу
-            if (isNavigationRequest(event.request)) {
-              return caches.match('/offline.html', { cache: OFFLINE_CACHE });
-            }
-            
-            // Для изображений возвращаем офлайн-изображение
-            if (isImageRequest(event.request)) {
-              return caches.match('/assets/images/offline-image.svg', { cache: OFFLINE_CACHE });
-            }
-            
-            // Для JS и CSS возвращаем пустой ответ соответствующего типа
-            if (isStaticAsset(event.request)) {
-              const url = new URL(event.request.url);
-              const extension = url.pathname.split('.').pop().toLowerCase();
-              
-              let contentType = 'text/plain';
-              if (extension === 'css') contentType = 'text/css';
-              if (extension === 'js') contentType = 'application/javascript';
-              
-              return new Response('/* Ресурс недоступен в офлайн-режиме */', {
-                status: 200,
-                headers: { 'Content-Type': contentType }
-              });
-            }
-            
-            // Для всех остальных запросов
-            return new Response('Нет соединения с сетью.', {
-              status: 503,
-              headers: { 'Content-Type': 'text/plain' }
-            });
-          });
-      })
-  );
+// Не кэшируем никакие ресурсы
+self.addEventListener('fetch', function(event) {
+  // Проходит через fetch без кэширования
+  // Это позволит всегда получать актуальные данные с сервера
 });
 
 // Обработка сообщений от клиента

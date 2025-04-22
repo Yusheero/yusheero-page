@@ -8,12 +8,12 @@ const pinia = createPinia()
 
 const app = createApp(App).use(pinia).use(router)
 
-// Регистрация Service Worker
-if ('serviceWorker' in navigator) {
-  // Добавляем скрипт для управления обновлениями Service Worker
-  const script = document.createElement('script');
-  script.src = '/sw-update.js';
-  document.head.appendChild(script);
-}
+// Регистрация Service Worker отключена для предотвращения кэширования
+// if ('serviceWorker' in navigator) {
+//   // Добавляем скрипт для управления обновлениями Service Worker
+//   const script = document.createElement('script');
+//   script.src = '/sw-update.js';
+//   document.head.appendChild(script);
+// }
 
 app.mount('#app')
