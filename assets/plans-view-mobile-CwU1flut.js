@@ -1,1 +1,0 @@
-import{f as a,A as s,o as t,c as l,i as o,j as r}from"./index-hI1MFL27.js";const c={},i={class:"plans-view__header"};function _(d,e){const n=s("NavigationMobile");return t(),l("div",null,[o("header",i,[r(n)]),e[0]||(e[0]=o("h1",null,"Plans",-1))])}const f=a(c,[["render",_]]);export{f as default};
