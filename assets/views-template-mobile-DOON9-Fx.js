@@ -1,0 +1,1 @@
+import{h as s,o,c as t,G as c}from"./index-BTvq_wHo.js";const r={},a={class:"views-template-mobile"};function n(e,l){return o(),t("div",a,[c(e.$slots,"default")])}const _=s(r,[["render",n]]);export{_ as V};
