@@ -120,12 +120,6 @@ onMounted(() => {
         <p class="last-post-block__text">{{ truncatedText }}</p>
       </div>
       
-      <div class="last-post-block__tags">
-        <span class="tag" v-for="(tag, index) in postTags" :key="index">
-          {{ tag }}
-        </span>
-      </div>
-      
       <div class="last-post-block__footer">
         <div class="last-post-block__date">
           <Calendar size="14" />

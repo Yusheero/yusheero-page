@@ -71,13 +71,14 @@ const goBackToLibrary = () => {
           
           <!-- Вертикальный контейнер с элементами категории -->
           <div class="category-container">
-            <div v-if="categoryData.items.length > 0">
+            <div class="category-container__wrapper" v-if="categoryData.items.length > 0">
               <div 
                 v-for="(item, index) in categoryData.items" 
                 :key="index" 
                 class="category-item"
               >
                 <div class="category-item__title">{{ item.title }}</div>
+                <div v-if="item.score" class="category-item__score">{{ item.score }}</div>
                 <div v-if="item.genre" class="category-item__genre">{{ item.genre }}</div>
                 <a 
                   v-if="item.link" 
@@ -223,16 +224,24 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
       background: rgba(79, 250, 154, 0.7);
     }
   }
+
+  &__wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+  }
 }
 
 .category-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   width: 100%;
-  margin-bottom: 20px;
+  height: 300px;
   padding: 20px;
   background-color: rgba(79, 250, 154, 0.05);
   border: 1px solid $terminal-frame;
@@ -250,12 +259,17 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
   }
   
   &__title {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
     color: $terminal-green;
+    text-align: center;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.3);
   }
   
+  &__score {
+    font-size: 20px;
+  }
+
   &__genre {
     font-size: 14px;
     opacity: 0.8;

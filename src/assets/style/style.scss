@@ -5,6 +5,20 @@
 // Импортируем стили для асинхронных компонентов
 @import './async-components.scss';
 
+@font-face {
+    font-family: 'Yandex Sans Bold';
+    src: url('/src/assets/fonts/YandexSansText-Bold.woff2') format('woff');
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Yandex Sans Regular';
+    src: url('/src/assets/fonts/YandexSansText-Regular.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
 	--color-primary: #121212;
 	--color-primary-light: #242424;

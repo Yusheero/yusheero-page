@@ -38,9 +38,7 @@ onMounted(() => {
           <!-- Вертикальный контейнер с библиотекой -->
           <div class="library-container">
             <div v-for="item in libraryData" :key="item.id" class="debug-info">
-
-              
-              <LibraryItem 
+              <LibraryItem
                 :data="item.items" 
                 :index="item.name" 
                 :route="`/library/${item.id}`"

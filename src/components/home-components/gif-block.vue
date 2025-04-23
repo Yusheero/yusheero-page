@@ -18,12 +18,11 @@ const store = useStore()
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background: #1f1f23;
   color: var(--color-primary);
   background-image: url('@/assets/images/guts.gif');
   background-size: cover;
   background-repeat: no-repeat;
-  filter: hue-rotate(140deg);
+  filter: hue-rotate(168deg);
 
   @media (max-width: 768px) {
     height: 300px;

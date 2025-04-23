@@ -17,6 +17,27 @@
       },
       {
         "title": "Minecraft"
+      },
+      {
+        "title": "Ori and the Blind Forest"
+      },
+      {
+        "title": "Katana Zero"
+      },
+      {
+        "title": "Hotline Miami"
+      },
+      {
+        "title": "Mount & Blade"
+      },
+      {
+        "title": "Cuphead"
+      },
+      {
+        "title": "Assassin's Creed 1"
+      },
+      {
+        "title": "Assassin's Creed 2"
       }
     ]
   },
@@ -25,19 +46,58 @@
     "name": "Movies",
     "items": [
       {
-        "title": "Oppenheimer"
+        "title": "Whiplash (2014)"
       },
       {
-        "title": "Dune 1"
+        "title": "Oppenheimer (2023)"
       },
       {
-        "title": "Dune 2"
+        "title": "Dune 1 (2021)"
       },
       {
-        "title": "Interstellar"
+        "title": "Dune 2 (2024)"
       },
       {
-        "title": "A Beautiful Mind"
+        "title": "Interstellar (2014)"
+      },
+      {
+        "title": "A Beautiful Mind (2001)"
+      },
+      {
+        "title": "Pulp Fiction (1994)"
+      },
+      {
+        "title": "Forrest Gump (1994)"
+      },
+      {
+        "title": "Fight Club (1999)"
+      },
+      {
+        "title": "The Beginning (2010)"
+      },
+      {
+        "title": "The Silence of the Lambs (1991)"
+      },
+      {
+        "title": "The Green Mile (1999)"
+      },
+      {
+        "title": "1+1 (2011)"
+      },
+      {
+        "title": "Django Unchained (2012)"
+      },
+      {
+        "title": "Remember (2000)"
+      },
+      {
+        "title": "Joker (2019)"
+      },
+      {
+        "title": "The Wolf of Wall Street (2013)"
+      },
+      {
+        "title": "Terminator 2: Judgment Day (1991)"
       }
     ]
   },
@@ -76,37 +136,68 @@
     "name": "Anime",
     "items": [
       {
-        "title": "BERSERK"
+        "title": "BERSERK",
+        "score": "10/10"
       },
       {
-        "title": "Mob Psycho 100"
+        "title": "Mob Psycho 100",
+        "score": "9/10"
       },
       {
-        "title": "Solo Leveling"
+        "title": "Solo Leveling",
+        "score": "9/10"
       },
       {
-        "title": "Evangelion"
+        "title": "Evangelion",
+        "score": "10/10"
       },
       {
-        "title": "Attack on Titan"
+        "title": "Attack on Titan",
+        "score": "9/10"
       },
       {
-        "title": "Jujutsu Kaisen"
+        "title": "Sorcery Battle",
+        "score": "9/10"
       },
       {
-        "title": "Vinland Saga"
+        "title": "Vinland Saga",
+        "score": "10/10"
       },
       {
-        "title": "Frieren at the Funeral"
+        "title": "Frieren at the Funeral",
+        "score": "10/10"
       },
       {
-        "title": "Tower of God"
+        "title": "Tower of God",
+        "score": "9/10"
       },
       {
-        "title": "Hunter X Hunter"
+        "title": "Hunter X Hunter",
+        "score": "9/10"
       },
       {
-        "title": "One Punch Man"
+        "title": "One Punch Man",
+        "score": "10/10"
+      },
+      {
+        "title": "Chainsaw Man",
+        "score": "8/10"
+      },
+      {
+        "title": "Princess Mononoke",
+        "score": "10/10"
+      },
+      {
+        "title": "Your Name",
+        "score": "10/10"
+      },
+      {
+        "title": "Spirited Away",
+        "score": "10/10"
+      },
+      {
+        "title": "Gurren Lagann",
+        "score": "..."
       }
     ]
   }

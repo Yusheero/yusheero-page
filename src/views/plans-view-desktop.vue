@@ -1,14 +1,19 @@
 <script setup>
 import Navigation from '@/components/navigation/navigation.vue';
-import { ref, onMounted } from 'vue';
 
 // Данные о планах на английском
 const plansData = [
   {
     id: 1,
-    title: 'Experience View update',
+    title: 'Experience page update',
     description: 'More tips and tricks for experience view',
     date: '2025-03-28'
+  },
+  {
+    id: 2,
+    title: 'Library page update',
+    description: 'More tips and tricks for library view',
+    date: '2025-04-23'
   },
 ];
 

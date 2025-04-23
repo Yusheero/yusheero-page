@@ -37,12 +37,6 @@ const defaultTags = computed(() => {
         <p class="blog-item__text">{{ blogData.text }}</p>
       </div>
       
-      <div class="blog-item__tags">
-        <span class="tag" v-for="(tag, index) in defaultTags" :key="index">
-          {{ tag }}
-        </span>
-      </div>
-      
       <div class="blog-item__footer">
         <div v-if="blogData.date" class="blog-item__date">
           <Calendar size="14" />
@@ -106,7 +100,7 @@ const defaultTags = computed(() => {
   
   &__title {
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
     color: #4FFA9A;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
     font-family: inherit;
