@@ -1,7 +1,7 @@
 <script setup>
 import { ArrowRight, Calendar, Clock, Hash } from 'lucide-vue-next';
 import { ref, onMounted, computed } from 'vue';
-import data from '@/data/blog.json';
+import data from '@/data/blog-ru.json';
 
 const blogData = data.data;
 const DataLength = blogData.length;
@@ -131,7 +131,7 @@ onMounted(() => {
             class="last-post-block__link" 
             :to="{name: 'Blog'}"
           >
-            read
+            читать
           </router-link>
         </div>
       </div>
@@ -175,7 +175,7 @@ onMounted(() => {
     font-size: 20px;
     color: #4FFA9A;
     text-shadow: 0 0 5px rgba(79, 250, 154, 0.5);
-    font-family: inherit;
+    font-family: Yandex Sans Bold, serif;
     font-weight: 600;
   }
   
@@ -202,6 +202,7 @@ onMounted(() => {
   
   &__text {
     font-size: 14px;
+    font-family: Yandex Sans Regular;
     line-height: 1.5;
     margin: 0 0 10px;
     color: #CCCCCC;
@@ -257,6 +258,7 @@ onMounted(() => {
     min-width: 80px;
     height: 100%;
     font-size: 14px;
+    font-family: Yandex Sans Regular;
     position: relative;
     display: flex;
     justify-content: center;
