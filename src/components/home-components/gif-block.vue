@@ -22,7 +22,7 @@ const store = useStore()
   background-image: url('@/assets/images/guts.gif');
   background-size: cover;
   background-repeat: no-repeat;
-  filter: hue-rotate(168deg);
+  filter: hue-rotate(165deg);
 
   @media (max-width: 768px) {
     height: 300px;
