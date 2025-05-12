@@ -158,6 +158,7 @@ $terminal-button-hover: rgba(79, 250, 154, 0.4);
   box-shadow: 0 0 1px rgba(79, 250, 154, 0.3), inset 0 0 40px rgba(0, 0, 0, 0.8);
   border-radius: 10px;
   overflow: hidden;
+  padding-bottom: 25px;
 }
 
 .terminal-header {
